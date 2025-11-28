@@ -1,0 +1,3366 @@
+version 3
+run SinglePair-0-20251121-20:08:46-172484
+attr configname SinglePair
+attr datetime 20251121-20:08:46
+attr datetimef 20251121-200846
+attr experiment SinglePair
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network simu5g.simulations.nr.networks.SingleCell_Standalone_D2D
+attr processid 172484
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../../../images:../../../../inet/images
+config network simu5g.simulations.nr.networks.SingleCell_Standalone_D2D
+config *.gnb.mobility.initialX 300m
+config *.gnb.mobility.initialY 300m
+config *.numUeCell 0
+config *.numUeD2DTx 1
+config *.numUeD2DRx 1
+config *.ue*[*].macCellId 0
+config *.ue*[*].masterId 0
+config *.ue*[*].nrMacCellId 1
+config *.ue*[*].nrMasterId 1
+config *.ueD2DTx[0].mobility.initialX 290m
+config *.ueD2DTx[0].mobility.initialY 350m
+config *.ueD2DRx[0].mobility.initialX 310m
+config *.ueD2DRx[0].mobility.initialY 350m
+config sim-time-limit 20s
+config warmup-period 0s
+config repeat 3
+config **.routingRecorder.enabled false
+config output-scalar-file results/SinglePair/0.sca
+config output-vector-file results/SinglePair/0.vec
+config seed-set 0
+config **.vector-recording false
+config **.mobility.constraintAreaMaxX 1000m
+config **.mobility.constraintAreaMaxY 1000m
+config **.mobility.constraintAreaMinX 0m
+config **.mobility.constraintAreaMinY 0m
+config **.mobility.constraintAreaMinZ 0m
+config **.mobility.constraintAreaMaxZ 0m
+config **.mobility.initFromDisplayString false
+config **.numBands 50
+config **.ueTxPower 26dBm
+config **.eNodeBTxPower 40dBm
+config **.targetBler 0.01
+config **.blerShift 5
+config *.configurator.config "xmldoc(\"./demo.xml\")"
+
+vector 0 SingleCell_Standalone_D2D.server.lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 1 SingleCell_Standalone_D2D.server.lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 2 SingleCell_Standalone_D2D.server.lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 3 SingleCell_Standalone_D2D.server.lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 4 SingleCell_Standalone_D2D.server.ppp[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 5 SingleCell_Standalone_D2D.server.ppp[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 6 SingleCell_Standalone_D2D.server.ppp[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 7 SingleCell_Standalone_D2D.server.ppp[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 8 SingleCell_Standalone_D2D.server.ppp[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 9 SingleCell_Standalone_D2D.server.ppp[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 10 SingleCell_Standalone_D2D.server.ppp[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 11 SingleCell_Standalone_D2D.server.ppp[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 12 SingleCell_Standalone_D2D.server.ppp[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 13 SingleCell_Standalone_D2D.server.ppp[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 14 SingleCell_Standalone_D2D.server.ppp[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 15 SingleCell_Standalone_D2D.server.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 16 SingleCell_Standalone_D2D.server.ppp[0].ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 17 SingleCell_Standalone_D2D.server.ppp[0].ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 18 SingleCell_Standalone_D2D.server.ppp[0].ppp packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 19 SingleCell_Standalone_D2D.server.ppp[0].ppp packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 20 SingleCell_Standalone_D2D.server.ppp[0].ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 21 SingleCell_Standalone_D2D.server.ppp[0].ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 22 SingleCell_Standalone_D2D.server.ppp[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 23 SingleCell_Standalone_D2D.server.ppp[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 24 SingleCell_Standalone_D2D.server.ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 25 SingleCell_Standalone_D2D.server.ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 26 SingleCell_Standalone_D2D.server.ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 27 SingleCell_Standalone_D2D.server.ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 28 SingleCell_Standalone_D2D.server.ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 29 SingleCell_Standalone_D2D.server.ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 30 SingleCell_Standalone_D2D.server.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, packetBytes"
+vector 31 SingleCell_Standalone_D2D.server.ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpReplySent
+attr title "ARP replies sent, packetBytes"
+vector 32 SingleCell_Standalone_D2D.server.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 33 SingleCell_Standalone_D2D.server.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 34 SingleCell_Standalone_D2D.server.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 35 SingleCell_Standalone_D2D.server.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 36 SingleCell_Standalone_D2D.server.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 37 SingleCell_Standalone_D2D.router.lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 38 SingleCell_Standalone_D2D.router.lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 39 SingleCell_Standalone_D2D.router.lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 40 SingleCell_Standalone_D2D.router.lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 41 SingleCell_Standalone_D2D.router.ppp[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 42 SingleCell_Standalone_D2D.router.ppp[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 43 SingleCell_Standalone_D2D.router.ppp[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 44 SingleCell_Standalone_D2D.router.ppp[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 45 SingleCell_Standalone_D2D.router.ppp[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 46 SingleCell_Standalone_D2D.router.ppp[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 47 SingleCell_Standalone_D2D.router.ppp[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 48 SingleCell_Standalone_D2D.router.ppp[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 49 SingleCell_Standalone_D2D.router.ppp[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 50 SingleCell_Standalone_D2D.router.ppp[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 51 SingleCell_Standalone_D2D.router.ppp[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 52 SingleCell_Standalone_D2D.router.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 53 SingleCell_Standalone_D2D.router.ppp[0].ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 54 SingleCell_Standalone_D2D.router.ppp[0].ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 55 SingleCell_Standalone_D2D.router.ppp[0].ppp packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 56 SingleCell_Standalone_D2D.router.ppp[0].ppp packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 57 SingleCell_Standalone_D2D.router.ppp[0].ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 58 SingleCell_Standalone_D2D.router.ppp[0].ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 59 SingleCell_Standalone_D2D.router.ppp[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 60 SingleCell_Standalone_D2D.router.ppp[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 61 SingleCell_Standalone_D2D.router.ppp[1].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 62 SingleCell_Standalone_D2D.router.ppp[1].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 63 SingleCell_Standalone_D2D.router.ppp[1].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 64 SingleCell_Standalone_D2D.router.ppp[1].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 65 SingleCell_Standalone_D2D.router.ppp[1].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 66 SingleCell_Standalone_D2D.router.ppp[1].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 67 SingleCell_Standalone_D2D.router.ppp[1].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 68 SingleCell_Standalone_D2D.router.ppp[1].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 69 SingleCell_Standalone_D2D.router.ppp[1].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 70 SingleCell_Standalone_D2D.router.ppp[1].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 71 SingleCell_Standalone_D2D.router.ppp[1].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 72 SingleCell_Standalone_D2D.router.ppp[1].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 73 SingleCell_Standalone_D2D.router.ppp[1].ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 74 SingleCell_Standalone_D2D.router.ppp[1].ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 75 SingleCell_Standalone_D2D.router.ppp[1].ppp packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 76 SingleCell_Standalone_D2D.router.ppp[1].ppp packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 77 SingleCell_Standalone_D2D.router.ppp[1].ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 78 SingleCell_Standalone_D2D.router.ppp[1].ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 79 SingleCell_Standalone_D2D.router.ppp[1] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 80 SingleCell_Standalone_D2D.router.ppp[1] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 81 SingleCell_Standalone_D2D.router.ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 82 SingleCell_Standalone_D2D.router.ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 83 SingleCell_Standalone_D2D.router.ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 84 SingleCell_Standalone_D2D.router.ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 85 SingleCell_Standalone_D2D.router.ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 86 SingleCell_Standalone_D2D.router.ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 87 SingleCell_Standalone_D2D.router.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, packetBytes"
+vector 88 SingleCell_Standalone_D2D.router.ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpReplySent
+attr title "ARP replies sent, packetBytes"
+vector 89 SingleCell_Standalone_D2D.upf.lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 90 SingleCell_Standalone_D2D.upf.lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 91 SingleCell_Standalone_D2D.upf.lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 92 SingleCell_Standalone_D2D.upf.lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 93 SingleCell_Standalone_D2D.upf.ppp[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 94 SingleCell_Standalone_D2D.upf.ppp[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 95 SingleCell_Standalone_D2D.upf.ppp[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 96 SingleCell_Standalone_D2D.upf.ppp[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 97 SingleCell_Standalone_D2D.upf.ppp[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 98 SingleCell_Standalone_D2D.upf.ppp[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 99 SingleCell_Standalone_D2D.upf.ppp[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 100 SingleCell_Standalone_D2D.upf.ppp[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 101 SingleCell_Standalone_D2D.upf.ppp[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 102 SingleCell_Standalone_D2D.upf.ppp[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 103 SingleCell_Standalone_D2D.upf.ppp[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 104 SingleCell_Standalone_D2D.upf.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 105 SingleCell_Standalone_D2D.upf.ppp[0].ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 106 SingleCell_Standalone_D2D.upf.ppp[0].ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 107 SingleCell_Standalone_D2D.upf.ppp[0].ppp packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 108 SingleCell_Standalone_D2D.upf.ppp[0].ppp packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 109 SingleCell_Standalone_D2D.upf.ppp[0].ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 110 SingleCell_Standalone_D2D.upf.ppp[0].ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 111 SingleCell_Standalone_D2D.upf.ppp[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 112 SingleCell_Standalone_D2D.upf.ppp[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 113 SingleCell_Standalone_D2D.upf.ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 114 SingleCell_Standalone_D2D.upf.ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 115 SingleCell_Standalone_D2D.upf.ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 116 SingleCell_Standalone_D2D.upf.ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 117 SingleCell_Standalone_D2D.upf.ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 118 SingleCell_Standalone_D2D.upf.ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 119 SingleCell_Standalone_D2D.upf.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, packetBytes"
+vector 120 SingleCell_Standalone_D2D.upf.ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpReplySent
+attr title "ARP replies sent, packetBytes"
+vector 121 SingleCell_Standalone_D2D.upf.pppIf.queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 122 SingleCell_Standalone_D2D.upf.pppIf.queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 123 SingleCell_Standalone_D2D.upf.pppIf.queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 124 SingleCell_Standalone_D2D.upf.pppIf.queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 125 SingleCell_Standalone_D2D.upf.pppIf.queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 126 SingleCell_Standalone_D2D.upf.pppIf.queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 127 SingleCell_Standalone_D2D.upf.pppIf.queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 128 SingleCell_Standalone_D2D.upf.pppIf.queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 129 SingleCell_Standalone_D2D.upf.pppIf.queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 130 SingleCell_Standalone_D2D.upf.pppIf.queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 131 SingleCell_Standalone_D2D.upf.pppIf.queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 132 SingleCell_Standalone_D2D.upf.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 133 SingleCell_Standalone_D2D.upf.pppIf.ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 134 SingleCell_Standalone_D2D.upf.pppIf.ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 135 SingleCell_Standalone_D2D.upf.pppIf.ppp packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 136 SingleCell_Standalone_D2D.upf.pppIf.ppp packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 137 SingleCell_Standalone_D2D.upf.pppIf.ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 138 SingleCell_Standalone_D2D.upf.pppIf.ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 139 SingleCell_Standalone_D2D.upf.pppIf packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 140 SingleCell_Standalone_D2D.upf.pppIf packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 141 SingleCell_Standalone_D2D.upf.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 142 SingleCell_Standalone_D2D.upf.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 143 SingleCell_Standalone_D2D.upf.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 144 SingleCell_Standalone_D2D.upf.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 145 SingleCell_Standalone_D2D.upf.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 146 SingleCell_Standalone_D2D.iUpf.lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 147 SingleCell_Standalone_D2D.iUpf.lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 148 SingleCell_Standalone_D2D.iUpf.lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 149 SingleCell_Standalone_D2D.iUpf.lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 150 SingleCell_Standalone_D2D.iUpf.ppp[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 151 SingleCell_Standalone_D2D.iUpf.ppp[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 152 SingleCell_Standalone_D2D.iUpf.ppp[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 153 SingleCell_Standalone_D2D.iUpf.ppp[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 154 SingleCell_Standalone_D2D.iUpf.ppp[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 155 SingleCell_Standalone_D2D.iUpf.ppp[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 156 SingleCell_Standalone_D2D.iUpf.ppp[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 157 SingleCell_Standalone_D2D.iUpf.ppp[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 158 SingleCell_Standalone_D2D.iUpf.ppp[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 159 SingleCell_Standalone_D2D.iUpf.ppp[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 160 SingleCell_Standalone_D2D.iUpf.ppp[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 161 SingleCell_Standalone_D2D.iUpf.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 162 SingleCell_Standalone_D2D.iUpf.ppp[0].ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 163 SingleCell_Standalone_D2D.iUpf.ppp[0].ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 164 SingleCell_Standalone_D2D.iUpf.ppp[0].ppp packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 165 SingleCell_Standalone_D2D.iUpf.ppp[0].ppp packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 166 SingleCell_Standalone_D2D.iUpf.ppp[0].ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 167 SingleCell_Standalone_D2D.iUpf.ppp[0].ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 168 SingleCell_Standalone_D2D.iUpf.ppp[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 169 SingleCell_Standalone_D2D.iUpf.ppp[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 170 SingleCell_Standalone_D2D.iUpf.ppp[1].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 171 SingleCell_Standalone_D2D.iUpf.ppp[1].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 172 SingleCell_Standalone_D2D.iUpf.ppp[1].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 173 SingleCell_Standalone_D2D.iUpf.ppp[1].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 174 SingleCell_Standalone_D2D.iUpf.ppp[1].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 175 SingleCell_Standalone_D2D.iUpf.ppp[1].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 176 SingleCell_Standalone_D2D.iUpf.ppp[1].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 177 SingleCell_Standalone_D2D.iUpf.ppp[1].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 178 SingleCell_Standalone_D2D.iUpf.ppp[1].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 179 SingleCell_Standalone_D2D.iUpf.ppp[1].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 180 SingleCell_Standalone_D2D.iUpf.ppp[1].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 181 SingleCell_Standalone_D2D.iUpf.ppp[1].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 182 SingleCell_Standalone_D2D.iUpf.ppp[1].ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 183 SingleCell_Standalone_D2D.iUpf.ppp[1].ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 184 SingleCell_Standalone_D2D.iUpf.ppp[1].ppp packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 185 SingleCell_Standalone_D2D.iUpf.ppp[1].ppp packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 186 SingleCell_Standalone_D2D.iUpf.ppp[1].ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 187 SingleCell_Standalone_D2D.iUpf.ppp[1].ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 188 SingleCell_Standalone_D2D.iUpf.ppp[1] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 189 SingleCell_Standalone_D2D.iUpf.ppp[1] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 190 SingleCell_Standalone_D2D.iUpf.ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 191 SingleCell_Standalone_D2D.iUpf.ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 192 SingleCell_Standalone_D2D.iUpf.ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 193 SingleCell_Standalone_D2D.iUpf.ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 194 SingleCell_Standalone_D2D.iUpf.ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 195 SingleCell_Standalone_D2D.iUpf.ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 196 SingleCell_Standalone_D2D.iUpf.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, packetBytes"
+vector 197 SingleCell_Standalone_D2D.iUpf.ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpReplySent
+attr title "ARP replies sent, packetBytes"
+vector 198 SingleCell_Standalone_D2D.iUpf.pppIf.queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 199 SingleCell_Standalone_D2D.iUpf.pppIf.queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 200 SingleCell_Standalone_D2D.iUpf.pppIf.queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 201 SingleCell_Standalone_D2D.iUpf.pppIf.queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 202 SingleCell_Standalone_D2D.iUpf.pppIf.queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 203 SingleCell_Standalone_D2D.iUpf.pppIf.queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 204 SingleCell_Standalone_D2D.iUpf.pppIf.queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 205 SingleCell_Standalone_D2D.iUpf.pppIf.queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 206 SingleCell_Standalone_D2D.iUpf.pppIf.queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 207 SingleCell_Standalone_D2D.iUpf.pppIf.queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 208 SingleCell_Standalone_D2D.iUpf.pppIf.queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 209 SingleCell_Standalone_D2D.iUpf.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 210 SingleCell_Standalone_D2D.iUpf.pppIf.ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 211 SingleCell_Standalone_D2D.iUpf.pppIf.ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 212 SingleCell_Standalone_D2D.iUpf.pppIf.ppp packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 213 SingleCell_Standalone_D2D.iUpf.pppIf.ppp packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 214 SingleCell_Standalone_D2D.iUpf.pppIf.ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 215 SingleCell_Standalone_D2D.iUpf.pppIf.ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 216 SingleCell_Standalone_D2D.iUpf.pppIf packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 217 SingleCell_Standalone_D2D.iUpf.pppIf packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 218 SingleCell_Standalone_D2D.iUpf.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 219 SingleCell_Standalone_D2D.iUpf.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 220 SingleCell_Standalone_D2D.iUpf.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 221 SingleCell_Standalone_D2D.iUpf.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 222 SingleCell_Standalone_D2D.iUpf.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 223 SingleCell_Standalone_D2D.gnb.cellularNic.pdcp receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 224 SingleCell_Standalone_D2D.gnb.cellularNic.pdcp receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 225 SingleCell_Standalone_D2D.gnb.cellularNic.pdcp sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 226 SingleCell_Standalone_D2D.gnb.cellularNic.pdcp sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 227 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.tm rlcPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 228 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.tm rlcPacketLossDl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossDl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 229 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.tm receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 230 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.tm receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 231 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.tm sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 232 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.tm sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 233 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um rlcDelayDl:vector ETV
+attr recordingmode vector
+attr source rlcDelayDl
+attr title "Delay at the rlc layer DL"
+attr unit s
+vector 234 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um rlcThroughputDl:vector ETV
+attr recordingmode vector
+attr source rlcThroughputDl
+attr title "Throughput at the rlc layer DL"
+attr unit Bps
+vector 235 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um rlcDelayUl:vector ETV
+attr recordingmode vector
+attr source rlcDelayUl
+attr title "Delay at the rlc layer UL"
+attr unit s
+vector 236 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um rlcThroughputUl:vector ETV
+attr recordingmode vector
+attr source rlcThroughputUl
+attr title "Throughput at the rlc layer UL"
+attr unit Bps
+vector 237 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um rlcPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 238 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um rlcPacketLossDl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossDl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 239 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um rlcPacketLossTotal:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss"
+attr unit ""
+vector 240 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um rlcPduDelayDl:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayDl
+attr title "Delay at the rlc layer UL"
+attr unit s
+vector 241 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um rlcPduThroughputDl:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputDl
+attr title "Throughput at the rlc layer DL"
+attr unit Bps
+vector 242 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um rlcPduDelayUl:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayUl
+attr title "Delay at the rlc layer UL"
+attr unit s
+vector 243 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um rlcPduThroughputUl:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputUl
+attr title "Throughput at the rlc layer UL"
+attr unit Bps
+vector 244 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um rlcPduPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 245 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um rlcPduPacketLossDl:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossDl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 246 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 247 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 248 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 249 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 250 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um rlcDelayD2D:vector ETV
+attr recordingmode vector
+attr source rlcDelayD2D
+attr title "Delay at the rlc layer D2D"
+attr unit s
+vector 251 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um rlcThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcThroughputD2D
+attr title "Throughput at the rlc layer D2D"
+attr unit Bps
+vector 252 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um rlcPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossD2D
+attr title "rlc Packet Loss"
+attr unit ""
+vector 253 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um rlcCellPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcCellPacketLossD2D
+attr title "rlc Cell Packet Loss"
+attr unit ""
+vector 254 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um rlcCellThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcCellThroughputD2D
+attr title "Cell Throughput at the rlc layer D2D"
+attr unit Bps
+vector 255 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um rlcPduDelayD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayD2D
+attr title "Delay at the rlc layer D2D"
+attr unit s
+vector 256 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um rlcPduThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputD2D
+attr title "Throughput at the rlc layer D2D"
+attr unit Bps
+vector 257 SingleCell_Standalone_D2D.gnb.cellularNic.rlc.um rlcPduPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossD2D
+attr title "rlc Packet Loss"
+attr unit ""
+vector 258 SingleCell_Standalone_D2D.gnb.cellularNic.mac macDelayDl:vector ETV
+attr recordingmode vector
+attr source macDelayDl
+attr title "Delay at the MAC layer UL"
+attr unit s
+vector 259 SingleCell_Standalone_D2D.gnb.cellularNic.mac macDelayUl:vector ETV
+attr recordingmode vector
+attr source macDelayUl
+attr title "Delay at the MAC layer UL"
+attr unit s
+vector 260 SingleCell_Standalone_D2D.gnb.cellularNic.mac harqErrorRateUl:vector ETV
+attr recordingmode vector
+attr source harqErrorRateUl
+attr title "Harq Error Rate Ul"
+attr unit ""
+vector 261 SingleCell_Standalone_D2D.gnb.cellularNic.mac harqErrorRateDl:vector ETV
+attr recordingmode vector
+attr source harqErrorRateDl
+attr title "Harq Error Rate Dl"
+attr unit ""
+vector 262 SingleCell_Standalone_D2D.gnb.cellularNic.mac harqTxAttemptsDl:vector ETV
+attr recordingmode vector
+attr source harqTxAttemptsDl
+attr title "Harq Tx Attempts Dl"
+attr unit ""
+vector 263 SingleCell_Standalone_D2D.gnb.cellularNic.mac harqTxAttemptsUl:vector ETV
+attr recordingmode vector
+attr source harqTxAttemptsUl
+attr title "Harq Tx Attempts Ul"
+attr unit ""
+vector 264 SingleCell_Standalone_D2D.gnb.cellularNic.mac harqErrorRate_1st_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_1st_Ul
+attr title "Harq Error Rate Ul (1st tx)"
+attr unit ""
+vector 265 SingleCell_Standalone_D2D.gnb.cellularNic.mac harqErrorRate_1st_Dl:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_1st_Dl
+attr title "Harq Error Rate Dl (1st tx)"
+attr unit ""
+vector 266 SingleCell_Standalone_D2D.gnb.cellularNic.mac harqErrorRate_2nd_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_2nd_Ul
+attr title "Harq Error Rate Ul (2nd tx)"
+attr unit ""
+vector 267 SingleCell_Standalone_D2D.gnb.cellularNic.mac harqErrorRate_2nd_Dl:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_2nd_Dl
+attr title "Harq Error Rate Dl (2nd tx)"
+attr unit ""
+vector 268 SingleCell_Standalone_D2D.gnb.cellularNic.mac harqErrorRate_3rd_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_3rd_Ul
+attr title "Harq Error Rate Ul (3rd tx)"
+attr unit ""
+vector 269 SingleCell_Standalone_D2D.gnb.cellularNic.mac harqErrorRate_3rd_Dl:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_3rd_Dl
+attr title "Harq Error Rate Dl (3rd tx)"
+attr unit ""
+vector 270 SingleCell_Standalone_D2D.gnb.cellularNic.mac harqErrorRate_4th_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_4th_Ul
+attr title "Harq Error Rate Ul (4th tx)"
+attr unit ""
+vector 271 SingleCell_Standalone_D2D.gnb.cellularNic.mac harqErrorRate_4th_Dl:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_4th_Dl
+attr title "Harq Error Rate Dl (4th tx)"
+attr unit ""
+vector 272 SingleCell_Standalone_D2D.gnb.cellularNic.mac receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 273 SingleCell_Standalone_D2D.gnb.cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 274 SingleCell_Standalone_D2D.gnb.cellularNic.mac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 275 SingleCell_Standalone_D2D.gnb.cellularNic.mac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 276 SingleCell_Standalone_D2D.gnb.cellularNic.mac avgServedBlocksDl:vector ETV
+attr recordingmode vector
+attr source avgServedBlocksDl
+attr title "Average number of allocated Resource Blocks in the Dl"
+attr unit blocks
+vector 277 SingleCell_Standalone_D2D.gnb.cellularNic.mac avgServedBlocksUl:vector ETV
+attr recordingmode vector
+attr source avgServedBlocksUl
+attr title "Average number of allocated Resource Blocks in the Dl"
+attr unit blocks
+vector 278 SingleCell_Standalone_D2D.gnb.cellularNic.channelModel[0] rcvdSinrDl:vector ETV
+attr recordingmode vector
+attr source rcvdSinrDl
+attr title "SINR measured at packet reception, DL"
+attr unit dB
+vector 279 SingleCell_Standalone_D2D.gnb.cellularNic.channelModel[0] rcvdSinrUl:vector ETV
+attr recordingmode vector
+attr source rcvdSinrUl
+attr title "SINR measured at packet reception, UL"
+attr unit dB
+vector 280 SingleCell_Standalone_D2D.gnb.cellularNic.channelModel[0] rcvdSinrD2D:vector ETV
+attr recordingmode vector
+attr source rcvdSinrD2D
+attr title "SINR measured at packet reception, D2D"
+attr unit dB
+vector 281 SingleCell_Standalone_D2D.gnb.cellularNic.channelModel[0] measuredSinrDl:vector ETV
+attr recordingmode vector
+attr source measuredSinrDl
+attr title "SINR measured at feedback computation, DL"
+attr unit dB
+vector 282 SingleCell_Standalone_D2D.gnb.cellularNic.channelModel[0] measuredSinrUl:vector ETV
+attr recordingmode vector
+attr source measuredSinrUl
+attr title "SINR measured at feedback computation, UL"
+attr unit dB
+vector 283 SingleCell_Standalone_D2D.gnb.cellularNic packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 284 SingleCell_Standalone_D2D.gnb.cellularNic packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 285 SingleCell_Standalone_D2D.gnb.pppIf.queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 286 SingleCell_Standalone_D2D.gnb.pppIf.queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 287 SingleCell_Standalone_D2D.gnb.pppIf.queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 288 SingleCell_Standalone_D2D.gnb.pppIf.queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 289 SingleCell_Standalone_D2D.gnb.pppIf.queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 290 SingleCell_Standalone_D2D.gnb.pppIf.queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 291 SingleCell_Standalone_D2D.gnb.pppIf.queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 292 SingleCell_Standalone_D2D.gnb.pppIf.queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 293 SingleCell_Standalone_D2D.gnb.pppIf.queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 294 SingleCell_Standalone_D2D.gnb.pppIf.queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 295 SingleCell_Standalone_D2D.gnb.pppIf.queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 296 SingleCell_Standalone_D2D.gnb.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 297 SingleCell_Standalone_D2D.gnb.pppIf.ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 298 SingleCell_Standalone_D2D.gnb.pppIf.ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 299 SingleCell_Standalone_D2D.gnb.pppIf.ppp packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 300 SingleCell_Standalone_D2D.gnb.pppIf.ppp packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 301 SingleCell_Standalone_D2D.gnb.pppIf.ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 302 SingleCell_Standalone_D2D.gnb.pppIf.ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 303 SingleCell_Standalone_D2D.gnb.pppIf packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 304 SingleCell_Standalone_D2D.gnb.pppIf packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 305 SingleCell_Standalone_D2D.gnb.pppMEHostIf.queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 306 SingleCell_Standalone_D2D.gnb.pppMEHostIf.queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 307 SingleCell_Standalone_D2D.gnb.pppMEHostIf.queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 308 SingleCell_Standalone_D2D.gnb.pppMEHostIf.queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 309 SingleCell_Standalone_D2D.gnb.pppMEHostIf.queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 310 SingleCell_Standalone_D2D.gnb.pppMEHostIf.queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 311 SingleCell_Standalone_D2D.gnb.pppMEHostIf.queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 312 SingleCell_Standalone_D2D.gnb.pppMEHostIf.queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 313 SingleCell_Standalone_D2D.gnb.pppMEHostIf.queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 314 SingleCell_Standalone_D2D.gnb.pppMEHostIf.queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 315 SingleCell_Standalone_D2D.gnb.pppMEHostIf.queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 316 SingleCell_Standalone_D2D.gnb.pppMEHostIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 317 SingleCell_Standalone_D2D.gnb.pppMEHostIf.ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 318 SingleCell_Standalone_D2D.gnb.pppMEHostIf.ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 319 SingleCell_Standalone_D2D.gnb.pppMEHostIf.ppp packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 320 SingleCell_Standalone_D2D.gnb.pppMEHostIf.ppp packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 321 SingleCell_Standalone_D2D.gnb.pppMEHostIf.ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 322 SingleCell_Standalone_D2D.gnb.pppMEHostIf.ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 323 SingleCell_Standalone_D2D.gnb.pppMEHostIf packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 324 SingleCell_Standalone_D2D.gnb.pppMEHostIf packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 325 SingleCell_Standalone_D2D.gnb.ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 326 SingleCell_Standalone_D2D.gnb.ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 327 SingleCell_Standalone_D2D.gnb.ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 328 SingleCell_Standalone_D2D.gnb.ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 329 SingleCell_Standalone_D2D.gnb.ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 330 SingleCell_Standalone_D2D.gnb.ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 331 SingleCell_Standalone_D2D.gnb.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, packetBytes"
+vector 332 SingleCell_Standalone_D2D.gnb.ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpReplySent
+attr title "ARP replies sent, packetBytes"
+vector 333 SingleCell_Standalone_D2D.gnb.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 334 SingleCell_Standalone_D2D.gnb.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 335 SingleCell_Standalone_D2D.gnb.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 336 SingleCell_Standalone_D2D.gnb.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 337 SingleCell_Standalone_D2D.gnb.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 338 SingleCell_Standalone_D2D.ueD2DTx[0].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 339 SingleCell_Standalone_D2D.ueD2DTx[0].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 340 SingleCell_Standalone_D2D.ueD2DTx[0].lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 341 SingleCell_Standalone_D2D.ueD2DTx[0].lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 342 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.pdcp receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 343 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.pdcp receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 344 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.pdcp sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 345 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.pdcp sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 346 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.tm rlcPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 347 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.tm rlcPacketLossDl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossDl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 348 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.tm receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 349 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.tm receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 350 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.tm sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 351 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.tm sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 352 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um rlcDelayDl:vector ETV
+attr recordingmode vector
+attr source rlcDelayDl
+attr title "Delay at the rlc layer DL"
+attr unit s
+vector 353 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um rlcThroughputDl:vector ETV
+attr recordingmode vector
+attr source rlcThroughputDl
+attr title "Throughput at the rlc layer DL"
+attr unit Bps
+vector 354 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um rlcDelayUl:vector ETV
+attr recordingmode vector
+attr source rlcDelayUl
+attr title "Delay at the rlc layer UL"
+attr unit s
+vector 355 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um rlcThroughputUl:vector ETV
+attr recordingmode vector
+attr source rlcThroughputUl
+attr title "Throughput at the rlc layer UL"
+attr unit Bps
+vector 356 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um rlcPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 357 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um rlcPacketLossDl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossDl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 358 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um rlcPacketLossTotal:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss"
+attr unit ""
+vector 359 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um rlcPduDelayDl:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayDl
+attr title "Delay at the rlc layer UL"
+attr unit s
+vector 360 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um rlcPduThroughputDl:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputDl
+attr title "Throughput at the rlc layer DL"
+attr unit Bps
+vector 361 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um rlcPduDelayUl:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayUl
+attr title "Delay at the rlc layer UL"
+attr unit s
+vector 362 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um rlcPduThroughputUl:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputUl
+attr title "Throughput at the rlc layer UL"
+attr unit Bps
+vector 363 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um rlcPduPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 364 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um rlcPduPacketLossDl:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossDl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 365 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 366 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 367 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 368 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 369 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um rlcDelayD2D:vector ETV
+attr recordingmode vector
+attr source rlcDelayD2D
+attr title "Delay at the rlc layer D2D"
+attr unit s
+vector 370 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um rlcThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcThroughputD2D
+attr title "Throughput at the rlc layer D2D"
+attr unit Bps
+vector 371 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um rlcPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossD2D
+attr title "rlc Packet Loss"
+attr unit ""
+vector 372 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um rlcCellPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcCellPacketLossD2D
+attr title "rlc Cell Packet Loss"
+attr unit ""
+vector 373 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um rlcCellThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcCellThroughputD2D
+attr title "Cell Throughput at the rlc layer D2D"
+attr unit Bps
+vector 374 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um rlcPduDelayD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayD2D
+attr title "Delay at the rlc layer D2D"
+attr unit s
+vector 375 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um rlcPduThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputD2D
+attr title "Throughput at the rlc layer D2D"
+attr unit Bps
+vector 376 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.rlc.um rlcPduPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossD2D
+attr title "rlc Packet Loss"
+attr unit ""
+vector 377 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac macDelayDl:vector ETV
+attr recordingmode vector
+attr source macDelayDl
+attr title "Delay at the MAC layer UL"
+attr unit s
+vector 378 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac macDelayUl:vector ETV
+attr recordingmode vector
+attr source macDelayUl
+attr title "Delay at the MAC layer UL"
+attr unit s
+vector 379 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac harqErrorRateUl:vector ETV
+attr recordingmode vector
+attr source harqErrorRateUl
+attr title "Harq Error Rate Ul"
+attr unit ""
+vector 380 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac harqErrorRateDl:vector ETV
+attr recordingmode vector
+attr source harqErrorRateDl
+attr title "Harq Error Rate Dl"
+attr unit ""
+vector 381 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac harqTxAttemptsDl:vector ETV
+attr recordingmode vector
+attr source harqTxAttemptsDl
+attr title "Harq Tx Attempts Dl"
+attr unit ""
+vector 382 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac harqTxAttemptsUl:vector ETV
+attr recordingmode vector
+attr source harqTxAttemptsUl
+attr title "Harq Tx Attempts Ul"
+attr unit ""
+vector 383 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac harqErrorRate_1st_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_1st_Ul
+attr title "Harq Error Rate Ul (1st tx)"
+attr unit ""
+vector 384 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac harqErrorRate_1st_Dl:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_1st_Dl
+attr title "Harq Error Rate Dl (1st tx)"
+attr unit ""
+vector 385 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac harqErrorRate_2nd_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_2nd_Ul
+attr title "Harq Error Rate Ul (2nd tx)"
+attr unit ""
+vector 386 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac harqErrorRate_2nd_Dl:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_2nd_Dl
+attr title "Harq Error Rate Dl (2nd tx)"
+attr unit ""
+vector 387 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac harqErrorRate_3rd_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_3rd_Ul
+attr title "Harq Error Rate Ul (3rd tx)"
+attr unit ""
+vector 388 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac harqErrorRate_3rd_Dl:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_3rd_Dl
+attr title "Harq Error Rate Dl (3rd tx)"
+attr unit ""
+vector 389 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac harqErrorRate_4th_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_4th_Ul
+attr title "Harq Error Rate Ul (4th tx)"
+attr unit ""
+vector 390 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac harqErrorRate_4th_Dl:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_4th_Dl
+attr title "Harq Error Rate Dl (4th tx)"
+attr unit ""
+vector 391 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 392 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 393 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 394 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 395 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac harqErrorRate_1st_D2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_1st_D2D
+attr title "Harq Error Rate D2D (1st Tx)"
+attr unit ""
+vector 396 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac harqErrorRate_2nd_D2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_2nd_D2D
+attr title "Harq Error Rate D2D (2nd Tx)"
+attr unit ""
+vector 397 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac harqErrorRate_3rd_D2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_3rd_D2D
+attr title "Harq Error Rate D2D (3rd Tx)"
+attr unit ""
+vector 398 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac harqErrorRate_4th_D2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_4th_D2D
+attr title "Harq Error Rate D2D (4th Tx)"
+attr unit ""
+vector 399 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac harqErrorRateD2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRateD2D
+attr title "Harq Error Rate D2D"
+attr unit ""
+vector 400 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac macDelayD2D:vector ETV
+attr recordingmode vector
+attr source macDelayD2D
+attr title "Delay at the MAC layer D2D"
+attr unit s
+vector 401 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.mac rcvdD2DModeSwitchNotification:vector ETV
+attr recordingmode vector
+attr source rcvdD2DModeSwitchNotification
+attr title "Reception of mode switch notification (tx side)"
+attr unit ""
+vector 402 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.phy distance:vector ETV
+attr recordingmode vector
+attr source distance
+attr title "distance between UE and serving base station"
+attr unit meters
+vector 403 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.phy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving cell for the UE"
+attr unit ""
+vector 404 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.phy averageCqiDl:vector ETV
+attr recordingmode vector
+attr source averageCqiDl
+attr title "Average Cqi reported in DL"
+attr unit cqi
+vector 405 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.phy averageCqiUl:vector ETV
+attr recordingmode vector
+attr source averageCqiUl
+attr title "Average Cqi reported in UL"
+attr unit cqi
+vector 406 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.phy averageCqiD2D:vector ETV
+attr recordingmode vector
+attr source averageCqiD2D
+attr title "Average Cqi reported in D2D"
+attr unit cqi
+vector 407 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.channelModel[0] rcvdSinrDl:vector ETV
+attr recordingmode vector
+attr source rcvdSinrDl
+attr title "SINR measured at packet reception, DL"
+attr unit dB
+vector 408 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.channelModel[0] rcvdSinrUl:vector ETV
+attr recordingmode vector
+attr source rcvdSinrUl
+attr title "SINR measured at packet reception, UL"
+attr unit dB
+vector 409 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.channelModel[0] rcvdSinrD2D:vector ETV
+attr recordingmode vector
+attr source rcvdSinrD2D
+attr title "SINR measured at packet reception, D2D"
+attr unit dB
+vector 410 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.channelModel[0] measuredSinrDl:vector ETV
+attr recordingmode vector
+attr source measuredSinrDl
+attr title "SINR measured at feedback computation, DL"
+attr unit dB
+vector 411 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.channelModel[0] measuredSinrUl:vector ETV
+attr recordingmode vector
+attr source measuredSinrUl
+attr title "SINR measured at feedback computation, UL"
+attr unit dB
+vector 412 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.tm rlcPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 413 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.tm rlcPacketLossDl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossDl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 414 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.tm receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 415 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.tm receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 416 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.tm sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 417 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.tm sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 418 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcDelayDl:vector ETV
+attr recordingmode vector
+attr source rlcDelayDl
+attr title "Delay at the rlc layer DL"
+attr unit s
+vector 419 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcThroughputDl:vector ETV
+attr recordingmode vector
+attr source rlcThroughputDl
+attr title "Throughput at the rlc layer DL"
+attr unit Bps
+vector 420 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcDelayUl:vector ETV
+attr recordingmode vector
+attr source rlcDelayUl
+attr title "Delay at the rlc layer UL"
+attr unit s
+vector 421 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcThroughputUl:vector ETV
+attr recordingmode vector
+attr source rlcThroughputUl
+attr title "Throughput at the rlc layer UL"
+attr unit Bps
+vector 422 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 423 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcPacketLossDl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossDl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 424 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcPacketLossTotal:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss"
+attr unit ""
+vector 425 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcPduDelayDl:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayDl
+attr title "Delay at the rlc layer UL"
+attr unit s
+vector 426 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcPduThroughputDl:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputDl
+attr title "Throughput at the rlc layer DL"
+attr unit Bps
+vector 427 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcPduDelayUl:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayUl
+attr title "Delay at the rlc layer UL"
+attr unit s
+vector 428 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcPduThroughputUl:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputUl
+attr title "Throughput at the rlc layer UL"
+attr unit Bps
+vector 429 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcPduPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 430 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcPduPacketLossDl:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossDl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 431 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 432 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 433 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 434 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 435 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcDelayD2D:vector ETV
+attr recordingmode vector
+attr source rlcDelayD2D
+attr title "Delay at the rlc layer D2D"
+attr unit s
+vector 436 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcThroughputD2D
+attr title "Throughput at the rlc layer D2D"
+attr unit Bps
+vector 437 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossD2D
+attr title "rlc Packet Loss"
+attr unit ""
+vector 438 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcCellPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcCellPacketLossD2D
+attr title "rlc Cell Packet Loss"
+attr unit ""
+vector 439 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcCellThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcCellThroughputD2D
+attr title "Cell Throughput at the rlc layer D2D"
+attr unit Bps
+vector 440 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcPduDelayD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayD2D
+attr title "Delay at the rlc layer D2D"
+attr unit s
+vector 441 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcPduThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputD2D
+attr title "Throughput at the rlc layer D2D"
+attr unit Bps
+vector 442 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcPduPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossD2D
+attr title "rlc Packet Loss"
+attr unit ""
+vector 443 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac macDelayDl:vector ETV
+attr recordingmode vector
+attr source macDelayDl
+attr title "Delay at the MAC layer UL"
+attr unit s
+vector 444 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac macDelayUl:vector ETV
+attr recordingmode vector
+attr source macDelayUl
+attr title "Delay at the MAC layer UL"
+attr unit s
+vector 445 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqErrorRateUl:vector ETV
+attr recordingmode vector
+attr source harqErrorRateUl
+attr title "Harq Error Rate Ul"
+attr unit ""
+vector 446 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqErrorRateDl:vector ETV
+attr recordingmode vector
+attr source harqErrorRateDl
+attr title "Harq Error Rate Dl"
+attr unit ""
+vector 447 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqTxAttemptsDl:vector ETV
+attr recordingmode vector
+attr source harqTxAttemptsDl
+attr title "Harq Tx Attempts Dl"
+attr unit ""
+vector 448 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqTxAttemptsUl:vector ETV
+attr recordingmode vector
+attr source harqTxAttemptsUl
+attr title "Harq Tx Attempts Ul"
+attr unit ""
+vector 449 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqErrorRate_1st_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_1st_Ul
+attr title "Harq Error Rate Ul (1st tx)"
+attr unit ""
+vector 450 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqErrorRate_1st_Dl:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_1st_Dl
+attr title "Harq Error Rate Dl (1st tx)"
+attr unit ""
+vector 451 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqErrorRate_2nd_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_2nd_Ul
+attr title "Harq Error Rate Ul (2nd tx)"
+attr unit ""
+vector 452 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqErrorRate_2nd_Dl:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_2nd_Dl
+attr title "Harq Error Rate Dl (2nd tx)"
+attr unit ""
+vector 453 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqErrorRate_3rd_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_3rd_Ul
+attr title "Harq Error Rate Ul (3rd tx)"
+attr unit ""
+vector 454 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqErrorRate_3rd_Dl:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_3rd_Dl
+attr title "Harq Error Rate Dl (3rd tx)"
+attr unit ""
+vector 455 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqErrorRate_4th_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_4th_Ul
+attr title "Harq Error Rate Ul (4th tx)"
+attr unit ""
+vector 456 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqErrorRate_4th_Dl:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_4th_Dl
+attr title "Harq Error Rate Dl (4th tx)"
+attr unit ""
+vector 457 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 458 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 459 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 460 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 461 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqErrorRate_1st_D2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_1st_D2D
+attr title "Harq Error Rate D2D (1st Tx)"
+attr unit ""
+vector 462 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqErrorRate_2nd_D2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_2nd_D2D
+attr title "Harq Error Rate D2D (2nd Tx)"
+attr unit ""
+vector 463 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqErrorRate_3rd_D2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_3rd_D2D
+attr title "Harq Error Rate D2D (3rd Tx)"
+attr unit ""
+vector 464 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqErrorRate_4th_D2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_4th_D2D
+attr title "Harq Error Rate D2D (4th Tx)"
+attr unit ""
+vector 465 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqErrorRateD2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRateD2D
+attr title "Harq Error Rate D2D"
+attr unit ""
+vector 466 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac macDelayD2D:vector ETV
+attr recordingmode vector
+attr source macDelayD2D
+attr title "Delay at the MAC layer D2D"
+attr unit s
+vector 467 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac rcvdD2DModeSwitchNotification:vector ETV
+attr recordingmode vector
+attr source rcvdD2DModeSwitchNotification
+attr title "Reception of mode switch notification (tx side)"
+attr unit ""
+vector 468 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrPhy distance:vector ETV
+attr recordingmode vector
+attr source distance
+attr title "distance between UE and serving base station"
+attr unit meters
+vector 469 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrPhy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving cell for the UE"
+attr unit ""
+vector 470 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrPhy averageCqiDl:vector ETV
+attr recordingmode vector
+attr source averageCqiDl
+attr title "Average Cqi reported in DL"
+attr unit cqi
+vector 471 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrPhy averageCqiUl:vector ETV
+attr recordingmode vector
+attr source averageCqiUl
+attr title "Average Cqi reported in UL"
+attr unit cqi
+vector 472 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrPhy averageCqiD2D:vector ETV
+attr recordingmode vector
+attr source averageCqiD2D
+attr title "Average Cqi reported in D2D"
+attr unit cqi
+vector 473 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrChannelModel[0] rcvdSinrDl:vector ETV
+attr recordingmode vector
+attr source rcvdSinrDl
+attr title "SINR measured at packet reception, DL"
+attr unit dB
+vector 474 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrChannelModel[0] rcvdSinrUl:vector ETV
+attr recordingmode vector
+attr source rcvdSinrUl
+attr title "SINR measured at packet reception, UL"
+attr unit dB
+vector 475 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrChannelModel[0] rcvdSinrD2D:vector ETV
+attr recordingmode vector
+attr source rcvdSinrD2D
+attr title "SINR measured at packet reception, D2D"
+attr unit dB
+vector 476 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrChannelModel[0] measuredSinrDl:vector ETV
+attr recordingmode vector
+attr source measuredSinrDl
+attr title "SINR measured at feedback computation, DL"
+attr unit dB
+vector 477 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrChannelModel[0] measuredSinrUl:vector ETV
+attr recordingmode vector
+attr source measuredSinrUl
+attr title "SINR measured at feedback computation, UL"
+attr unit dB
+vector 478 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 479 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 480 SingleCell_Standalone_D2D.ueD2DTx[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 481 SingleCell_Standalone_D2D.ueD2DTx[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 482 SingleCell_Standalone_D2D.ueD2DTx[0].encap pauseSent:vector ETV
+attr recordingmode vector
+attr title "pause sent"
+vector 483 SingleCell_Standalone_D2D.ueD2DTx[0].ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 484 SingleCell_Standalone_D2D.ueD2DTx[0].ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 485 SingleCell_Standalone_D2D.ueD2DTx[0].ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 486 SingleCell_Standalone_D2D.ueD2DTx[0].ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 487 SingleCell_Standalone_D2D.ueD2DTx[0].ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 488 SingleCell_Standalone_D2D.ueD2DTx[0].ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 489 SingleCell_Standalone_D2D.ueD2DTx[0].ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, packetBytes"
+vector 490 SingleCell_Standalone_D2D.ueD2DTx[0].ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpReplySent
+attr title "ARP replies sent, packetBytes"
+vector 491 SingleCell_Standalone_D2D.ueD2DTx[0].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 492 SingleCell_Standalone_D2D.ueD2DTx[0].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 493 SingleCell_Standalone_D2D.ueD2DTx[0].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 494 SingleCell_Standalone_D2D.ueD2DTx[0].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 495 SingleCell_Standalone_D2D.ueD2DTx[0].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 496 SingleCell_Standalone_D2D.ueD2DRx[0].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 497 SingleCell_Standalone_D2D.ueD2DRx[0].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 498 SingleCell_Standalone_D2D.ueD2DRx[0].lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 499 SingleCell_Standalone_D2D.ueD2DRx[0].lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 500 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.pdcp receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 501 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.pdcp receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 502 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.pdcp sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 503 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.pdcp sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 504 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.tm rlcPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 505 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.tm rlcPacketLossDl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossDl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 506 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.tm receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 507 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.tm receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 508 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.tm sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 509 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.tm sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 510 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um rlcDelayDl:vector ETV
+attr recordingmode vector
+attr source rlcDelayDl
+attr title "Delay at the rlc layer DL"
+attr unit s
+vector 511 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um rlcThroughputDl:vector ETV
+attr recordingmode vector
+attr source rlcThroughputDl
+attr title "Throughput at the rlc layer DL"
+attr unit Bps
+vector 512 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um rlcDelayUl:vector ETV
+attr recordingmode vector
+attr source rlcDelayUl
+attr title "Delay at the rlc layer UL"
+attr unit s
+vector 513 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um rlcThroughputUl:vector ETV
+attr recordingmode vector
+attr source rlcThroughputUl
+attr title "Throughput at the rlc layer UL"
+attr unit Bps
+vector 514 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um rlcPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 515 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um rlcPacketLossDl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossDl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 516 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um rlcPacketLossTotal:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss"
+attr unit ""
+vector 517 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um rlcPduDelayDl:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayDl
+attr title "Delay at the rlc layer UL"
+attr unit s
+vector 518 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um rlcPduThroughputDl:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputDl
+attr title "Throughput at the rlc layer DL"
+attr unit Bps
+vector 519 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um rlcPduDelayUl:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayUl
+attr title "Delay at the rlc layer UL"
+attr unit s
+vector 520 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um rlcPduThroughputUl:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputUl
+attr title "Throughput at the rlc layer UL"
+attr unit Bps
+vector 521 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um rlcPduPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 522 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um rlcPduPacketLossDl:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossDl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 523 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 524 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 525 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 526 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 527 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um rlcDelayD2D:vector ETV
+attr recordingmode vector
+attr source rlcDelayD2D
+attr title "Delay at the rlc layer D2D"
+attr unit s
+vector 528 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um rlcThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcThroughputD2D
+attr title "Throughput at the rlc layer D2D"
+attr unit Bps
+vector 529 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um rlcPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossD2D
+attr title "rlc Packet Loss"
+attr unit ""
+vector 530 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um rlcCellPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcCellPacketLossD2D
+attr title "rlc Cell Packet Loss"
+attr unit ""
+vector 531 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um rlcCellThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcCellThroughputD2D
+attr title "Cell Throughput at the rlc layer D2D"
+attr unit Bps
+vector 532 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um rlcPduDelayD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayD2D
+attr title "Delay at the rlc layer D2D"
+attr unit s
+vector 533 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um rlcPduThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputD2D
+attr title "Throughput at the rlc layer D2D"
+attr unit Bps
+vector 534 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.rlc.um rlcPduPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossD2D
+attr title "rlc Packet Loss"
+attr unit ""
+vector 535 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac macDelayDl:vector ETV
+attr recordingmode vector
+attr source macDelayDl
+attr title "Delay at the MAC layer UL"
+attr unit s
+vector 536 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac macDelayUl:vector ETV
+attr recordingmode vector
+attr source macDelayUl
+attr title "Delay at the MAC layer UL"
+attr unit s
+vector 537 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac harqErrorRateUl:vector ETV
+attr recordingmode vector
+attr source harqErrorRateUl
+attr title "Harq Error Rate Ul"
+attr unit ""
+vector 538 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac harqErrorRateDl:vector ETV
+attr recordingmode vector
+attr source harqErrorRateDl
+attr title "Harq Error Rate Dl"
+attr unit ""
+vector 539 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac harqTxAttemptsDl:vector ETV
+attr recordingmode vector
+attr source harqTxAttemptsDl
+attr title "Harq Tx Attempts Dl"
+attr unit ""
+vector 540 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac harqTxAttemptsUl:vector ETV
+attr recordingmode vector
+attr source harqTxAttemptsUl
+attr title "Harq Tx Attempts Ul"
+attr unit ""
+vector 541 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac harqErrorRate_1st_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_1st_Ul
+attr title "Harq Error Rate Ul (1st tx)"
+attr unit ""
+vector 542 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac harqErrorRate_1st_Dl:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_1st_Dl
+attr title "Harq Error Rate Dl (1st tx)"
+attr unit ""
+vector 543 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac harqErrorRate_2nd_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_2nd_Ul
+attr title "Harq Error Rate Ul (2nd tx)"
+attr unit ""
+vector 544 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac harqErrorRate_2nd_Dl:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_2nd_Dl
+attr title "Harq Error Rate Dl (2nd tx)"
+attr unit ""
+vector 545 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac harqErrorRate_3rd_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_3rd_Ul
+attr title "Harq Error Rate Ul (3rd tx)"
+attr unit ""
+vector 546 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac harqErrorRate_3rd_Dl:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_3rd_Dl
+attr title "Harq Error Rate Dl (3rd tx)"
+attr unit ""
+vector 547 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac harqErrorRate_4th_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_4th_Ul
+attr title "Harq Error Rate Ul (4th tx)"
+attr unit ""
+vector 548 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac harqErrorRate_4th_Dl:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_4th_Dl
+attr title "Harq Error Rate Dl (4th tx)"
+attr unit ""
+vector 549 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 550 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 551 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 552 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 553 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac harqErrorRate_1st_D2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_1st_D2D
+attr title "Harq Error Rate D2D (1st Tx)"
+attr unit ""
+vector 554 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac harqErrorRate_2nd_D2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_2nd_D2D
+attr title "Harq Error Rate D2D (2nd Tx)"
+attr unit ""
+vector 555 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac harqErrorRate_3rd_D2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_3rd_D2D
+attr title "Harq Error Rate D2D (3rd Tx)"
+attr unit ""
+vector 556 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac harqErrorRate_4th_D2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_4th_D2D
+attr title "Harq Error Rate D2D (4th Tx)"
+attr unit ""
+vector 557 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac harqErrorRateD2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRateD2D
+attr title "Harq Error Rate D2D"
+attr unit ""
+vector 558 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac macDelayD2D:vector ETV
+attr recordingmode vector
+attr source macDelayD2D
+attr title "Delay at the MAC layer D2D"
+attr unit s
+vector 559 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.mac rcvdD2DModeSwitchNotification:vector ETV
+attr recordingmode vector
+attr source rcvdD2DModeSwitchNotification
+attr title "Reception of mode switch notification (tx side)"
+attr unit ""
+vector 560 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.phy distance:vector ETV
+attr recordingmode vector
+attr source distance
+attr title "distance between UE and serving base station"
+attr unit meters
+vector 561 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.phy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving cell for the UE"
+attr unit ""
+vector 562 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.phy averageCqiDl:vector ETV
+attr recordingmode vector
+attr source averageCqiDl
+attr title "Average Cqi reported in DL"
+attr unit cqi
+vector 563 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.phy averageCqiUl:vector ETV
+attr recordingmode vector
+attr source averageCqiUl
+attr title "Average Cqi reported in UL"
+attr unit cqi
+vector 564 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.phy averageCqiD2D:vector ETV
+attr recordingmode vector
+attr source averageCqiD2D
+attr title "Average Cqi reported in D2D"
+attr unit cqi
+vector 565 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.channelModel[0] rcvdSinrDl:vector ETV
+attr recordingmode vector
+attr source rcvdSinrDl
+attr title "SINR measured at packet reception, DL"
+attr unit dB
+vector 566 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.channelModel[0] rcvdSinrUl:vector ETV
+attr recordingmode vector
+attr source rcvdSinrUl
+attr title "SINR measured at packet reception, UL"
+attr unit dB
+vector 567 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.channelModel[0] rcvdSinrD2D:vector ETV
+attr recordingmode vector
+attr source rcvdSinrD2D
+attr title "SINR measured at packet reception, D2D"
+attr unit dB
+vector 568 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.channelModel[0] measuredSinrDl:vector ETV
+attr recordingmode vector
+attr source measuredSinrDl
+attr title "SINR measured at feedback computation, DL"
+attr unit dB
+vector 569 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.channelModel[0] measuredSinrUl:vector ETV
+attr recordingmode vector
+attr source measuredSinrUl
+attr title "SINR measured at feedback computation, UL"
+attr unit dB
+vector 570 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.tm rlcPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 571 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.tm rlcPacketLossDl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossDl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 572 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.tm receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 573 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.tm receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 574 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.tm sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 575 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.tm sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 576 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcDelayDl:vector ETV
+attr recordingmode vector
+attr source rlcDelayDl
+attr title "Delay at the rlc layer DL"
+attr unit s
+vector 577 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcThroughputDl:vector ETV
+attr recordingmode vector
+attr source rlcThroughputDl
+attr title "Throughput at the rlc layer DL"
+attr unit Bps
+vector 578 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcDelayUl:vector ETV
+attr recordingmode vector
+attr source rlcDelayUl
+attr title "Delay at the rlc layer UL"
+attr unit s
+vector 579 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcThroughputUl:vector ETV
+attr recordingmode vector
+attr source rlcThroughputUl
+attr title "Throughput at the rlc layer UL"
+attr unit Bps
+vector 580 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 581 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcPacketLossDl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossDl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 582 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcPacketLossTotal:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss"
+attr unit ""
+vector 583 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcPduDelayDl:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayDl
+attr title "Delay at the rlc layer UL"
+attr unit s
+vector 584 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcPduThroughputDl:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputDl
+attr title "Throughput at the rlc layer DL"
+attr unit Bps
+vector 585 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcPduDelayUl:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayUl
+attr title "Delay at the rlc layer UL"
+attr unit s
+vector 586 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcPduThroughputUl:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputUl
+attr title "Throughput at the rlc layer UL"
+attr unit Bps
+vector 587 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcPduPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 588 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcPduPacketLossDl:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossDl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 589 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 590 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 591 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 592 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 593 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcDelayD2D:vector ETV
+attr recordingmode vector
+attr source rlcDelayD2D
+attr title "Delay at the rlc layer D2D"
+attr unit s
+vector 594 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcThroughputD2D
+attr title "Throughput at the rlc layer D2D"
+attr unit Bps
+vector 595 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossD2D
+attr title "rlc Packet Loss"
+attr unit ""
+vector 596 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcCellPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcCellPacketLossD2D
+attr title "rlc Cell Packet Loss"
+attr unit ""
+vector 597 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcCellThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcCellThroughputD2D
+attr title "Cell Throughput at the rlc layer D2D"
+attr unit Bps
+vector 598 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcPduDelayD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayD2D
+attr title "Delay at the rlc layer D2D"
+attr unit s
+vector 599 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcPduThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputD2D
+attr title "Throughput at the rlc layer D2D"
+attr unit Bps
+vector 600 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcPduPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossD2D
+attr title "rlc Packet Loss"
+attr unit ""
+vector 601 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac macDelayDl:vector ETV
+attr recordingmode vector
+attr source macDelayDl
+attr title "Delay at the MAC layer UL"
+attr unit s
+vector 602 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac macDelayUl:vector ETV
+attr recordingmode vector
+attr source macDelayUl
+attr title "Delay at the MAC layer UL"
+attr unit s
+vector 603 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqErrorRateUl:vector ETV
+attr recordingmode vector
+attr source harqErrorRateUl
+attr title "Harq Error Rate Ul"
+attr unit ""
+vector 604 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqErrorRateDl:vector ETV
+attr recordingmode vector
+attr source harqErrorRateDl
+attr title "Harq Error Rate Dl"
+attr unit ""
+vector 605 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqTxAttemptsDl:vector ETV
+attr recordingmode vector
+attr source harqTxAttemptsDl
+attr title "Harq Tx Attempts Dl"
+attr unit ""
+vector 606 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqTxAttemptsUl:vector ETV
+attr recordingmode vector
+attr source harqTxAttemptsUl
+attr title "Harq Tx Attempts Ul"
+attr unit ""
+vector 607 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqErrorRate_1st_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_1st_Ul
+attr title "Harq Error Rate Ul (1st tx)"
+attr unit ""
+vector 608 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqErrorRate_1st_Dl:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_1st_Dl
+attr title "Harq Error Rate Dl (1st tx)"
+attr unit ""
+vector 609 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqErrorRate_2nd_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_2nd_Ul
+attr title "Harq Error Rate Ul (2nd tx)"
+attr unit ""
+vector 610 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqErrorRate_2nd_Dl:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_2nd_Dl
+attr title "Harq Error Rate Dl (2nd tx)"
+attr unit ""
+vector 611 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqErrorRate_3rd_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_3rd_Ul
+attr title "Harq Error Rate Ul (3rd tx)"
+attr unit ""
+vector 612 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqErrorRate_3rd_Dl:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_3rd_Dl
+attr title "Harq Error Rate Dl (3rd tx)"
+attr unit ""
+vector 613 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqErrorRate_4th_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_4th_Ul
+attr title "Harq Error Rate Ul (4th tx)"
+attr unit ""
+vector 614 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqErrorRate_4th_Dl:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_4th_Dl
+attr title "Harq Error Rate Dl (4th tx)"
+attr unit ""
+vector 615 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 616 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 617 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 618 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 619 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqErrorRate_1st_D2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_1st_D2D
+attr title "Harq Error Rate D2D (1st Tx)"
+attr unit ""
+vector 620 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqErrorRate_2nd_D2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_2nd_D2D
+attr title "Harq Error Rate D2D (2nd Tx)"
+attr unit ""
+vector 621 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqErrorRate_3rd_D2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_3rd_D2D
+attr title "Harq Error Rate D2D (3rd Tx)"
+attr unit ""
+vector 622 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqErrorRate_4th_D2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_4th_D2D
+attr title "Harq Error Rate D2D (4th Tx)"
+attr unit ""
+vector 623 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqErrorRateD2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRateD2D
+attr title "Harq Error Rate D2D"
+attr unit ""
+vector 624 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac macDelayD2D:vector ETV
+attr recordingmode vector
+attr source macDelayD2D
+attr title "Delay at the MAC layer D2D"
+attr unit s
+vector 625 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac rcvdD2DModeSwitchNotification:vector ETV
+attr recordingmode vector
+attr source rcvdD2DModeSwitchNotification
+attr title "Reception of mode switch notification (tx side)"
+attr unit ""
+vector 626 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrPhy distance:vector ETV
+attr recordingmode vector
+attr source distance
+attr title "distance between UE and serving base station"
+attr unit meters
+vector 627 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrPhy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving cell for the UE"
+attr unit ""
+vector 628 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrPhy averageCqiDl:vector ETV
+attr recordingmode vector
+attr source averageCqiDl
+attr title "Average Cqi reported in DL"
+attr unit cqi
+vector 629 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrPhy averageCqiUl:vector ETV
+attr recordingmode vector
+attr source averageCqiUl
+attr title "Average Cqi reported in UL"
+attr unit cqi
+vector 630 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrPhy averageCqiD2D:vector ETV
+attr recordingmode vector
+attr source averageCqiD2D
+attr title "Average Cqi reported in D2D"
+attr unit cqi
+vector 631 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrChannelModel[0] rcvdSinrDl:vector ETV
+attr recordingmode vector
+attr source rcvdSinrDl
+attr title "SINR measured at packet reception, DL"
+attr unit dB
+vector 632 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrChannelModel[0] rcvdSinrUl:vector ETV
+attr recordingmode vector
+attr source rcvdSinrUl
+attr title "SINR measured at packet reception, UL"
+attr unit dB
+vector 633 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrChannelModel[0] rcvdSinrD2D:vector ETV
+attr recordingmode vector
+attr source rcvdSinrD2D
+attr title "SINR measured at packet reception, D2D"
+attr unit dB
+vector 634 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrChannelModel[0] measuredSinrDl:vector ETV
+attr recordingmode vector
+attr source measuredSinrDl
+attr title "SINR measured at feedback computation, DL"
+attr unit dB
+vector 635 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrChannelModel[0] measuredSinrUl:vector ETV
+attr recordingmode vector
+attr source measuredSinrUl
+attr title "SINR measured at feedback computation, UL"
+attr unit dB
+vector 636 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 637 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 638 SingleCell_Standalone_D2D.ueD2DRx[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 639 SingleCell_Standalone_D2D.ueD2DRx[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 640 SingleCell_Standalone_D2D.ueD2DRx[0].encap pauseSent:vector ETV
+attr recordingmode vector
+attr title "pause sent"
+vector 641 SingleCell_Standalone_D2D.ueD2DRx[0].ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 642 SingleCell_Standalone_D2D.ueD2DRx[0].ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 643 SingleCell_Standalone_D2D.ueD2DRx[0].ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 644 SingleCell_Standalone_D2D.ueD2DRx[0].ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 645 SingleCell_Standalone_D2D.ueD2DRx[0].ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 646 SingleCell_Standalone_D2D.ueD2DRx[0].ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 647 SingleCell_Standalone_D2D.ueD2DRx[0].ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, packetBytes"
+vector 648 SingleCell_Standalone_D2D.ueD2DRx[0].ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpReplySent
+attr title "ARP replies sent, packetBytes"
+vector 649 SingleCell_Standalone_D2D.ueD2DRx[0].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 650 SingleCell_Standalone_D2D.ueD2DRx[0].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 651 SingleCell_Standalone_D2D.ueD2DRx[0].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 652 SingleCell_Standalone_D2D.ueD2DRx[0].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 653 SingleCell_Standalone_D2D.ueD2DRx[0].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+

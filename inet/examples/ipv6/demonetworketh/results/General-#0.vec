@@ -1,0 +1,4028 @@
+version 3
+run General-0-20251121-20:05:13-167072
+attr configname General
+attr datetime 20251121-20:05:13
+attr datetimef 20251121-200513
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network DemoNetworkEth
+attr processid 167072
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../../../images
+config network DemoNetworkEth
+config *.n 2
+config *.visualizer.interfaceTableVisualizer.displayInterfaceTables true
+config *.visualizer.interfaceTableVisualizer.format "\"%N %t %a\""
+config *.visualizer.interfaceTableVisualizer.displayBackground true
+config *.visualizer.interfaceTableVisualizer.textColor "\"#902020\""
+config **.cli[*].numApps 1
+config **.cli[*].app[*].typename TelnetApp
+config **.cli[*].app[0].localAddress "\"\""
+config **.cli[*].app[0].localPort 1000
+config **.cli[*].app[0].connectAddress "\"srv[1]\""
+config **.cli[*].app[0].connectPort 1000
+config **.cli[*].app[0].startTime uniform(10s,15s)
+config **.cli[*].app[0].numCommands int(exponential(10))
+config **.cli[*].app[0].commandLength intWithUnit(exponential(10B))
+config **.cli[*].app[0].keyPressDelay exponential(0.1s)
+config **.cli[*].app[0].commandOutputLength intWithUnit(exponential(40B))
+config **.cli[*].app[0].thinkTime truncnormal(2s,3s)
+config **.cli[*].app[0].idleInterval truncnormal(3600s,1200s)
+config **.cli[*].app[0].reconnectInterval 30s
+config **.srv[*].numApps 1
+config **.srv[*].app[*].typename TcpGenericServerApp
+config **.srv[*].app[0].localAddress "\"\""
+config **.srv[*].app[0].localPort 1000
+config **.srv[*].app[0].replyDelay 0s
+config **.eth[*].queue.typename EthernetQosQueue
+config **.eth[*].queue.dataQueue.typename DropTailQueue
+config **.eth[*].queue.dataQueue.packetCapacity 10
+config **.eth[*].duplexMode true
+
+vector 0 DemoNetworkEth.r1.ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 1 DemoNetworkEth.r1.ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 2 DemoNetworkEth.r1.ethernet pauseSent:vector ETV
+attr recordingmode vector
+attr title "pause sent"
+vector 3 DemoNetworkEth.r1.lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 4 DemoNetworkEth.r1.lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 5 DemoNetworkEth.r1.lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 6 DemoNetworkEth.r1.lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 7 DemoNetworkEth.r1.eth[0].queue.classifier packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushed)
+attr title "packet lengths"
+attr unit b
+vector 8 DemoNetworkEth.r1.eth[0].queue.classifier dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushed)
+attr title "data rate"
+attr unit bps
+vector 9 DemoNetworkEth.r1.eth[0].queue.pauseQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 10 DemoNetworkEth.r1.eth[0].queue.pauseQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 11 DemoNetworkEth.r1.eth[0].queue.pauseQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 12 DemoNetworkEth.r1.eth[0].queue.pauseQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 13 DemoNetworkEth.r1.eth[0].queue.pauseQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 14 DemoNetworkEth.r1.eth[0].queue.pauseQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 15 DemoNetworkEth.r1.eth[0].queue.pauseQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 16 DemoNetworkEth.r1.eth[0].queue.pauseQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 17 DemoNetworkEth.r1.eth[0].queue.pauseQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 18 DemoNetworkEth.r1.eth[0].queue.pauseQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 19 DemoNetworkEth.r1.eth[0].queue.pauseQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 20 DemoNetworkEth.r1.eth[0].queue.dataQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 21 DemoNetworkEth.r1.eth[0].queue.dataQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 22 DemoNetworkEth.r1.eth[0].queue.dataQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 23 DemoNetworkEth.r1.eth[0].queue.dataQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 24 DemoNetworkEth.r1.eth[0].queue.dataQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 25 DemoNetworkEth.r1.eth[0].queue.dataQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 26 DemoNetworkEth.r1.eth[0].queue.dataQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 27 DemoNetworkEth.r1.eth[0].queue.dataQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 28 DemoNetworkEth.r1.eth[0].queue.dataQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 29 DemoNetworkEth.r1.eth[0].queue.dataQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 30 DemoNetworkEth.r1.eth[0].queue.dataQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 31 DemoNetworkEth.r1.eth[0].queue.scheduler packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "packet lengths"
+attr unit b
+vector 32 DemoNetworkEth.r1.eth[0].queue.scheduler dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "data rate"
+attr unit bps
+vector 33 DemoNetworkEth.r1.eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + count(localSignal(packetPushStarted)) - count(localSignal(packetPulled)) - count(localSignal(packetRemoved)) - count(localSignal(packetDropped))))"
+attr title "queue length"
+attr unit pk
+vector 34 DemoNetworkEth.r1.eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + sum(packetLength(localSignal(packetPushStarted))) - sum(packetLength(localSignal(packetPulled))) - sum(packetLength(localSignal(packetRemoved))) - sum(packetLength(localSignal(packetDropped)))))"
+attr title "queue bit length"
+attr unit b
+vector 35 DemoNetworkEth.r1.eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(localSignal(packetPulled))
+attr title "queueing times"
+attr unit s
+vector 36 DemoNetworkEth.r1.eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPushStarted))
+attr title "incoming packet lengths"
+attr unit b
+vector 37 DemoNetworkEth.r1.eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPushStarted))
+attr title "incoming datarate"
+attr unit bps
+vector 38 DemoNetworkEth.r1.eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPulled))
+attr title "outgoing packet lengths"
+attr unit b
+vector 39 DemoNetworkEth.r1.eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPulled))
+attr title "outgoing datarate"
+attr unit bps
+vector 40 DemoNetworkEth.r1.eth[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(localSignal(packetDropped)))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 41 DemoNetworkEth.r1.eth[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(localSignal(packetPulled)))
+attr title "flow queueing times"
+attr unit s
+vector 42 DemoNetworkEth.r1.eth[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPushStarted))))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 43 DemoNetworkEth.r1.eth[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPulled))))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 44 DemoNetworkEth.r1.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 45 DemoNetworkEth.r1.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 46 DemoNetworkEth.r1.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 47 DemoNetworkEth.r1.eth[0].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 48 DemoNetworkEth.r1.eth[0].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 49 DemoNetworkEth.r1.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 50 DemoNetworkEth.r1.eth[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 51 DemoNetworkEth.r1.eth[0].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 52 DemoNetworkEth.r1.eth[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 53 DemoNetworkEth.r1.eth[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 54 DemoNetworkEth.r1.eth[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 55 DemoNetworkEth.r1.eth[1].queue.classifier packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushed)
+attr title "packet lengths"
+attr unit b
+vector 56 DemoNetworkEth.r1.eth[1].queue.classifier dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushed)
+attr title "data rate"
+attr unit bps
+vector 57 DemoNetworkEth.r1.eth[1].queue.pauseQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 58 DemoNetworkEth.r1.eth[1].queue.pauseQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 59 DemoNetworkEth.r1.eth[1].queue.pauseQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 60 DemoNetworkEth.r1.eth[1].queue.pauseQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 61 DemoNetworkEth.r1.eth[1].queue.pauseQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 62 DemoNetworkEth.r1.eth[1].queue.pauseQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 63 DemoNetworkEth.r1.eth[1].queue.pauseQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 64 DemoNetworkEth.r1.eth[1].queue.pauseQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 65 DemoNetworkEth.r1.eth[1].queue.pauseQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 66 DemoNetworkEth.r1.eth[1].queue.pauseQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 67 DemoNetworkEth.r1.eth[1].queue.pauseQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 68 DemoNetworkEth.r1.eth[1].queue.dataQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 69 DemoNetworkEth.r1.eth[1].queue.dataQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 70 DemoNetworkEth.r1.eth[1].queue.dataQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 71 DemoNetworkEth.r1.eth[1].queue.dataQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 72 DemoNetworkEth.r1.eth[1].queue.dataQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 73 DemoNetworkEth.r1.eth[1].queue.dataQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 74 DemoNetworkEth.r1.eth[1].queue.dataQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 75 DemoNetworkEth.r1.eth[1].queue.dataQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 76 DemoNetworkEth.r1.eth[1].queue.dataQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 77 DemoNetworkEth.r1.eth[1].queue.dataQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 78 DemoNetworkEth.r1.eth[1].queue.dataQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 79 DemoNetworkEth.r1.eth[1].queue.scheduler packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "packet lengths"
+attr unit b
+vector 80 DemoNetworkEth.r1.eth[1].queue.scheduler dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "data rate"
+attr unit bps
+vector 81 DemoNetworkEth.r1.eth[1].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + count(localSignal(packetPushStarted)) - count(localSignal(packetPulled)) - count(localSignal(packetRemoved)) - count(localSignal(packetDropped))))"
+attr title "queue length"
+attr unit pk
+vector 82 DemoNetworkEth.r1.eth[1].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + sum(packetLength(localSignal(packetPushStarted))) - sum(packetLength(localSignal(packetPulled))) - sum(packetLength(localSignal(packetRemoved))) - sum(packetLength(localSignal(packetDropped)))))"
+attr title "queue bit length"
+attr unit b
+vector 83 DemoNetworkEth.r1.eth[1].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(localSignal(packetPulled))
+attr title "queueing times"
+attr unit s
+vector 84 DemoNetworkEth.r1.eth[1].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPushStarted))
+attr title "incoming packet lengths"
+attr unit b
+vector 85 DemoNetworkEth.r1.eth[1].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPushStarted))
+attr title "incoming datarate"
+attr unit bps
+vector 86 DemoNetworkEth.r1.eth[1].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPulled))
+attr title "outgoing packet lengths"
+attr unit b
+vector 87 DemoNetworkEth.r1.eth[1].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPulled))
+attr title "outgoing datarate"
+attr unit bps
+vector 88 DemoNetworkEth.r1.eth[1].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(localSignal(packetDropped)))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 89 DemoNetworkEth.r1.eth[1].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(localSignal(packetPulled)))
+attr title "flow queueing times"
+attr unit s
+vector 90 DemoNetworkEth.r1.eth[1].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPushStarted))))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 91 DemoNetworkEth.r1.eth[1].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPulled))))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 92 DemoNetworkEth.r1.eth[1].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 93 DemoNetworkEth.r1.eth[1].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 94 DemoNetworkEth.r1.eth[1].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 95 DemoNetworkEth.r1.eth[1].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 96 DemoNetworkEth.r1.eth[1].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 97 DemoNetworkEth.r1.eth[1].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 98 DemoNetworkEth.r1.eth[1].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 99 DemoNetworkEth.r1.eth[1].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 100 DemoNetworkEth.r1.eth[1].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 101 DemoNetworkEth.r1.eth[1] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 102 DemoNetworkEth.r1.eth[1] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 103 DemoNetworkEth.r1.eth[2].queue.classifier packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushed)
+attr title "packet lengths"
+attr unit b
+vector 104 DemoNetworkEth.r1.eth[2].queue.classifier dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushed)
+attr title "data rate"
+attr unit bps
+vector 105 DemoNetworkEth.r1.eth[2].queue.pauseQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 106 DemoNetworkEth.r1.eth[2].queue.pauseQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 107 DemoNetworkEth.r1.eth[2].queue.pauseQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 108 DemoNetworkEth.r1.eth[2].queue.pauseQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 109 DemoNetworkEth.r1.eth[2].queue.pauseQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 110 DemoNetworkEth.r1.eth[2].queue.pauseQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 111 DemoNetworkEth.r1.eth[2].queue.pauseQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 112 DemoNetworkEth.r1.eth[2].queue.pauseQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 113 DemoNetworkEth.r1.eth[2].queue.pauseQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 114 DemoNetworkEth.r1.eth[2].queue.pauseQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 115 DemoNetworkEth.r1.eth[2].queue.pauseQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 116 DemoNetworkEth.r1.eth[2].queue.dataQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 117 DemoNetworkEth.r1.eth[2].queue.dataQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 118 DemoNetworkEth.r1.eth[2].queue.dataQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 119 DemoNetworkEth.r1.eth[2].queue.dataQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 120 DemoNetworkEth.r1.eth[2].queue.dataQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 121 DemoNetworkEth.r1.eth[2].queue.dataQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 122 DemoNetworkEth.r1.eth[2].queue.dataQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 123 DemoNetworkEth.r1.eth[2].queue.dataQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 124 DemoNetworkEth.r1.eth[2].queue.dataQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 125 DemoNetworkEth.r1.eth[2].queue.dataQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 126 DemoNetworkEth.r1.eth[2].queue.dataQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 127 DemoNetworkEth.r1.eth[2].queue.scheduler packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "packet lengths"
+attr unit b
+vector 128 DemoNetworkEth.r1.eth[2].queue.scheduler dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "data rate"
+attr unit bps
+vector 129 DemoNetworkEth.r1.eth[2].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + count(localSignal(packetPushStarted)) - count(localSignal(packetPulled)) - count(localSignal(packetRemoved)) - count(localSignal(packetDropped))))"
+attr title "queue length"
+attr unit pk
+vector 130 DemoNetworkEth.r1.eth[2].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + sum(packetLength(localSignal(packetPushStarted))) - sum(packetLength(localSignal(packetPulled))) - sum(packetLength(localSignal(packetRemoved))) - sum(packetLength(localSignal(packetDropped)))))"
+attr title "queue bit length"
+attr unit b
+vector 131 DemoNetworkEth.r1.eth[2].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(localSignal(packetPulled))
+attr title "queueing times"
+attr unit s
+vector 132 DemoNetworkEth.r1.eth[2].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPushStarted))
+attr title "incoming packet lengths"
+attr unit b
+vector 133 DemoNetworkEth.r1.eth[2].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPushStarted))
+attr title "incoming datarate"
+attr unit bps
+vector 134 DemoNetworkEth.r1.eth[2].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPulled))
+attr title "outgoing packet lengths"
+attr unit b
+vector 135 DemoNetworkEth.r1.eth[2].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPulled))
+attr title "outgoing datarate"
+attr unit bps
+vector 136 DemoNetworkEth.r1.eth[2].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(localSignal(packetDropped)))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 137 DemoNetworkEth.r1.eth[2].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(localSignal(packetPulled)))
+attr title "flow queueing times"
+attr unit s
+vector 138 DemoNetworkEth.r1.eth[2].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPushStarted))))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 139 DemoNetworkEth.r1.eth[2].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPulled))))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 140 DemoNetworkEth.r1.eth[2].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 141 DemoNetworkEth.r1.eth[2].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 142 DemoNetworkEth.r1.eth[2].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 143 DemoNetworkEth.r1.eth[2].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 144 DemoNetworkEth.r1.eth[2].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 145 DemoNetworkEth.r1.eth[2].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 146 DemoNetworkEth.r1.eth[2].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 147 DemoNetworkEth.r1.eth[2].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 148 DemoNetworkEth.r1.eth[2].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 149 DemoNetworkEth.r1.eth[2] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 150 DemoNetworkEth.r1.eth[2] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 151 DemoNetworkEth.r1.ipv6.neighbourDiscovery startDad:vector ETV
+attr recordingmode vector
+attr title "DAD started"
+vector 152 DemoNetworkEth.r2.ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 153 DemoNetworkEth.r2.ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 154 DemoNetworkEth.r2.ethernet pauseSent:vector ETV
+attr recordingmode vector
+attr title "pause sent"
+vector 155 DemoNetworkEth.r2.lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 156 DemoNetworkEth.r2.lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 157 DemoNetworkEth.r2.lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 158 DemoNetworkEth.r2.lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 159 DemoNetworkEth.r2.eth[0].queue.classifier packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushed)
+attr title "packet lengths"
+attr unit b
+vector 160 DemoNetworkEth.r2.eth[0].queue.classifier dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushed)
+attr title "data rate"
+attr unit bps
+vector 161 DemoNetworkEth.r2.eth[0].queue.pauseQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 162 DemoNetworkEth.r2.eth[0].queue.pauseQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 163 DemoNetworkEth.r2.eth[0].queue.pauseQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 164 DemoNetworkEth.r2.eth[0].queue.pauseQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 165 DemoNetworkEth.r2.eth[0].queue.pauseQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 166 DemoNetworkEth.r2.eth[0].queue.pauseQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 167 DemoNetworkEth.r2.eth[0].queue.pauseQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 168 DemoNetworkEth.r2.eth[0].queue.pauseQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 169 DemoNetworkEth.r2.eth[0].queue.pauseQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 170 DemoNetworkEth.r2.eth[0].queue.pauseQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 171 DemoNetworkEth.r2.eth[0].queue.pauseQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 172 DemoNetworkEth.r2.eth[0].queue.dataQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 173 DemoNetworkEth.r2.eth[0].queue.dataQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 174 DemoNetworkEth.r2.eth[0].queue.dataQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 175 DemoNetworkEth.r2.eth[0].queue.dataQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 176 DemoNetworkEth.r2.eth[0].queue.dataQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 177 DemoNetworkEth.r2.eth[0].queue.dataQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 178 DemoNetworkEth.r2.eth[0].queue.dataQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 179 DemoNetworkEth.r2.eth[0].queue.dataQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 180 DemoNetworkEth.r2.eth[0].queue.dataQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 181 DemoNetworkEth.r2.eth[0].queue.dataQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 182 DemoNetworkEth.r2.eth[0].queue.dataQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 183 DemoNetworkEth.r2.eth[0].queue.scheduler packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "packet lengths"
+attr unit b
+vector 184 DemoNetworkEth.r2.eth[0].queue.scheduler dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "data rate"
+attr unit bps
+vector 185 DemoNetworkEth.r2.eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + count(localSignal(packetPushStarted)) - count(localSignal(packetPulled)) - count(localSignal(packetRemoved)) - count(localSignal(packetDropped))))"
+attr title "queue length"
+attr unit pk
+vector 186 DemoNetworkEth.r2.eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + sum(packetLength(localSignal(packetPushStarted))) - sum(packetLength(localSignal(packetPulled))) - sum(packetLength(localSignal(packetRemoved))) - sum(packetLength(localSignal(packetDropped)))))"
+attr title "queue bit length"
+attr unit b
+vector 187 DemoNetworkEth.r2.eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(localSignal(packetPulled))
+attr title "queueing times"
+attr unit s
+vector 188 DemoNetworkEth.r2.eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPushStarted))
+attr title "incoming packet lengths"
+attr unit b
+vector 189 DemoNetworkEth.r2.eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPushStarted))
+attr title "incoming datarate"
+attr unit bps
+vector 190 DemoNetworkEth.r2.eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPulled))
+attr title "outgoing packet lengths"
+attr unit b
+vector 191 DemoNetworkEth.r2.eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPulled))
+attr title "outgoing datarate"
+attr unit bps
+vector 192 DemoNetworkEth.r2.eth[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(localSignal(packetDropped)))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 193 DemoNetworkEth.r2.eth[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(localSignal(packetPulled)))
+attr title "flow queueing times"
+attr unit s
+vector 194 DemoNetworkEth.r2.eth[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPushStarted))))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 195 DemoNetworkEth.r2.eth[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPulled))))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 196 DemoNetworkEth.r2.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 197 DemoNetworkEth.r2.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 198 DemoNetworkEth.r2.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 199 DemoNetworkEth.r2.eth[0].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 200 DemoNetworkEth.r2.eth[0].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 201 DemoNetworkEth.r2.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 202 DemoNetworkEth.r2.eth[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 203 DemoNetworkEth.r2.eth[0].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 204 DemoNetworkEth.r2.eth[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 205 DemoNetworkEth.r2.eth[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 206 DemoNetworkEth.r2.eth[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 207 DemoNetworkEth.r2.eth[1].queue.classifier packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushed)
+attr title "packet lengths"
+attr unit b
+vector 208 DemoNetworkEth.r2.eth[1].queue.classifier dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushed)
+attr title "data rate"
+attr unit bps
+vector 209 DemoNetworkEth.r2.eth[1].queue.pauseQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 210 DemoNetworkEth.r2.eth[1].queue.pauseQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 211 DemoNetworkEth.r2.eth[1].queue.pauseQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 212 DemoNetworkEth.r2.eth[1].queue.pauseQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 213 DemoNetworkEth.r2.eth[1].queue.pauseQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 214 DemoNetworkEth.r2.eth[1].queue.pauseQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 215 DemoNetworkEth.r2.eth[1].queue.pauseQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 216 DemoNetworkEth.r2.eth[1].queue.pauseQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 217 DemoNetworkEth.r2.eth[1].queue.pauseQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 218 DemoNetworkEth.r2.eth[1].queue.pauseQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 219 DemoNetworkEth.r2.eth[1].queue.pauseQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 220 DemoNetworkEth.r2.eth[1].queue.dataQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 221 DemoNetworkEth.r2.eth[1].queue.dataQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 222 DemoNetworkEth.r2.eth[1].queue.dataQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 223 DemoNetworkEth.r2.eth[1].queue.dataQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 224 DemoNetworkEth.r2.eth[1].queue.dataQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 225 DemoNetworkEth.r2.eth[1].queue.dataQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 226 DemoNetworkEth.r2.eth[1].queue.dataQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 227 DemoNetworkEth.r2.eth[1].queue.dataQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 228 DemoNetworkEth.r2.eth[1].queue.dataQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 229 DemoNetworkEth.r2.eth[1].queue.dataQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 230 DemoNetworkEth.r2.eth[1].queue.dataQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 231 DemoNetworkEth.r2.eth[1].queue.scheduler packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "packet lengths"
+attr unit b
+vector 232 DemoNetworkEth.r2.eth[1].queue.scheduler dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "data rate"
+attr unit bps
+vector 233 DemoNetworkEth.r2.eth[1].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + count(localSignal(packetPushStarted)) - count(localSignal(packetPulled)) - count(localSignal(packetRemoved)) - count(localSignal(packetDropped))))"
+attr title "queue length"
+attr unit pk
+vector 234 DemoNetworkEth.r2.eth[1].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + sum(packetLength(localSignal(packetPushStarted))) - sum(packetLength(localSignal(packetPulled))) - sum(packetLength(localSignal(packetRemoved))) - sum(packetLength(localSignal(packetDropped)))))"
+attr title "queue bit length"
+attr unit b
+vector 235 DemoNetworkEth.r2.eth[1].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(localSignal(packetPulled))
+attr title "queueing times"
+attr unit s
+vector 236 DemoNetworkEth.r2.eth[1].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPushStarted))
+attr title "incoming packet lengths"
+attr unit b
+vector 237 DemoNetworkEth.r2.eth[1].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPushStarted))
+attr title "incoming datarate"
+attr unit bps
+vector 238 DemoNetworkEth.r2.eth[1].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPulled))
+attr title "outgoing packet lengths"
+attr unit b
+vector 239 DemoNetworkEth.r2.eth[1].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPulled))
+attr title "outgoing datarate"
+attr unit bps
+vector 240 DemoNetworkEth.r2.eth[1].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(localSignal(packetDropped)))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 241 DemoNetworkEth.r2.eth[1].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(localSignal(packetPulled)))
+attr title "flow queueing times"
+attr unit s
+vector 242 DemoNetworkEth.r2.eth[1].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPushStarted))))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 243 DemoNetworkEth.r2.eth[1].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPulled))))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 244 DemoNetworkEth.r2.eth[1].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 245 DemoNetworkEth.r2.eth[1].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 246 DemoNetworkEth.r2.eth[1].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 247 DemoNetworkEth.r2.eth[1].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 248 DemoNetworkEth.r2.eth[1].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 249 DemoNetworkEth.r2.eth[1].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 250 DemoNetworkEth.r2.eth[1].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 251 DemoNetworkEth.r2.eth[1].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 252 DemoNetworkEth.r2.eth[1].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 253 DemoNetworkEth.r2.eth[1] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 254 DemoNetworkEth.r2.eth[1] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 255 DemoNetworkEth.r2.eth[2].queue.classifier packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushed)
+attr title "packet lengths"
+attr unit b
+vector 256 DemoNetworkEth.r2.eth[2].queue.classifier dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushed)
+attr title "data rate"
+attr unit bps
+vector 257 DemoNetworkEth.r2.eth[2].queue.pauseQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 258 DemoNetworkEth.r2.eth[2].queue.pauseQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 259 DemoNetworkEth.r2.eth[2].queue.pauseQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 260 DemoNetworkEth.r2.eth[2].queue.pauseQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 261 DemoNetworkEth.r2.eth[2].queue.pauseQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 262 DemoNetworkEth.r2.eth[2].queue.pauseQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 263 DemoNetworkEth.r2.eth[2].queue.pauseQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 264 DemoNetworkEth.r2.eth[2].queue.pauseQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 265 DemoNetworkEth.r2.eth[2].queue.pauseQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 266 DemoNetworkEth.r2.eth[2].queue.pauseQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 267 DemoNetworkEth.r2.eth[2].queue.pauseQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 268 DemoNetworkEth.r2.eth[2].queue.dataQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 269 DemoNetworkEth.r2.eth[2].queue.dataQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 270 DemoNetworkEth.r2.eth[2].queue.dataQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 271 DemoNetworkEth.r2.eth[2].queue.dataQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 272 DemoNetworkEth.r2.eth[2].queue.dataQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 273 DemoNetworkEth.r2.eth[2].queue.dataQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 274 DemoNetworkEth.r2.eth[2].queue.dataQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 275 DemoNetworkEth.r2.eth[2].queue.dataQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 276 DemoNetworkEth.r2.eth[2].queue.dataQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 277 DemoNetworkEth.r2.eth[2].queue.dataQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 278 DemoNetworkEth.r2.eth[2].queue.dataQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 279 DemoNetworkEth.r2.eth[2].queue.scheduler packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "packet lengths"
+attr unit b
+vector 280 DemoNetworkEth.r2.eth[2].queue.scheduler dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "data rate"
+attr unit bps
+vector 281 DemoNetworkEth.r2.eth[2].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + count(localSignal(packetPushStarted)) - count(localSignal(packetPulled)) - count(localSignal(packetRemoved)) - count(localSignal(packetDropped))))"
+attr title "queue length"
+attr unit pk
+vector 282 DemoNetworkEth.r2.eth[2].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + sum(packetLength(localSignal(packetPushStarted))) - sum(packetLength(localSignal(packetPulled))) - sum(packetLength(localSignal(packetRemoved))) - sum(packetLength(localSignal(packetDropped)))))"
+attr title "queue bit length"
+attr unit b
+vector 283 DemoNetworkEth.r2.eth[2].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(localSignal(packetPulled))
+attr title "queueing times"
+attr unit s
+vector 284 DemoNetworkEth.r2.eth[2].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPushStarted))
+attr title "incoming packet lengths"
+attr unit b
+vector 285 DemoNetworkEth.r2.eth[2].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPushStarted))
+attr title "incoming datarate"
+attr unit bps
+vector 286 DemoNetworkEth.r2.eth[2].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPulled))
+attr title "outgoing packet lengths"
+attr unit b
+vector 287 DemoNetworkEth.r2.eth[2].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPulled))
+attr title "outgoing datarate"
+attr unit bps
+vector 288 DemoNetworkEth.r2.eth[2].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(localSignal(packetDropped)))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 289 DemoNetworkEth.r2.eth[2].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(localSignal(packetPulled)))
+attr title "flow queueing times"
+attr unit s
+vector 290 DemoNetworkEth.r2.eth[2].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPushStarted))))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 291 DemoNetworkEth.r2.eth[2].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPulled))))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 292 DemoNetworkEth.r2.eth[2].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 293 DemoNetworkEth.r2.eth[2].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 294 DemoNetworkEth.r2.eth[2].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 295 DemoNetworkEth.r2.eth[2].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 296 DemoNetworkEth.r2.eth[2].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 297 DemoNetworkEth.r2.eth[2].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 298 DemoNetworkEth.r2.eth[2].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 299 DemoNetworkEth.r2.eth[2].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 300 DemoNetworkEth.r2.eth[2].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 301 DemoNetworkEth.r2.eth[2] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 302 DemoNetworkEth.r2.eth[2] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 303 DemoNetworkEth.r2.ipv6.neighbourDiscovery startDad:vector ETV
+attr recordingmode vector
+attr title "DAD started"
+vector 304 DemoNetworkEth.cli[0].ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 305 DemoNetworkEth.cli[0].ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 306 DemoNetworkEth.cli[0].ethernet pauseSent:vector ETV
+attr recordingmode vector
+attr title "pause sent"
+vector 307 DemoNetworkEth.cli[0].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 308 DemoNetworkEth.cli[0].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 309 DemoNetworkEth.cli[0].lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 310 DemoNetworkEth.cli[0].lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 311 DemoNetworkEth.cli[0].eth[0].queue.classifier packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushed)
+attr title "packet lengths"
+attr unit b
+vector 312 DemoNetworkEth.cli[0].eth[0].queue.classifier dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushed)
+attr title "data rate"
+attr unit bps
+vector 313 DemoNetworkEth.cli[0].eth[0].queue.pauseQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 314 DemoNetworkEth.cli[0].eth[0].queue.pauseQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 315 DemoNetworkEth.cli[0].eth[0].queue.pauseQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 316 DemoNetworkEth.cli[0].eth[0].queue.pauseQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 317 DemoNetworkEth.cli[0].eth[0].queue.pauseQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 318 DemoNetworkEth.cli[0].eth[0].queue.pauseQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 319 DemoNetworkEth.cli[0].eth[0].queue.pauseQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 320 DemoNetworkEth.cli[0].eth[0].queue.pauseQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 321 DemoNetworkEth.cli[0].eth[0].queue.pauseQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 322 DemoNetworkEth.cli[0].eth[0].queue.pauseQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 323 DemoNetworkEth.cli[0].eth[0].queue.pauseQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 324 DemoNetworkEth.cli[0].eth[0].queue.dataQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 325 DemoNetworkEth.cli[0].eth[0].queue.dataQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 326 DemoNetworkEth.cli[0].eth[0].queue.dataQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 327 DemoNetworkEth.cli[0].eth[0].queue.dataQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 328 DemoNetworkEth.cli[0].eth[0].queue.dataQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 329 DemoNetworkEth.cli[0].eth[0].queue.dataQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 330 DemoNetworkEth.cli[0].eth[0].queue.dataQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 331 DemoNetworkEth.cli[0].eth[0].queue.dataQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 332 DemoNetworkEth.cli[0].eth[0].queue.dataQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 333 DemoNetworkEth.cli[0].eth[0].queue.dataQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 334 DemoNetworkEth.cli[0].eth[0].queue.dataQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 335 DemoNetworkEth.cli[0].eth[0].queue.scheduler packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "packet lengths"
+attr unit b
+vector 336 DemoNetworkEth.cli[0].eth[0].queue.scheduler dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "data rate"
+attr unit bps
+vector 337 DemoNetworkEth.cli[0].eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + count(localSignal(packetPushStarted)) - count(localSignal(packetPulled)) - count(localSignal(packetRemoved)) - count(localSignal(packetDropped))))"
+attr title "queue length"
+attr unit pk
+vector 338 DemoNetworkEth.cli[0].eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + sum(packetLength(localSignal(packetPushStarted))) - sum(packetLength(localSignal(packetPulled))) - sum(packetLength(localSignal(packetRemoved))) - sum(packetLength(localSignal(packetDropped)))))"
+attr title "queue bit length"
+attr unit b
+vector 339 DemoNetworkEth.cli[0].eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(localSignal(packetPulled))
+attr title "queueing times"
+attr unit s
+vector 340 DemoNetworkEth.cli[0].eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPushStarted))
+attr title "incoming packet lengths"
+attr unit b
+vector 341 DemoNetworkEth.cli[0].eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPushStarted))
+attr title "incoming datarate"
+attr unit bps
+vector 342 DemoNetworkEth.cli[0].eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPulled))
+attr title "outgoing packet lengths"
+attr unit b
+vector 343 DemoNetworkEth.cli[0].eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPulled))
+attr title "outgoing datarate"
+attr unit bps
+vector 344 DemoNetworkEth.cli[0].eth[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(localSignal(packetDropped)))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 345 DemoNetworkEth.cli[0].eth[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(localSignal(packetPulled)))
+attr title "flow queueing times"
+attr unit s
+vector 346 DemoNetworkEth.cli[0].eth[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPushStarted))))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 347 DemoNetworkEth.cli[0].eth[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPulled))))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 348 DemoNetworkEth.cli[0].eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 349 DemoNetworkEth.cli[0].eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 350 DemoNetworkEth.cli[0].eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 351 DemoNetworkEth.cli[0].eth[0].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 352 DemoNetworkEth.cli[0].eth[0].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 353 DemoNetworkEth.cli[0].eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 354 DemoNetworkEth.cli[0].eth[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 355 DemoNetworkEth.cli[0].eth[0].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 356 DemoNetworkEth.cli[0].eth[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 357 DemoNetworkEth.cli[0].eth[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 358 DemoNetworkEth.cli[0].eth[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 359 DemoNetworkEth.cli[0].ipv6.neighbourDiscovery startDad:vector ETV
+attr recordingmode vector
+attr title "DAD started"
+vector 360 DemoNetworkEth.cli[0].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 361 DemoNetworkEth.cli[0].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 362 DemoNetworkEth.cli[0].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 363 DemoNetworkEth.cli[0].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 364 DemoNetworkEth.cli[0].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 365 DemoNetworkEth.cli[0].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 366 DemoNetworkEth.cli[0].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 367 DemoNetworkEth.cli[0].app[0] endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 368 DemoNetworkEth.cli[0].app[0] numActiveSessions:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(sum(connect))
+attr title "number of active sessions"
+vector 369 DemoNetworkEth.cli[1].ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 370 DemoNetworkEth.cli[1].ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 371 DemoNetworkEth.cli[1].ethernet pauseSent:vector ETV
+attr recordingmode vector
+attr title "pause sent"
+vector 372 DemoNetworkEth.cli[1].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 373 DemoNetworkEth.cli[1].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 374 DemoNetworkEth.cli[1].lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 375 DemoNetworkEth.cli[1].lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 376 DemoNetworkEth.cli[1].eth[0].queue.classifier packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushed)
+attr title "packet lengths"
+attr unit b
+vector 377 DemoNetworkEth.cli[1].eth[0].queue.classifier dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushed)
+attr title "data rate"
+attr unit bps
+vector 378 DemoNetworkEth.cli[1].eth[0].queue.pauseQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 379 DemoNetworkEth.cli[1].eth[0].queue.pauseQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 380 DemoNetworkEth.cli[1].eth[0].queue.pauseQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 381 DemoNetworkEth.cli[1].eth[0].queue.pauseQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 382 DemoNetworkEth.cli[1].eth[0].queue.pauseQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 383 DemoNetworkEth.cli[1].eth[0].queue.pauseQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 384 DemoNetworkEth.cli[1].eth[0].queue.pauseQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 385 DemoNetworkEth.cli[1].eth[0].queue.pauseQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 386 DemoNetworkEth.cli[1].eth[0].queue.pauseQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 387 DemoNetworkEth.cli[1].eth[0].queue.pauseQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 388 DemoNetworkEth.cli[1].eth[0].queue.pauseQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 389 DemoNetworkEth.cli[1].eth[0].queue.dataQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 390 DemoNetworkEth.cli[1].eth[0].queue.dataQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 391 DemoNetworkEth.cli[1].eth[0].queue.dataQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 392 DemoNetworkEth.cli[1].eth[0].queue.dataQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 393 DemoNetworkEth.cli[1].eth[0].queue.dataQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 394 DemoNetworkEth.cli[1].eth[0].queue.dataQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 395 DemoNetworkEth.cli[1].eth[0].queue.dataQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 396 DemoNetworkEth.cli[1].eth[0].queue.dataQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 397 DemoNetworkEth.cli[1].eth[0].queue.dataQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 398 DemoNetworkEth.cli[1].eth[0].queue.dataQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 399 DemoNetworkEth.cli[1].eth[0].queue.dataQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 400 DemoNetworkEth.cli[1].eth[0].queue.scheduler packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "packet lengths"
+attr unit b
+vector 401 DemoNetworkEth.cli[1].eth[0].queue.scheduler dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "data rate"
+attr unit bps
+vector 402 DemoNetworkEth.cli[1].eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + count(localSignal(packetPushStarted)) - count(localSignal(packetPulled)) - count(localSignal(packetRemoved)) - count(localSignal(packetDropped))))"
+attr title "queue length"
+attr unit pk
+vector 403 DemoNetworkEth.cli[1].eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + sum(packetLength(localSignal(packetPushStarted))) - sum(packetLength(localSignal(packetPulled))) - sum(packetLength(localSignal(packetRemoved))) - sum(packetLength(localSignal(packetDropped)))))"
+attr title "queue bit length"
+attr unit b
+vector 404 DemoNetworkEth.cli[1].eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(localSignal(packetPulled))
+attr title "queueing times"
+attr unit s
+vector 405 DemoNetworkEth.cli[1].eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPushStarted))
+attr title "incoming packet lengths"
+attr unit b
+vector 406 DemoNetworkEth.cli[1].eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPushStarted))
+attr title "incoming datarate"
+attr unit bps
+vector 407 DemoNetworkEth.cli[1].eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPulled))
+attr title "outgoing packet lengths"
+attr unit b
+vector 408 DemoNetworkEth.cli[1].eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPulled))
+attr title "outgoing datarate"
+attr unit bps
+vector 409 DemoNetworkEth.cli[1].eth[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(localSignal(packetDropped)))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 410 DemoNetworkEth.cli[1].eth[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(localSignal(packetPulled)))
+attr title "flow queueing times"
+attr unit s
+vector 411 DemoNetworkEth.cli[1].eth[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPushStarted))))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 412 DemoNetworkEth.cli[1].eth[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPulled))))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 413 DemoNetworkEth.cli[1].eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 414 DemoNetworkEth.cli[1].eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 415 DemoNetworkEth.cli[1].eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 416 DemoNetworkEth.cli[1].eth[0].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 417 DemoNetworkEth.cli[1].eth[0].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 418 DemoNetworkEth.cli[1].eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 419 DemoNetworkEth.cli[1].eth[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 420 DemoNetworkEth.cli[1].eth[0].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 421 DemoNetworkEth.cli[1].eth[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 422 DemoNetworkEth.cli[1].eth[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 423 DemoNetworkEth.cli[1].eth[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 424 DemoNetworkEth.cli[1].ipv6.neighbourDiscovery startDad:vector ETV
+attr recordingmode vector
+attr title "DAD started"
+vector 425 DemoNetworkEth.cli[1].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 426 DemoNetworkEth.cli[1].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 427 DemoNetworkEth.cli[1].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 428 DemoNetworkEth.cli[1].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 429 DemoNetworkEth.cli[1].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 430 DemoNetworkEth.cli[1].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 431 DemoNetworkEth.cli[1].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 432 DemoNetworkEth.cli[1].app[0] endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 433 DemoNetworkEth.cli[1].app[0] numActiveSessions:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(sum(connect))
+attr title "number of active sessions"
+vector 434 DemoNetworkEth.srv[0].ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 435 DemoNetworkEth.srv[0].ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 436 DemoNetworkEth.srv[0].ethernet pauseSent:vector ETV
+attr recordingmode vector
+attr title "pause sent"
+vector 437 DemoNetworkEth.srv[0].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 438 DemoNetworkEth.srv[0].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 439 DemoNetworkEth.srv[0].lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 440 DemoNetworkEth.srv[0].lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 441 DemoNetworkEth.srv[0].eth[0].queue.classifier packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushed)
+attr title "packet lengths"
+attr unit b
+vector 442 DemoNetworkEth.srv[0].eth[0].queue.classifier dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushed)
+attr title "data rate"
+attr unit bps
+vector 443 DemoNetworkEth.srv[0].eth[0].queue.pauseQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 444 DemoNetworkEth.srv[0].eth[0].queue.pauseQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 445 DemoNetworkEth.srv[0].eth[0].queue.pauseQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 446 DemoNetworkEth.srv[0].eth[0].queue.pauseQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 447 DemoNetworkEth.srv[0].eth[0].queue.pauseQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 448 DemoNetworkEth.srv[0].eth[0].queue.pauseQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 449 DemoNetworkEth.srv[0].eth[0].queue.pauseQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 450 DemoNetworkEth.srv[0].eth[0].queue.pauseQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 451 DemoNetworkEth.srv[0].eth[0].queue.pauseQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 452 DemoNetworkEth.srv[0].eth[0].queue.pauseQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 453 DemoNetworkEth.srv[0].eth[0].queue.pauseQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 454 DemoNetworkEth.srv[0].eth[0].queue.dataQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 455 DemoNetworkEth.srv[0].eth[0].queue.dataQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 456 DemoNetworkEth.srv[0].eth[0].queue.dataQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 457 DemoNetworkEth.srv[0].eth[0].queue.dataQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 458 DemoNetworkEth.srv[0].eth[0].queue.dataQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 459 DemoNetworkEth.srv[0].eth[0].queue.dataQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 460 DemoNetworkEth.srv[0].eth[0].queue.dataQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 461 DemoNetworkEth.srv[0].eth[0].queue.dataQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 462 DemoNetworkEth.srv[0].eth[0].queue.dataQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 463 DemoNetworkEth.srv[0].eth[0].queue.dataQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 464 DemoNetworkEth.srv[0].eth[0].queue.dataQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 465 DemoNetworkEth.srv[0].eth[0].queue.scheduler packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "packet lengths"
+attr unit b
+vector 466 DemoNetworkEth.srv[0].eth[0].queue.scheduler dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "data rate"
+attr unit bps
+vector 467 DemoNetworkEth.srv[0].eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + count(localSignal(packetPushStarted)) - count(localSignal(packetPulled)) - count(localSignal(packetRemoved)) - count(localSignal(packetDropped))))"
+attr title "queue length"
+attr unit pk
+vector 468 DemoNetworkEth.srv[0].eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + sum(packetLength(localSignal(packetPushStarted))) - sum(packetLength(localSignal(packetPulled))) - sum(packetLength(localSignal(packetRemoved))) - sum(packetLength(localSignal(packetDropped)))))"
+attr title "queue bit length"
+attr unit b
+vector 469 DemoNetworkEth.srv[0].eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(localSignal(packetPulled))
+attr title "queueing times"
+attr unit s
+vector 470 DemoNetworkEth.srv[0].eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPushStarted))
+attr title "incoming packet lengths"
+attr unit b
+vector 471 DemoNetworkEth.srv[0].eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPushStarted))
+attr title "incoming datarate"
+attr unit bps
+vector 472 DemoNetworkEth.srv[0].eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPulled))
+attr title "outgoing packet lengths"
+attr unit b
+vector 473 DemoNetworkEth.srv[0].eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPulled))
+attr title "outgoing datarate"
+attr unit bps
+vector 474 DemoNetworkEth.srv[0].eth[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(localSignal(packetDropped)))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 475 DemoNetworkEth.srv[0].eth[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(localSignal(packetPulled)))
+attr title "flow queueing times"
+attr unit s
+vector 476 DemoNetworkEth.srv[0].eth[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPushStarted))))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 477 DemoNetworkEth.srv[0].eth[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPulled))))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 478 DemoNetworkEth.srv[0].eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 479 DemoNetworkEth.srv[0].eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 480 DemoNetworkEth.srv[0].eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 481 DemoNetworkEth.srv[0].eth[0].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 482 DemoNetworkEth.srv[0].eth[0].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 483 DemoNetworkEth.srv[0].eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 484 DemoNetworkEth.srv[0].eth[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 485 DemoNetworkEth.srv[0].eth[0].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 486 DemoNetworkEth.srv[0].eth[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 487 DemoNetworkEth.srv[0].eth[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 488 DemoNetworkEth.srv[0].eth[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 489 DemoNetworkEth.srv[0].ipv6.neighbourDiscovery startDad:vector ETV
+attr recordingmode vector
+attr title "DAD started"
+vector 490 DemoNetworkEth.srv[0].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 491 DemoNetworkEth.srv[0].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 492 DemoNetworkEth.srv[0].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 493 DemoNetworkEth.srv[0].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 494 DemoNetworkEth.srv[0].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 495 DemoNetworkEth.srv[0].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 496 DemoNetworkEth.srv[0].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 497 DemoNetworkEth.srv[0].app[0] endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 498 DemoNetworkEth.srv[1].ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 499 DemoNetworkEth.srv[1].ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 500 DemoNetworkEth.srv[1].ethernet pauseSent:vector ETV
+attr recordingmode vector
+attr title "pause sent"
+vector 501 DemoNetworkEth.srv[1].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 502 DemoNetworkEth.srv[1].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 503 DemoNetworkEth.srv[1].lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 504 DemoNetworkEth.srv[1].lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 505 DemoNetworkEth.srv[1].eth[0].queue.classifier packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushed)
+attr title "packet lengths"
+attr unit b
+vector 506 DemoNetworkEth.srv[1].eth[0].queue.classifier dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushed)
+attr title "data rate"
+attr unit bps
+vector 507 DemoNetworkEth.srv[1].eth[0].queue.pauseQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 508 DemoNetworkEth.srv[1].eth[0].queue.pauseQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 509 DemoNetworkEth.srv[1].eth[0].queue.pauseQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 510 DemoNetworkEth.srv[1].eth[0].queue.pauseQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 511 DemoNetworkEth.srv[1].eth[0].queue.pauseQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 512 DemoNetworkEth.srv[1].eth[0].queue.pauseQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 513 DemoNetworkEth.srv[1].eth[0].queue.pauseQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 514 DemoNetworkEth.srv[1].eth[0].queue.pauseQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 515 DemoNetworkEth.srv[1].eth[0].queue.pauseQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 516 DemoNetworkEth.srv[1].eth[0].queue.pauseQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 517 DemoNetworkEth.srv[1].eth[0].queue.pauseQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 518 DemoNetworkEth.srv[1].eth[0].queue.dataQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 519 DemoNetworkEth.srv[1].eth[0].queue.dataQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 520 DemoNetworkEth.srv[1].eth[0].queue.dataQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 521 DemoNetworkEth.srv[1].eth[0].queue.dataQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 522 DemoNetworkEth.srv[1].eth[0].queue.dataQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 523 DemoNetworkEth.srv[1].eth[0].queue.dataQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 524 DemoNetworkEth.srv[1].eth[0].queue.dataQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 525 DemoNetworkEth.srv[1].eth[0].queue.dataQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 526 DemoNetworkEth.srv[1].eth[0].queue.dataQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 527 DemoNetworkEth.srv[1].eth[0].queue.dataQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 528 DemoNetworkEth.srv[1].eth[0].queue.dataQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 529 DemoNetworkEth.srv[1].eth[0].queue.scheduler packetLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "packet lengths"
+attr unit b
+vector 530 DemoNetworkEth.srv[1].eth[0].queue.scheduler dataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "data rate"
+attr unit bps
+vector 531 DemoNetworkEth.srv[1].eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + count(localSignal(packetPushStarted)) - count(localSignal(packetPulled)) - count(localSignal(packetRemoved)) - count(localSignal(packetDropped))))"
+attr title "queue length"
+attr unit pk
+vector 532 DemoNetworkEth.srv[1].eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(localSignal(packetPushEnded)) + sum(packetLength(localSignal(packetPushStarted))) - sum(packetLength(localSignal(packetPulled))) - sum(packetLength(localSignal(packetRemoved))) - sum(packetLength(localSignal(packetDropped)))))"
+attr title "queue bit length"
+attr unit b
+vector 533 DemoNetworkEth.srv[1].eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(localSignal(packetPulled))
+attr title "queueing times"
+attr unit s
+vector 534 DemoNetworkEth.srv[1].eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPushStarted))
+attr title "incoming packet lengths"
+attr unit b
+vector 535 DemoNetworkEth.srv[1].eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPushStarted))
+attr title "incoming datarate"
+attr unit bps
+vector 536 DemoNetworkEth.srv[1].eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(localSignal(packetPulled))
+attr title "outgoing packet lengths"
+attr unit b
+vector 537 DemoNetworkEth.srv[1].eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(localSignal(packetPulled))
+attr title "outgoing datarate"
+attr unit bps
+vector 538 DemoNetworkEth.srv[1].eth[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(localSignal(packetDropped)))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 539 DemoNetworkEth.srv[1].eth[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(localSignal(packetPulled)))
+attr title "flow queueing times"
+attr unit s
+vector 540 DemoNetworkEth.srv[1].eth[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPushStarted))))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 541 DemoNetworkEth.srv[1].eth[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(localSignal(packetPulled))))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 542 DemoNetworkEth.srv[1].eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 543 DemoNetworkEth.srv[1].eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 544 DemoNetworkEth.srv[1].eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 545 DemoNetworkEth.srv[1].eth[0].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 546 DemoNetworkEth.srv[1].eth[0].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 547 DemoNetworkEth.srv[1].eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 548 DemoNetworkEth.srv[1].eth[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 549 DemoNetworkEth.srv[1].eth[0].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 550 DemoNetworkEth.srv[1].eth[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 551 DemoNetworkEth.srv[1].eth[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 552 DemoNetworkEth.srv[1].eth[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 553 DemoNetworkEth.srv[1].ipv6.neighbourDiscovery startDad:vector ETV
+attr recordingmode vector
+attr title "DAD started"
+vector 554 DemoNetworkEth.srv[1].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 555 DemoNetworkEth.srv[1].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 556 DemoNetworkEth.srv[1].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 557 DemoNetworkEth.srv[1].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 558 DemoNetworkEth.srv[1].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 559 DemoNetworkEth.srv[1].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 560 DemoNetworkEth.srv[1].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 561 DemoNetworkEth.srv[1].app[0] endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 562 DemoNetworkEth.srv[0].tcp.conn-2 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 563 DemoNetworkEth.srv[0].tcp.conn-2 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 564 DemoNetworkEth.srv[0].tcp.conn-2 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 565 DemoNetworkEth.srv[0].tcp.conn-2 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 566 DemoNetworkEth.srv[0].tcp.conn-2 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 567 DemoNetworkEth.srv[0].tcp.conn-2 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 568 DemoNetworkEth.srv[0].tcp.conn-2 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 569 DemoNetworkEth.srv[0].tcp.conn-2 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 570 DemoNetworkEth.srv[0].tcp.conn-2 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 571 DemoNetworkEth.srv[0].tcp.conn-2 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 572 DemoNetworkEth.srv[0].tcp.conn-2 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 573 DemoNetworkEth.srv[0].tcp.conn-2 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 574 DemoNetworkEth.srv[0].tcp.conn-2 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 575 DemoNetworkEth.srv[0].tcp.conn-2 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 576 DemoNetworkEth.srv[0].tcp.conn-2 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 577 DemoNetworkEth.srv[0].tcp.conn-2 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 578 DemoNetworkEth.srv[0].tcp.conn-2 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 579 DemoNetworkEth.srv[0].tcp.conn-2 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 580 DemoNetworkEth.srv[0].tcp.conn-2 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 581 DemoNetworkEth.srv[0].tcp.conn-2 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 582 DemoNetworkEth.srv[0].tcp.conn-2 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 583 DemoNetworkEth.srv[0].tcp.conn-2 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 584 DemoNetworkEth.srv[0].tcp.conn-2 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 585 DemoNetworkEth.srv[0].tcp.conn-2 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 586 DemoNetworkEth.srv[0].tcp.conn-2 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 587 DemoNetworkEth.srv[0].tcp.conn-2 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 588 DemoNetworkEth.srv[0].tcp.conn-2 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 589 DemoNetworkEth.srv[0].tcp.conn-2 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 590 DemoNetworkEth.srv[0].tcp.conn-2 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 591 DemoNetworkEth.srv[1].tcp.conn-3 state:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 592 DemoNetworkEth.srv[1].tcp.conn-3 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 593 DemoNetworkEth.srv[1].tcp.conn-3 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 594 DemoNetworkEth.srv[1].tcp.conn-3 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 595 DemoNetworkEth.srv[1].tcp.conn-3 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 596 DemoNetworkEth.srv[1].tcp.conn-3 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 597 DemoNetworkEth.srv[1].tcp.conn-3 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 598 DemoNetworkEth.srv[1].tcp.conn-3 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 599 DemoNetworkEth.srv[1].tcp.conn-3 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 600 DemoNetworkEth.srv[1].tcp.conn-3 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 601 DemoNetworkEth.srv[1].tcp.conn-3 pipe:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 602 DemoNetworkEth.srv[1].tcp.conn-3 sndSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 603 DemoNetworkEth.srv[1].tcp.conn-3 rcvSacks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 604 DemoNetworkEth.srv[1].tcp.conn-3 rcvOooSeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 605 DemoNetworkEth.srv[1].tcp.conn-3 rcvNASeg:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 606 DemoNetworkEth.srv[1].tcp.conn-3 sackedBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 607 DemoNetworkEth.srv[1].tcp.conn-3 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 608 DemoNetworkEth.srv[1].tcp.conn-3 tcpRcvQueueDrops:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 609 DemoNetworkEth.srv[1].tcp.conn-3 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 610 DemoNetworkEth.srv[1].tcp.conn-3 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 611 DemoNetworkEth.srv[1].tcp.conn-3 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 612 DemoNetworkEth.srv[1].tcp.conn-3 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 613 DemoNetworkEth.srv[1].tcp.conn-3 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 614 DemoNetworkEth.srv[1].tcp.conn-3 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 615 DemoNetworkEth.srv[1].tcp.conn-3 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 616 DemoNetworkEth.srv[1].tcp.conn-3 numRtos:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 617 DemoNetworkEth.srv[1].tcp.conn-3 load:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 618 DemoNetworkEth.srv[1].tcp.conn-3 calcLoad:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 619 DemoNetworkEth.srv[1].tcp.conn-3 markingProb:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+0	32	0.243650617939	64
+0	33	0.243650617939	64
+0	34	0.243650617939	64
+1	21	0.117907537949	64
+7	35	0.243650617939	656
+8	35	0.1	0
+8	35	0.2	0
+9	0	0	0
+9	0	0	0
+9	0	0	0
+9	0	0	0
+9	0	0	0
+10	0	0	0
+10	0	0	0
+10	0	0	0
+10	0	0	0
+10	0	0	0
+20	0	0	0
+20	0	0	0
+20	0	0	0
+20	0	0	0
+20	0	0	0
+20	35	0.243650617939	0
+21	0	0	0
+21	0	0	0
+21	0	0	0
+21	0	0	0
+21	0	0	0
+21	35	0.243650617939	0
+22	35	0.243650617939	0
+23	35	0.243650617939	656
+24	35	0.1	0
+24	35	0.2	0
+25	35	0.243650617939	656
+26	35	0.1	0
+26	35	0.2	0
+31	35	0.243650617939	656
+32	35	0.1	0
+32	35	0.2	0
+33	0	0	0
+33	0	0	0
+33	0	0	0
+33	0	0	0
+33	0	0	0
+33	35	0.243650617939	-1
+34	0	0	0
+34	0	0	0
+34	0	0	0
+34	0	0	0
+34	0	0	0
+34	35	0.243650617939	-656
+35	35	0.243650617939	0
+38	35	0.243650617939	656
+39	35	0.1	0
+39	35	0.2	0
+44	38	0.243722617939	82
+49	35	0.243650617939	82
+55	36	0.243650617939	656
+56	36	0.1	0
+56	36	0.2	0
+57	0	0	0
+57	0	0	0
+57	0	0	0
+57	0	0	0
+57	0	0	0
+58	0	0	0
+58	0	0	0
+58	0	0	0
+58	0	0	0
+58	0	0	0
+68	0	0	0
+68	0	0	0
+68	0	0	0
+68	0	0	0
+68	0	0	0
+68	36	0.243650617939	0
+69	0	0	0
+69	0	0	0
+69	0	0	0
+69	0	0	0
+69	0	0	0
+69	36	0.243650617939	0
+70	36	0.243650617939	0
+71	36	0.243650617939	656
+72	36	0.1	0
+72	36	0.2	0
+73	36	0.243650617939	656
+74	36	0.1	0
+74	36	0.2	0
+79	36	0.243650617939	656
+80	36	0.1	0
+80	36	0.2	0
+81	0	0	0
+81	0	0	0
+81	0	0	0
+81	0	0	0
+81	0	0	0
+81	36	0.243650617939	-1
+82	0	0	0
+82	0	0	0
+82	0	0	0
+82	0	0	0
+82	0	0	0
+82	36	0.243650617939	-656
+83	36	0.243650617939	0
+86	36	0.243650617939	656
+87	36	0.1	0
+87	36	0.2	0
+92	39	0.243722617939	82
+97	36	0.243650617939	82
+103	37	0.243650617939	656
+104	37	0.1	0
+104	37	0.2	0
+105	0	0	0
+105	0	0	0
+105	0	0	0
+105	0	0	0
+105	0	0	0
+106	0	0	0
+106	0	0	0
+106	0	0	0
+106	0	0	0
+106	0	0	0
+116	0	0	0
+116	0	0	0
+116	0	0	0
+116	0	0	0
+116	0	0	0
+116	37	0.243650617939	0
+117	0	0	0
+117	0	0	0
+117	0	0	0
+117	0	0	0
+117	0	0	0
+117	37	0.243650617939	0
+118	37	0.243650617939	0
+119	37	0.243650617939	656
+120	37	0.1	0
+120	37	0.2	0
+121	37	0.243650617939	656
+122	37	0.1	0
+122	37	0.2	0
+127	37	0.243650617939	656
+128	37	0.1	0
+128	37	0.2	0
+129	0	0	0
+129	0	0	0
+129	0	0	0
+129	0	0	0
+129	0	0	0
+129	37	0.243650617939	-1
+130	0	0	0
+130	0	0	0
+130	0	0	0
+130	0	0	0
+130	0	0	0
+130	37	0.243650617939	-656
+131	37	0.243650617939	0
+134	37	0.243650617939	656
+135	37	0.1	0
+135	37	0.2	0
+140	40	0.243722617939	82
+141	18	0.117907537949	82
+142	18	0.117907537949	82
+145	37	0.243650617939	82
+151	28	0.243650617939	1
+151	28	0.243650617939	1
+151	28	0.243650617939	1
+152	7	0.117835437949	64
+152	8	0.117835437949	64
+152	9	0.117835437949	64
+159	10	0.117835437949	656
+160	10	0.1	0
+161	0	0	0
+161	0	0	0
+161	0	0	0
+161	0	0	0
+161	0	0	0
+162	0	0	0
+162	0	0	0
+162	0	0	0
+162	0	0	0
+162	0	0	0
+172	0	0	0
+172	0	0	0
+172	0	0	0
+172	0	0	0
+172	0	0	0
+172	10	0.117835437949	0
+173	0	0	0
+173	0	0	0
+173	0	0	0
+173	0	0	0
+173	0	0	0
+173	10	0.117835437949	0
+174	10	0.117835437949	0
+175	10	0.117835437949	656
+176	10	0.1	0
+177	10	0.117835437949	656
+178	10	0.1	0
+183	10	0.117835437949	656
+184	10	0.1	0
+185	0	0	0
+185	0	0	0
+185	0	0	0
+185	0	0	0
+185	0	0	0
+185	10	0.117835437949	-1
+186	0	0	0
+186	0	0	0
+186	0	0	0
+186	0	0	0
+186	0	0	0
+186	10	0.117835437949	-656
+187	10	0.117835437949	0
+190	10	0.117835437949	656
+191	10	0.1	0
+196	13	0.117907437949	82
+201	10	0.117835437949	82
+207	11	0.117835437949	656
+208	11	0.1	0
+209	0	0	0
+209	0	0	0
+209	0	0	0
+209	0	0	0
+209	0	0	0
+210	0	0	0
+210	0	0	0
+210	0	0	0
+210	0	0	0
+210	0	0	0
+220	0	0	0
+220	0	0	0
+220	0	0	0
+220	0	0	0
+220	0	0	0
+220	11	0.117835437949	0
+221	0	0	0
+221	0	0	0
+221	0	0	0
+221	0	0	0
+221	0	0	0
+221	11	0.117835437949	0
+222	11	0.117835437949	0
+223	11	0.117835437949	656
+224	11	0.1	0
+225	11	0.117835437949	656
+226	11	0.1	0
+231	11	0.117835437949	656
+232	11	0.1	0
+233	0	0	0
+233	0	0	0
+233	0	0	0
+233	0	0	0
+233	0	0	0
+233	11	0.117835437949	-1
+234	0	0	0
+234	0	0	0
+234	0	0	0
+234	0	0	0
+234	0	0	0
+234	11	0.117835437949	-656
+235	11	0.117835437949	0
+238	11	0.117835437949	656
+239	11	0.1	0
+244	14	0.117907437949	82
+249	11	0.117835437949	82
+255	12	0.117835437949	656
+256	12	0.1	0
+257	0	0	0
+257	0	0	0
+257	0	0	0
+257	0	0	0
+257	0	0	0
+258	0	0	0
+258	0	0	0
+258	0	0	0
+258	0	0	0
+258	0	0	0
+268	0	0	0
+268	0	0	0
+268	0	0	0
+268	0	0	0
+268	0	0	0
+268	12	0.117835437949	0
+269	0	0	0
+269	0	0	0
+269	0	0	0
+269	0	0	0
+269	0	0	0
+269	12	0.117835437949	0
+270	12	0.117835437949	0
+271	12	0.117835437949	656
+272	12	0.1	0
+273	12	0.117835437949	656
+274	12	0.1	0
+279	12	0.117835437949	656
+280	12	0.1	0
+281	0	0	0
+281	0	0	0
+281	0	0	0
+281	0	0	0
+281	0	0	0
+281	12	0.117835437949	-1
+282	0	0	0
+282	0	0	0
+282	0	0	0
+282	0	0	0
+282	0	0	0
+282	12	0.117835437949	-656
+283	12	0.117835437949	0
+286	12	0.117835437949	656
+287	12	0.1	0
+292	15	0.117907437949	82
+297	12	0.117835437949	82
+303	3	0.117835437949	1
+303	3	0.117835437949	1
+303	3	0.117835437949	1
+313	0	0	0
+313	0	0	0
+313	0	0	0
+313	0	0	0
+313	0	0	0
+314	0	0	0
+314	0	0	0
+314	0	0	0
+314	0	0	0
+314	0	0	0
+324	0	0	0
+324	0	0	0
+324	0	0	0
+324	0	0	0
+324	0	0	0
+325	0	0	0
+325	0	0	0
+325	0	0	0
+325	0	0	0
+325	0	0	0
+337	0	0	0
+337	0	0	0
+337	0	0	0
+337	0	0	0
+337	0	0	0
+338	0	0	0
+338	0	0	0
+338	0	0	0
+338	0	0	0
+338	0	0	0
+362	0	0	0
+363	0	0	0
+364	0	0	0
+368	0	0	0
+378	0	0	0
+378	0	0	0
+378	0	0	0
+378	0	0	0
+378	0	0	0
+379	0	0	0
+379	0	0	0
+379	0	0	0
+379	0	0	0
+379	0	0	0
+389	0	0	0
+389	0	0	0
+389	0	0	0
+389	0	0	0
+389	0	0	0
+390	0	0	0
+390	0	0	0
+390	0	0	0
+390	0	0	0
+390	0	0	0
+402	0	0	0
+402	0	0	0
+402	0	0	0
+402	0	0	0
+402	0	0	0
+403	0	0	0
+403	0	0	0
+403	0	0	0
+403	0	0	0
+403	0	0	0
+427	0	0	0
+428	0	0	0
+429	0	0	0
+433	0	0	0
+435	19	0.117907537949	64
+443	0	0	0
+443	0	0	0
+443	0	0	0
+443	0	0	0
+443	0	0	0
+444	0	0	0
+444	0	0	0
+444	0	0	0
+444	0	0	0
+444	0	0	0
+454	0	0	0
+454	0	0	0
+454	0	0	0
+454	0	0	0
+454	0	0	0
+455	0	0	0
+455	0	0	0
+455	0	0	0
+455	0	0	0
+455	0	0	0
+467	0	0	0
+467	0	0	0
+467	0	0	0
+467	0	0	0
+467	0	0	0
+468	0	0	0
+468	0	0	0
+468	0	0	0
+468	0	0	0
+468	0	0	0
+479	16	0.117907537949	82
+480	16	0.117907537949	82
+492	0	0	0
+493	0	0	0
+494	0	0	0
+499	20	0.117907537949	64
+507	0	0	0
+507	0	0	0
+507	0	0	0
+507	0	0	0
+507	0	0	0
+508	0	0	0
+508	0	0	0
+508	0	0	0
+508	0	0	0
+508	0	0	0
+518	0	0	0
+518	0	0	0
+518	0	0	0
+518	0	0	0
+518	0	0	0
+519	0	0	0
+519	0	0	0
+519	0	0	0
+519	0	0	0
+519	0	0	0
+531	0	0	0
+531	0	0	0
+531	0	0	0
+531	0	0	0
+531	0	0	0
+532	0	0	0
+532	0	0	0
+532	0	0	0
+532	0	0	0
+532	0	0	0
+543	17	0.117907537949	82
+544	17	0.117907537949	82
+556	0	0	0
+557	0	0	0
+558	0	0	0
+8	40	0.243722639021	15003.668915889
+13	40	0.1	0
+13	40	0.2	0
+13	40	0.243722639021	0
+15	40	0.1	0
+15	40	0.2	0
+15	40	0.243722639021	0
+24	40	0.243722639021	15003.668915889
+26	40	0.243722639021	15003.668915889
+32	40	0.243722639021	15003.668915889
+56	40	0.243722639021	15003.668915889
+61	40	0.1	0
+61	40	0.2	0
+61	40	0.243722639021	0
+63	40	0.1	0
+63	40	0.2	0
+63	40	0.243722639021	0
+72	40	0.243722639021	15003.668915889
+74	40	0.243722639021	15003.668915889
+80	40	0.243722639021	15003.668915889
+104	40	0.243722639021	15003.668915889
+109	40	0.1	0
+109	40	0.2	0
+109	40	0.243722639021	0
+111	40	0.1	0
+111	40	0.2	0
+111	40	0.243722639021	0
+120	40	0.243722639021	15003.668915889
+122	40	0.243722639021	15003.668915889
+128	40	0.243722639021	15003.668915889
+160	40	0.2	6560
+160	40	0.243722639021	0
+165	40	0.1	0
+165	40	0.2	0
+165	40	0.243722639021	0
+167	40	0.1	0
+167	40	0.2	0
+167	40	0.243722639021	0
+176	40	0.2	6560
+176	40	0.243722639021	0
+178	40	0.2	6560
+178	40	0.243722639021	0
+184	40	0.2	6560
+184	40	0.243722639021	0
+208	40	0.2	6560
+208	40	0.243722639021	0
+213	40	0.1	0
+213	40	0.2	0
+213	40	0.243722639021	0
+215	40	0.1	0
+215	40	0.2	0
+215	40	0.243722639021	0
+224	40	0.2	6560
+224	40	0.243722639021	0
+226	40	0.2	6560
+226	40	0.243722639021	0
+232	40	0.2	6560
+232	40	0.243722639021	0
+256	40	0.2	6560
+256	40	0.243722639021	0
+261	40	0.1	0
+261	40	0.2	0
+261	40	0.243722639021	0
+263	40	0.1	0
+263	40	0.2	0
+263	40	0.243722639021	0
+272	40	0.2	6560
+272	40	0.243722639021	0
+274	40	0.2	6560
+274	40	0.243722639021	0
+280	40	0.2	6560
+280	40	0.243722639021	0
+312	40	0.1	0
+312	40	0.2	0
+312	40	0.243722639021	0
+317	40	0.1	0
+317	40	0.2	0
+317	40	0.243722639021	0
+319	40	0.1	0
+319	40	0.2	0
+319	40	0.243722639021	0
+328	40	0.1	0
+328	40	0.2	0
+328	40	0.243722639021	0
+330	40	0.1	0
+330	40	0.2	0
+330	40	0.243722639021	0
+336	40	0.1	0
+336	40	0.2	0
+336	40	0.243722639021	0
+377	40	0.1	0
+377	40	0.2	0
+377	40	0.243722639021	0
+382	40	0.1	0
+382	40	0.2	0
+382	40	0.243722639021	0
+384	40	0.1	0
+384	40	0.2	0
+384	40	0.243722639021	0
+393	40	0.1	0
+393	40	0.2	0
+393	40	0.243722639021	0
+395	40	0.1	0
+395	40	0.2	0
+395	40	0.243722639021	0
+401	40	0.1	0
+401	40	0.2	0
+401	40	0.243722639021	0
+442	40	0.1	0
+442	40	0.2	0
+442	40	0.243722639021	0
+447	40	0.1	0
+447	40	0.2	0
+447	40	0.243722639021	0
+449	40	0.1	0
+449	40	0.2	0
+449	40	0.243722639021	0
+458	40	0.1	0
+458	40	0.2	0
+458	40	0.243722639021	0
+460	40	0.1	0
+460	40	0.2	0
+460	40	0.243722639021	0
+466	40	0.1	0
+466	40	0.2	0
+466	40	0.243722639021	0
+506	40	0.1	0
+506	40	0.2	0
+506	40	0.243722639021	0
+511	40	0.1	0
+511	40	0.2	0
+511	40	0.243722639021	0
+513	40	0.1	0
+513	40	0.2	0
+513	40	0.243722639021	0
+522	40	0.1	0
+522	40	0.2	0
+522	40	0.243722639021	0
+524	40	0.1	0
+524	40	0.2	0
+524	40	0.243722639021	0
+530	40	0.1	0
+530	40	0.2	0
+530	40	0.243722639021	0
+

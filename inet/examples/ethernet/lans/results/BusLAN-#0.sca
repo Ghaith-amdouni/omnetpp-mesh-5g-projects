@@ -1,0 +1,2218 @@
+version 3
+run BusLAN-0-20251121-18:46:00-58922
+attr configname BusLAN
+attr datetime 20251121-18:46:00
+attr datetimef 20251121-184600
+attr experiment BusLAN
+attr inifile bus.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network BusLAN
+attr processid 58922
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../../../images
+config network BusLAN
+config **.hostA.cli.destAddress "\"\""
+config **.cli.destAddress "\"hostA\""
+config **.cli.sendInterval exponential(1s)
+config **.cli.reqLength intuniform(50,1400)*1B
+config **.cli.respLength intWithUnit(truncnormal(3000B,3000B))
+config sim-time-limit 120s
+config **.vector-recording false
+
+par BusLAN.tap1.port$o[0].channel typename "\"inet.node.ethernet.Eth10M\""
+par BusLAN.tap1.port$o[0].channel disabled false
+attr mutable ""
+par BusLAN.tap1.port$o[0].channel delay 5e-08s
+attr mutable ""
+attr unit s
+par BusLAN.tap1.port$o[0].channel datarate 1e+07bps
+attr mutable ""
+attr unit bps
+par BusLAN.tap1.port$o[0].channel ber 0
+attr mutable ""
+par BusLAN.tap1.port$o[0].channel per 0
+attr mutable ""
+par BusLAN.tap1.port$o[0].channel length 10m
+attr unit m
+par BusLAN.tap2.port$o[0].channel typename "\"inet.node.ethernet.Eth10M\""
+par BusLAN.tap2.port$o[0].channel disabled false
+attr mutable ""
+par BusLAN.tap2.port$o[0].channel delay 5e-08s
+attr mutable ""
+attr unit s
+par BusLAN.tap2.port$o[0].channel datarate 1e+07bps
+attr mutable ""
+attr unit bps
+par BusLAN.tap2.port$o[0].channel ber 0
+attr mutable ""
+par BusLAN.tap2.port$o[0].channel per 0
+attr mutable ""
+par BusLAN.tap2.port$o[0].channel length 10m
+attr unit m
+par BusLAN.tap2.port$o[1].channel typename "\"inet.node.ethernet.Eth10M\""
+par BusLAN.tap2.port$o[1].channel disabled false
+attr mutable ""
+par BusLAN.tap2.port$o[1].channel delay 5e-08s
+attr mutable ""
+attr unit s
+par BusLAN.tap2.port$o[1].channel datarate 1e+07bps
+attr mutable ""
+attr unit bps
+par BusLAN.tap2.port$o[1].channel ber 0
+attr mutable ""
+par BusLAN.tap2.port$o[1].channel per 0
+attr mutable ""
+par BusLAN.tap2.port$o[1].channel length 10m
+attr unit m
+par BusLAN.tap3.port$o[0].channel typename "\"inet.node.ethernet.Eth10M\""
+par BusLAN.tap3.port$o[0].channel disabled false
+attr mutable ""
+par BusLAN.tap3.port$o[0].channel delay 5e-08s
+attr mutable ""
+attr unit s
+par BusLAN.tap3.port$o[0].channel datarate 1e+07bps
+attr mutable ""
+attr unit bps
+par BusLAN.tap3.port$o[0].channel ber 0
+attr mutable ""
+par BusLAN.tap3.port$o[0].channel per 0
+attr mutable ""
+par BusLAN.tap3.port$o[0].channel length 10m
+attr unit m
+par BusLAN.tap3.port$o[1].channel typename "\"inet.node.ethernet.Eth10M\""
+par BusLAN.tap3.port$o[1].channel disabled false
+attr mutable ""
+par BusLAN.tap3.port$o[1].channel delay 5e-08s
+attr mutable ""
+attr unit s
+par BusLAN.tap3.port$o[1].channel datarate 1e+07bps
+attr mutable ""
+attr unit bps
+par BusLAN.tap3.port$o[1].channel ber 0
+attr mutable ""
+par BusLAN.tap3.port$o[1].channel per 0
+attr mutable ""
+par BusLAN.tap3.port$o[1].channel length 10m
+attr unit m
+par BusLAN.tap4.port$o[0].channel typename "\"inet.node.ethernet.Eth10M\""
+par BusLAN.tap4.port$o[0].channel disabled false
+attr mutable ""
+par BusLAN.tap4.port$o[0].channel delay 5e-08s
+attr mutable ""
+attr unit s
+par BusLAN.tap4.port$o[0].channel datarate 1e+07bps
+attr mutable ""
+attr unit bps
+par BusLAN.tap4.port$o[0].channel ber 0
+attr mutable ""
+par BusLAN.tap4.port$o[0].channel per 0
+attr mutable ""
+par BusLAN.tap4.port$o[0].channel length 10m
+attr unit m
+par BusLAN.hostA.ethg$o.channel typename "\"inet.examples.ethernet.lans.BusLAN.C\""
+par BusLAN.hostA.ethg$o.channel disabled false
+attr mutable ""
+par BusLAN.hostA.ethg$o.channel delay 5e-11s
+attr mutable ""
+attr unit s
+par BusLAN.hostA.ethg$o.channel datarate 1e+07bps
+attr mutable ""
+attr unit bps
+par BusLAN.hostA.ethg$o.channel ber 0
+attr mutable ""
+par BusLAN.hostA.ethg$o.channel per 0
+attr mutable ""
+par BusLAN.hostA.ethg$o.channel length 0.01m
+attr unit m
+par BusLAN.tap1.port$o[1].channel typename "\"inet.examples.ethernet.lans.BusLAN.C\""
+par BusLAN.tap1.port$o[1].channel disabled false
+attr mutable ""
+par BusLAN.tap1.port$o[1].channel delay 5e-11s
+attr mutable ""
+attr unit s
+par BusLAN.tap1.port$o[1].channel datarate 1e+07bps
+attr mutable ""
+attr unit bps
+par BusLAN.tap1.port$o[1].channel ber 0
+attr mutable ""
+par BusLAN.tap1.port$o[1].channel per 0
+attr mutable ""
+par BusLAN.tap1.port$o[1].channel length 0.01m
+attr unit m
+par BusLAN.hostB.ethg$o.channel typename "\"inet.examples.ethernet.lans.BusLAN.C\""
+par BusLAN.hostB.ethg$o.channel disabled false
+attr mutable ""
+par BusLAN.hostB.ethg$o.channel delay 5e-11s
+attr mutable ""
+attr unit s
+par BusLAN.hostB.ethg$o.channel datarate 1e+07bps
+attr mutable ""
+attr unit bps
+par BusLAN.hostB.ethg$o.channel ber 0
+attr mutable ""
+par BusLAN.hostB.ethg$o.channel per 0
+attr mutable ""
+par BusLAN.hostB.ethg$o.channel length 0.01m
+attr unit m
+par BusLAN.tap2.port$o[2].channel typename "\"inet.examples.ethernet.lans.BusLAN.C\""
+par BusLAN.tap2.port$o[2].channel disabled false
+attr mutable ""
+par BusLAN.tap2.port$o[2].channel delay 5e-11s
+attr mutable ""
+attr unit s
+par BusLAN.tap2.port$o[2].channel datarate 1e+07bps
+attr mutable ""
+attr unit bps
+par BusLAN.tap2.port$o[2].channel ber 0
+attr mutable ""
+par BusLAN.tap2.port$o[2].channel per 0
+attr mutable ""
+par BusLAN.tap2.port$o[2].channel length 0.01m
+attr unit m
+par BusLAN.hostC.ethg$o.channel typename "\"inet.examples.ethernet.lans.BusLAN.C\""
+par BusLAN.hostC.ethg$o.channel disabled false
+attr mutable ""
+par BusLAN.hostC.ethg$o.channel delay 5e-11s
+attr mutable ""
+attr unit s
+par BusLAN.hostC.ethg$o.channel datarate 1e+07bps
+attr mutable ""
+attr unit bps
+par BusLAN.hostC.ethg$o.channel ber 0
+attr mutable ""
+par BusLAN.hostC.ethg$o.channel per 0
+attr mutable ""
+par BusLAN.hostC.ethg$o.channel length 0.01m
+attr unit m
+par BusLAN.tap3.port$o[2].channel typename "\"inet.examples.ethernet.lans.BusLAN.C\""
+par BusLAN.tap3.port$o[2].channel disabled false
+attr mutable ""
+par BusLAN.tap3.port$o[2].channel delay 5e-11s
+attr mutable ""
+attr unit s
+par BusLAN.tap3.port$o[2].channel datarate 1e+07bps
+attr mutable ""
+attr unit bps
+par BusLAN.tap3.port$o[2].channel ber 0
+attr mutable ""
+par BusLAN.tap3.port$o[2].channel per 0
+attr mutable ""
+par BusLAN.tap3.port$o[2].channel length 0.01m
+attr unit m
+par BusLAN.hostD.ethg$o.channel typename "\"inet.examples.ethernet.lans.BusLAN.C\""
+par BusLAN.hostD.ethg$o.channel disabled false
+attr mutable ""
+par BusLAN.hostD.ethg$o.channel delay 5e-11s
+attr mutable ""
+attr unit s
+par BusLAN.hostD.ethg$o.channel datarate 1e+07bps
+attr mutable ""
+attr unit bps
+par BusLAN.hostD.ethg$o.channel ber 0
+attr mutable ""
+par BusLAN.hostD.ethg$o.channel per 0
+attr mutable ""
+par BusLAN.hostD.ethg$o.channel length 0.01m
+attr unit m
+par BusLAN.tap4.port$o[1].channel typename "\"inet.examples.ethernet.lans.BusLAN.C\""
+par BusLAN.tap4.port$o[1].channel disabled false
+attr mutable ""
+par BusLAN.tap4.port$o[1].channel delay 5e-11s
+attr mutable ""
+attr unit s
+par BusLAN.tap4.port$o[1].channel datarate 1e+07bps
+attr mutable ""
+attr unit bps
+par BusLAN.tap4.port$o[1].channel ber 0
+attr mutable ""
+par BusLAN.tap4.port$o[1].channel per 0
+attr mutable ""
+par BusLAN.tap4.port$o[1].channel length 0.01m
+attr unit m
+par BusLAN.hostA.eth.phys$o.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostA.ethg$i.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostA.interfaceTable typename "\"inet.networklayer.common.InterfaceTable\""
+par BusLAN.hostA.interfaceTable displayAddresses false
+par BusLAN.hostA.cli typename "\"inet.applications.ethernet.EtherAppClient\""
+par BusLAN.hostA.cli interfaceTableModule "\"BusLAN.hostA.interfaceTable\""
+par BusLAN.hostA.cli destAddress "\"\""
+par BusLAN.hostA.cli interface "\"eth\""
+par BusLAN.hostA.cli startTime 0.795875s
+attr unit s
+par BusLAN.hostA.cli stopTime -1s
+attr unit s
+par BusLAN.hostA.cli localSAP 240
+par BusLAN.hostA.cli remoteSAP 241
+par BusLAN.hostA.cli sendInterval exponential(1s)
+attr unit s
+par BusLAN.hostA.cli reqLength "intuniform(50, 1400)*1B"
+attr unit B
+par BusLAN.hostA.cli respLength "intWithUnit(truncnormal(3000B, 3000B))"
+attr unit B
+par BusLAN.hostA.cli stopOperationExtraTime -1s
+attr unit s
+par BusLAN.hostA.cli stopOperationTimeout 2s
+attr unit s
+scalar BusLAN.hostA.cli packetReceived:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetReceived
+attr title "packets received, count"
+scalar BusLAN.hostA.cli packetReceived:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetReceived
+attr title "packets received, sum(packetBytes)"
+statistic BusLAN.hostA.cli endToEndDelay:histogram
+field count 0
+field mean -nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar BusLAN.hostA.cli packetSent:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetSent
+attr title "packets sent, count"
+scalar BusLAN.hostA.cli packetSent:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetSent
+attr title "packets sent, sum(packetBytes)"
+par BusLAN.hostA.srv typename "\"inet.applications.ethernet.EtherAppServer\""
+par BusLAN.hostA.srv localSAP 241
+par BusLAN.hostA.srv stopOperationExtraTime -1s
+attr unit s
+par BusLAN.hostA.srv stopOperationTimeout 2s
+attr unit s
+scalar BusLAN.hostA.srv packetReceived:count 1
+attr interpolationmode none
+attr recordingmode count
+attr source packetReceived
+attr title "packets received, count"
+scalar BusLAN.hostA.srv packetReceived:sum(packetBytes) 885
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetReceived
+attr title "packets received, sum(packetBytes)"
+statistic BusLAN.hostA.srv endToEndDelay:histogram
+field count 1
+field mean 0.0007312501
+field stddev nan
+field min 0.0007312501
+field max 0.0007312501
+field sum 0.0007312501
+field sqrsum 5.3472670875001e-07
+attr interpolationmode none
+attr recordingmode histogram
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+bin	-inf	0
+bin	0	1
+bin	0.01	0
+bin	0.02	0
+bin	0.03	0
+bin	0.04	0
+bin	0.05	0
+bin	0.06	0
+bin	0.07	0
+bin	0.08	0
+bin	0.09	0
+bin	0.1	0
+bin	0.11	0
+bin	0.12	0
+bin	0.13	0
+bin	0.14	0
+bin	0.15	0
+bin	0.16	0
+bin	0.17	0
+bin	0.18	0
+bin	0.19	0
+bin	0.2	0
+bin	0.21	0
+bin	0.22	0
+bin	0.23	0
+bin	0.24	0
+bin	0.25	0
+bin	0.26	0
+bin	0.27	0
+bin	0.28	0
+bin	0.29	0
+bin	0.3	0
+bin	0.31	0
+bin	0.32	0
+bin	0.33	0
+bin	0.34	0
+bin	0.35	0
+bin	0.36	0
+bin	0.37	0
+bin	0.38	0
+bin	0.39	0
+bin	0.4	0
+bin	0.41	0
+bin	0.42	0
+bin	0.43	0
+bin	0.44	0
+bin	0.45	0
+bin	0.46	0
+bin	0.47	0
+bin	0.48	0
+bin	0.49	0
+bin	0.5	0
+bin	0.51	0
+scalar BusLAN.hostA.srv packetSent:count 1
+attr interpolationmode none
+attr recordingmode count
+attr source packetSent
+attr title "packets sent, count"
+scalar BusLAN.hostA.srv packetSent:sum(packetBytes) 448
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetSent
+attr title "packets sent, sum(packetBytes)"
+par BusLAN.hostA.dp typename "\"inet.common.MessageDispatcher\""
+par BusLAN.hostA.dp displayStringTextFormat "\"processed %p pk (%l)\""
+par BusLAN.hostA.dp forwardServiceRegistration true
+par BusLAN.hostA.dp forwardProtocolRegistration true
+par BusLAN.hostA.llc typename "\"inet.linklayer.ieee8022.Ieee8022Llc\""
+par BusLAN.hostA.llc registerProtocol true
+par BusLAN.hostA.encap typename "\"inet.linklayer.ethernet.basic.EthernetEncapsulation\""
+par BusLAN.hostA.encap registerProtocol true
+par BusLAN.hostA.encap interfaceTableModule "\"BusLAN.hostA.interfaceTable\""
+par BusLAN.hostA.encap fcsMode "\"declared\""
+attr enum declared,computed
+par BusLAN.hostA.encap stopOperationExtraTime -1s
+attr unit s
+par BusLAN.hostA.encap stopOperationTimeout 2s
+attr unit s
+scalar BusLAN.hostA.encap pauseSent:count 0
+attr recordingmode count
+attr title "pause sent, count"
+scalar BusLAN.hostA.encap pauseSent:sum 0
+attr recordingmode sum
+attr title "pause sent, sum"
+scalar BusLAN.hostA.encap decapPk:count 1
+attr interpolationmode none
+attr recordingmode count
+attr source decapPk
+attr title "packets decapsulated, count"
+scalar BusLAN.hostA.encap decapPk:sum(packetBytes) 888
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, sum(packetBytes)"
+scalar BusLAN.hostA.encap encapPk:count 1
+attr interpolationmode none
+attr recordingmode count
+attr source encapPk
+attr title "packets encapsulated, count"
+scalar BusLAN.hostA.encap encapPk:sum(packetBytes) 451
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, sum(packetBytes)"
+par BusLAN.hostA.li typename "\"inet.common.MessageDispatcher\""
+par BusLAN.hostA.li displayStringTextFormat "\"processed %p pk (%l)\""
+par BusLAN.hostA.li forwardServiceRegistration true
+par BusLAN.hostA.li forwardProtocolRegistration true
+par BusLAN.hostA.eth.mac.phys$o.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostA.eth.phys$i.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostA.eth.upperLayerIn.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostA.eth.mac.upperLayerOut.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostA.eth.queue typename "\"inet.linklayer.ethernet.common.EthernetQueue\""
+par BusLAN.hostA.eth.queue displayStringTextFormat "\"contains %p pk (%l) pushed %u\\npulled %o removed %r dropped %d\""
+par BusLAN.hostA.eth.queue packetCapacity 1000
+par BusLAN.hostA.eth.queue dataCapacity -1b
+attr unit b
+par BusLAN.hostA.eth.queue dropperClass "\"inet::queueing::PacketAtCollectionEndDropper\""
+par BusLAN.hostA.eth.queue comparatorClass "\"inet::EthernetFrameTypeComparator\""
+par BusLAN.hostA.eth.queue bufferModule "\"\""
+scalar BusLAN.hostA.eth.queue queueLength:last 1
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode last
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, last"
+attr unit pk
+scalar BusLAN.hostA.eth.queue queueLength:max 1
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode max
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, max"
+attr unit pk
+scalar BusLAN.hostA.eth.queue queueLength:timeavg 5.5585969085711e-08
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, timeavg"
+attr unit pk
+scalar BusLAN.hostA.eth.queue queueBitLength:last 3752
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode last
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, last"
+attr unit b
+scalar BusLAN.hostA.eth.queue queueBitLength:max 3752
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode max
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, max"
+attr unit b
+scalar BusLAN.hostA.eth.queue queueBitLength:timeavg 0.00020855855600959
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, timeavg"
+attr unit b
+statistic BusLAN.hostA.eth.queue queueingTime:histogram
+field count 0
+field mean -nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar BusLAN.hostA.eth.queue outgoingPackets:count 0
+attr recordingmode count
+attr source packetPulled
+attr title "outgoing packets, count"
+attr unit pk
+scalar BusLAN.hostA.eth.queue outgoingPacketLengths:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths, sum"
+attr unit b
+statistic BusLAN.hostA.eth.queue outgoingPacketLengths:histogram
+field count 0
+field mean -nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+bin	-inf	0
+bin	0	0
+bin	1	0
+statistic BusLAN.hostA.eth.queue flowQueueingTime:histogram
+field count 0
+field mean -nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar BusLAN.hostA.eth.queue incomingPackets:count 1
+attr recordingmode count
+attr source packetPushStarted
+attr title "incoming packets, count"
+attr unit pk
+scalar BusLAN.hostA.eth.queue incomingPacketLengths:sum 3752
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths, sum"
+attr unit b
+statistic BusLAN.hostA.eth.queue incomingPacketLengths:histogram
+field count 1
+field mean 3752
+field stddev nan
+field min 3752
+field max 3752
+field sum 3752
+field sqrsum 14077504
+attr interpolationmode none
+attr recordingmode histogram
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+bin	-inf	0
+bin	3751	0
+bin	3752	1
+bin	3753	0
+scalar BusLAN.hostA.eth.queue droppedPacketsQueueOverflow:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "dropped packets: queue overflow, count"
+attr unit pk
+scalar BusLAN.hostA.eth.queue droppedPacketLengthsQueueOverflow:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow, sum"
+attr unit b
+par BusLAN.hostA.eth.mac typename "\"inet.linklayer.ethernet.basic.EthernetCsmaMac\""
+par BusLAN.hostA.eth.mac interfaceTableModule "\"BusLAN.hostA.interfaceTable\""
+par BusLAN.hostA.eth.mac displayStringTextFormat "\"rate: %b\\nsent: %s, rcvd: %r\\nqueue: %q, drop: %d\""
+par BusLAN.hostA.eth.mac sendRawBytes false
+par BusLAN.hostA.eth.mac promiscuous false
+par BusLAN.hostA.eth.mac duplexMode false
+par BusLAN.hostA.eth.mac frameBursting true
+par BusLAN.hostA.eth.mac mtu 1500B
+attr unit B
+par BusLAN.hostA.eth.mac fcsMode "\"declared\""
+attr enum declared,computed
+par BusLAN.hostA.eth.mac stopOperationExtraTime -1s
+attr unit s
+par BusLAN.hostA.eth.mac stopOperationTimeout 2s
+attr unit s
+scalar BusLAN.hostA.eth.mac "simulated time" 0.899291688572
+scalar BusLAN.hostA.eth.mac full-duplex 0
+scalar BusLAN.hostA.eth.mac "frames/sec sent" 0
+scalar BusLAN.hostA.eth.mac "frames/sec rcvd" 1.1119862584162
+scalar BusLAN.hostA.eth.mac "bits/sec sent" 0
+scalar BusLAN.hostA.eth.mac "bits/sec rcvd" 8059.6764010009
+scalar BusLAN.hostA.eth.mac "rx channel idle (%)" 99.918691564785
+scalar BusLAN.hostA.eth.mac "rx channel utilization (%)" 0.081308435215395
+scalar BusLAN.hostA.eth.mac "rx channel collision (%)" 0
+scalar BusLAN.hostA.eth.mac collisions 0
+scalar BusLAN.hostA.eth.mac backoffs 0
+scalar BusLAN.hostA.eth.mac backoffSlotsGenerated:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "backoff, count"
+scalar BusLAN.hostA.eth.mac collision:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "collision, count"
+scalar BusLAN.hostA.eth.mac rxPausePkUnits:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "pause units received, count"
+scalar BusLAN.hostA.eth.mac rxPausePkUnits:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr title "pause units received, sum"
+scalar BusLAN.hostA.eth.mac txPausePkUnits:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "pause units sent, count"
+scalar BusLAN.hostA.eth.mac txPausePkUnits:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr title "pause units sent, sum"
+scalar BusLAN.hostA.eth.mac rxPkOk:count 1
+attr interpolationmode none
+attr recordingmode count
+attr source rxPkOk
+attr title "packets received OK, count"
+scalar BusLAN.hostA.eth.mac rxPkOk:sum(packetBytes) 906
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, sum(packetBytes)"
+scalar BusLAN.hostA.eth.mac txPk:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetSentToLower
+attr title "packets transmitted, count"
+scalar BusLAN.hostA.eth.mac txPk:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, sum(packetBytes)"
+scalar BusLAN.hostA.eth.mac packetReceivedFromUpper:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, count"
+scalar BusLAN.hostA.eth.mac packetReceivedFromUpper:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, sum(packetBytes)"
+scalar BusLAN.hostA.eth.mac passedUpPk:count 1
+attr interpolationmode none
+attr recordingmode count
+attr source packetSentToUpper
+attr title "packets passed to higher layer, count"
+scalar BusLAN.hostA.eth.mac passedUpPk:sum(packetBytes) 906
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, sum(packetBytes)"
+scalar BusLAN.hostA.eth.mac packetDropIncorrectlyReceived:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, count"
+scalar BusLAN.hostA.eth.mac packetDropIncorrectlyReceived:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, sum(packetBytes)"
+scalar BusLAN.hostA.eth.mac packetDropInterfaceDown:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, count"
+scalar BusLAN.hostA.eth.mac packetDropInterfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, sum(packetBytes)"
+scalar BusLAN.hostA.eth.mac packetDropNotAddressedToUs:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, count"
+scalar BusLAN.hostA.eth.mac packetDropNotAddressedToUs:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, sum(packetBytes)"
+par BusLAN.hostA.eth typename "\"inet.linklayer.ethernet.EthernetInterface\""
+par BusLAN.hostA.eth displayStringTextFormat "\"%a (%i)\\n%m\""
+par BusLAN.hostA.eth recordPcap false
+par BusLAN.hostA.eth numPcapRecorders 0
+par BusLAN.hostA.eth interfaceTableModule "\"BusLAN.hostA.interfaceTable\""
+par BusLAN.hostA.eth protocol "\"ethernetmac\""
+par BusLAN.hostA.eth address "\"0A-AA-00-00-00-01\""
+attr mutable ""
+par BusLAN.hostA.eth duplexMode false
+par BusLAN.hostA.eth csmacdSupport true
+par BusLAN.hostA.eth bitrate 0bps
+attr unit bps
+par BusLAN.hostA.eth fcsMode "\"declared\""
+attr enum declared,computed
+scalar BusLAN.hostA.eth packetDropInterfaceDown:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, count"
+scalar BusLAN.hostA.eth packetDropInterfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, sum(packetBytes)"
+scalar BusLAN.hostA.eth packetDropNoCarrier:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, count"
+scalar BusLAN.hostA.eth packetDropNoCarrier:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, sum(packetBytes)"
+par BusLAN.hostA typename "\"inet.node.ethernet.EthernetHost\""
+par BusLAN.hostA hasStatus false
+par BusLAN.hostA csmacdSupport true
+par BusLAN.hostA fcsMode "\"declared\""
+attr enum declared,computed
+par BusLAN.hostB.eth.phys$o.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostB.ethg$i.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostB.interfaceTable typename "\"inet.networklayer.common.InterfaceTable\""
+par BusLAN.hostB.interfaceTable displayAddresses false
+par BusLAN.hostB.cli typename "\"inet.applications.ethernet.EtherAppClient\""
+par BusLAN.hostB.cli interfaceTableModule "\"BusLAN.hostB.interfaceTable\""
+par BusLAN.hostB.cli destAddress "\"hostA\""
+par BusLAN.hostB.cli interface "\"eth\""
+par BusLAN.hostB.cli startTime 0.89856s
+attr unit s
+par BusLAN.hostB.cli stopTime -1s
+attr unit s
+par BusLAN.hostB.cli localSAP 240
+par BusLAN.hostB.cli remoteSAP 241
+par BusLAN.hostB.cli sendInterval exponential(1s)
+attr unit s
+par BusLAN.hostB.cli reqLength "intuniform(50, 1400)*1B"
+attr unit B
+par BusLAN.hostB.cli respLength "intWithUnit(truncnormal(3000B, 3000B))"
+attr unit B
+par BusLAN.hostB.cli stopOperationExtraTime -1s
+attr unit s
+par BusLAN.hostB.cli stopOperationTimeout 2s
+attr unit s
+scalar BusLAN.hostB.cli packetReceived:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetReceived
+attr title "packets received, count"
+scalar BusLAN.hostB.cli packetReceived:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetReceived
+attr title "packets received, sum(packetBytes)"
+statistic BusLAN.hostB.cli endToEndDelay:histogram
+field count 0
+field mean -nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar BusLAN.hostB.cli packetSent:count 1
+attr interpolationmode none
+attr recordingmode count
+attr source packetSent
+attr title "packets sent, count"
+scalar BusLAN.hostB.cli packetSent:sum(packetBytes) 885
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetSent
+attr title "packets sent, sum(packetBytes)"
+par BusLAN.hostB.srv typename "\"inet.applications.ethernet.EtherAppServer\""
+par BusLAN.hostB.srv localSAP 241
+par BusLAN.hostB.srv stopOperationExtraTime -1s
+attr unit s
+par BusLAN.hostB.srv stopOperationTimeout 2s
+attr unit s
+scalar BusLAN.hostB.srv packetReceived:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetReceived
+attr title "packets received, count"
+scalar BusLAN.hostB.srv packetReceived:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetReceived
+attr title "packets received, sum(packetBytes)"
+statistic BusLAN.hostB.srv endToEndDelay:histogram
+field count 0
+field mean -nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar BusLAN.hostB.srv packetSent:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetSent
+attr title "packets sent, count"
+scalar BusLAN.hostB.srv packetSent:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetSent
+attr title "packets sent, sum(packetBytes)"
+par BusLAN.hostB.dp typename "\"inet.common.MessageDispatcher\""
+par BusLAN.hostB.dp displayStringTextFormat "\"processed %p pk (%l)\""
+par BusLAN.hostB.dp forwardServiceRegistration true
+par BusLAN.hostB.dp forwardProtocolRegistration true
+par BusLAN.hostB.llc typename "\"inet.linklayer.ieee8022.Ieee8022Llc\""
+par BusLAN.hostB.llc registerProtocol true
+par BusLAN.hostB.encap typename "\"inet.linklayer.ethernet.basic.EthernetEncapsulation\""
+par BusLAN.hostB.encap registerProtocol true
+par BusLAN.hostB.encap interfaceTableModule "\"BusLAN.hostB.interfaceTable\""
+par BusLAN.hostB.encap fcsMode "\"declared\""
+attr enum declared,computed
+par BusLAN.hostB.encap stopOperationExtraTime -1s
+attr unit s
+par BusLAN.hostB.encap stopOperationTimeout 2s
+attr unit s
+scalar BusLAN.hostB.encap pauseSent:count 0
+attr recordingmode count
+attr title "pause sent, count"
+scalar BusLAN.hostB.encap pauseSent:sum 0
+attr recordingmode sum
+attr title "pause sent, sum"
+scalar BusLAN.hostB.encap decapPk:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source decapPk
+attr title "packets decapsulated, count"
+scalar BusLAN.hostB.encap decapPk:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, sum(packetBytes)"
+scalar BusLAN.hostB.encap encapPk:count 1
+attr interpolationmode none
+attr recordingmode count
+attr source encapPk
+attr title "packets encapsulated, count"
+scalar BusLAN.hostB.encap encapPk:sum(packetBytes) 888
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, sum(packetBytes)"
+par BusLAN.hostB.li typename "\"inet.common.MessageDispatcher\""
+par BusLAN.hostB.li displayStringTextFormat "\"processed %p pk (%l)\""
+par BusLAN.hostB.li forwardServiceRegistration true
+par BusLAN.hostB.li forwardProtocolRegistration true
+par BusLAN.hostB.eth.mac.phys$o.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostB.eth.phys$i.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostB.eth.upperLayerIn.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostB.eth.mac.upperLayerOut.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostB.eth.queue typename "\"inet.linklayer.ethernet.common.EthernetQueue\""
+par BusLAN.hostB.eth.queue displayStringTextFormat "\"contains %p pk (%l) pushed %u\\npulled %o removed %r dropped %d\""
+par BusLAN.hostB.eth.queue packetCapacity 1000
+par BusLAN.hostB.eth.queue dataCapacity -1b
+attr unit b
+par BusLAN.hostB.eth.queue dropperClass "\"inet::queueing::PacketAtCollectionEndDropper\""
+par BusLAN.hostB.eth.queue comparatorClass "\"inet::EthernetFrameTypeComparator\""
+par BusLAN.hostB.eth.queue bufferModule "\"\""
+scalar BusLAN.hostB.eth.queue queueLength:last 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode last
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, last"
+attr unit pk
+scalar BusLAN.hostB.eth.queue queueLength:max 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode max
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, max"
+attr unit pk
+scalar BusLAN.hostB.eth.queue queueLength:timeavg 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, timeavg"
+attr unit pk
+scalar BusLAN.hostB.eth.queue queueBitLength:last 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode last
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, last"
+attr unit b
+scalar BusLAN.hostB.eth.queue queueBitLength:max 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode max
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, max"
+attr unit b
+scalar BusLAN.hostB.eth.queue queueBitLength:timeavg 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, timeavg"
+attr unit b
+statistic BusLAN.hostB.eth.queue queueingTime:histogram
+field count 1
+field mean 0
+field stddev nan
+field min 0
+field max 0
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+bin	-inf	0
+bin	-0.5	0
+bin	-0.48	0
+bin	-0.46	0
+bin	-0.44	0
+bin	-0.42	0
+bin	-0.4	0
+bin	-0.38	0
+bin	-0.36	0
+bin	-0.34	0
+bin	-0.32	0
+bin	-0.3	0
+bin	-0.28	0
+bin	-0.26	0
+bin	-0.24	0
+bin	-0.22	0
+bin	-0.2	0
+bin	-0.18	0
+bin	-0.16	0
+bin	-0.14	0
+bin	-0.12	0
+bin	-0.1	0
+bin	-0.08	0
+bin	-0.06	0
+bin	-0.04	0
+bin	-0.02	0
+bin	0	1
+bin	0.02	0
+bin	0.04	0
+bin	0.06	0
+bin	0.08	0
+bin	0.1	0
+bin	0.12	0
+bin	0.14	0
+bin	0.16	0
+bin	0.18	0
+bin	0.2	0
+bin	0.22	0
+bin	0.24	0
+bin	0.26	0
+bin	0.28	0
+bin	0.3	0
+bin	0.32	0
+bin	0.34	0
+bin	0.36	0
+bin	0.38	0
+bin	0.4	0
+bin	0.42	0
+bin	0.44	0
+bin	0.46	0
+bin	0.48	0
+bin	0.5	0
+scalar BusLAN.hostB.eth.queue outgoingPackets:count 1
+attr recordingmode count
+attr source packetPulled
+attr title "outgoing packets, count"
+attr unit pk
+scalar BusLAN.hostB.eth.queue outgoingPacketLengths:sum 7248
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths, sum"
+attr unit b
+statistic BusLAN.hostB.eth.queue outgoingPacketLengths:histogram
+field count 1
+field mean 7248
+field stddev nan
+field min 7248
+field max 7248
+field sum 7248
+field sqrsum 52533504
+attr interpolationmode none
+attr recordingmode histogram
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+bin	-inf	0
+bin	7247	0
+bin	7248	1
+bin	7249	0
+statistic BusLAN.hostB.eth.queue flowQueueingTime:histogram
+field count 0
+field mean -nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar BusLAN.hostB.eth.queue incomingPackets:count 1
+attr recordingmode count
+attr source packetPushStarted
+attr title "incoming packets, count"
+attr unit pk
+scalar BusLAN.hostB.eth.queue incomingPacketLengths:sum 7248
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths, sum"
+attr unit b
+statistic BusLAN.hostB.eth.queue incomingPacketLengths:histogram
+field count 1
+field mean 7248
+field stddev nan
+field min 7248
+field max 7248
+field sum 7248
+field sqrsum 52533504
+attr interpolationmode none
+attr recordingmode histogram
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+bin	-inf	0
+bin	7247	0
+bin	7248	1
+bin	7249	0
+scalar BusLAN.hostB.eth.queue droppedPacketsQueueOverflow:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "dropped packets: queue overflow, count"
+attr unit pk
+scalar BusLAN.hostB.eth.queue droppedPacketLengthsQueueOverflow:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow, sum"
+attr unit b
+par BusLAN.hostB.eth.mac typename "\"inet.linklayer.ethernet.basic.EthernetCsmaMac\""
+par BusLAN.hostB.eth.mac interfaceTableModule "\"BusLAN.hostB.interfaceTable\""
+par BusLAN.hostB.eth.mac displayStringTextFormat "\"rate: %b\\nsent: %s, rcvd: %r\\nqueue: %q, drop: %d\""
+par BusLAN.hostB.eth.mac sendRawBytes false
+par BusLAN.hostB.eth.mac promiscuous false
+par BusLAN.hostB.eth.mac duplexMode false
+par BusLAN.hostB.eth.mac frameBursting true
+par BusLAN.hostB.eth.mac mtu 1500B
+attr unit B
+par BusLAN.hostB.eth.mac fcsMode "\"declared\""
+attr enum declared,computed
+par BusLAN.hostB.eth.mac stopOperationExtraTime -1s
+attr unit s
+par BusLAN.hostB.eth.mac stopOperationTimeout 2s
+attr unit s
+scalar BusLAN.hostB.eth.mac "simulated time" 0.899291688572
+scalar BusLAN.hostB.eth.mac full-duplex 0
+scalar BusLAN.hostB.eth.mac "frames/sec sent" 1.1119862584162
+scalar BusLAN.hostB.eth.mac "frames/sec rcvd" 0
+scalar BusLAN.hostB.eth.mac "bits/sec sent" 8059.6764010009
+scalar BusLAN.hostB.eth.mac "bits/sec rcvd" 0
+scalar BusLAN.hostB.eth.mac "rx channel idle (%)" 99.918691564785
+scalar BusLAN.hostB.eth.mac "rx channel utilization (%)" 0.081308435215395
+scalar BusLAN.hostB.eth.mac "rx channel collision (%)" 0
+scalar BusLAN.hostB.eth.mac collisions 0
+scalar BusLAN.hostB.eth.mac backoffs 0
+scalar BusLAN.hostB.eth.mac backoffSlotsGenerated:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "backoff, count"
+scalar BusLAN.hostB.eth.mac collision:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "collision, count"
+scalar BusLAN.hostB.eth.mac rxPausePkUnits:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "pause units received, count"
+scalar BusLAN.hostB.eth.mac rxPausePkUnits:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr title "pause units received, sum"
+scalar BusLAN.hostB.eth.mac txPausePkUnits:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "pause units sent, count"
+scalar BusLAN.hostB.eth.mac txPausePkUnits:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr title "pause units sent, sum"
+scalar BusLAN.hostB.eth.mac rxPkOk:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source rxPkOk
+attr title "packets received OK, count"
+scalar BusLAN.hostB.eth.mac rxPkOk:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, sum(packetBytes)"
+scalar BusLAN.hostB.eth.mac txPk:count 1
+attr interpolationmode none
+attr recordingmode count
+attr source packetSentToLower
+attr title "packets transmitted, count"
+scalar BusLAN.hostB.eth.mac txPk:sum(packetBytes) 906
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, sum(packetBytes)"
+scalar BusLAN.hostB.eth.mac packetReceivedFromUpper:count 1
+attr interpolationmode none
+attr recordingmode count
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, count"
+scalar BusLAN.hostB.eth.mac packetReceivedFromUpper:sum(packetBytes) 906
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, sum(packetBytes)"
+scalar BusLAN.hostB.eth.mac passedUpPk:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetSentToUpper
+attr title "packets passed to higher layer, count"
+scalar BusLAN.hostB.eth.mac passedUpPk:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, sum(packetBytes)"
+scalar BusLAN.hostB.eth.mac packetDropIncorrectlyReceived:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, count"
+scalar BusLAN.hostB.eth.mac packetDropIncorrectlyReceived:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, sum(packetBytes)"
+scalar BusLAN.hostB.eth.mac packetDropInterfaceDown:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, count"
+scalar BusLAN.hostB.eth.mac packetDropInterfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, sum(packetBytes)"
+scalar BusLAN.hostB.eth.mac packetDropNotAddressedToUs:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, count"
+scalar BusLAN.hostB.eth.mac packetDropNotAddressedToUs:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, sum(packetBytes)"
+par BusLAN.hostB.eth typename "\"inet.linklayer.ethernet.EthernetInterface\""
+par BusLAN.hostB.eth displayStringTextFormat "\"%a (%i)\\n%m\""
+par BusLAN.hostB.eth recordPcap false
+par BusLAN.hostB.eth numPcapRecorders 0
+par BusLAN.hostB.eth interfaceTableModule "\"BusLAN.hostB.interfaceTable\""
+par BusLAN.hostB.eth protocol "\"ethernetmac\""
+par BusLAN.hostB.eth address "\"0A-AA-00-00-00-02\""
+attr mutable ""
+par BusLAN.hostB.eth duplexMode false
+par BusLAN.hostB.eth csmacdSupport true
+par BusLAN.hostB.eth bitrate 0bps
+attr unit bps
+par BusLAN.hostB.eth fcsMode "\"declared\""
+attr enum declared,computed
+scalar BusLAN.hostB.eth packetDropInterfaceDown:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, count"
+scalar BusLAN.hostB.eth packetDropInterfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, sum(packetBytes)"
+scalar BusLAN.hostB.eth packetDropNoCarrier:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, count"
+scalar BusLAN.hostB.eth packetDropNoCarrier:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, sum(packetBytes)"
+par BusLAN.hostB typename "\"inet.node.ethernet.EthernetHost\""
+par BusLAN.hostB hasStatus false
+par BusLAN.hostB csmacdSupport true
+par BusLAN.hostB fcsMode "\"declared\""
+attr enum declared,computed
+par BusLAN.hostC.eth.phys$o.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostC.ethg$i.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostC.interfaceTable typename "\"inet.networklayer.common.InterfaceTable\""
+par BusLAN.hostC.interfaceTable displayAddresses false
+par BusLAN.hostC.cli typename "\"inet.applications.ethernet.EtherAppClient\""
+par BusLAN.hostC.cli interfaceTableModule "\"BusLAN.hostC.interfaceTable\""
+par BusLAN.hostC.cli destAddress "\"hostA\""
+par BusLAN.hostC.cli interface "\"eth\""
+par BusLAN.hostC.cli startTime 1.25593s
+attr unit s
+par BusLAN.hostC.cli stopTime -1s
+attr unit s
+par BusLAN.hostC.cli localSAP 240
+par BusLAN.hostC.cli remoteSAP 241
+par BusLAN.hostC.cli sendInterval exponential(1s)
+attr unit s
+par BusLAN.hostC.cli reqLength "intuniform(50, 1400)*1B"
+attr unit B
+par BusLAN.hostC.cli respLength "intWithUnit(truncnormal(3000B, 3000B))"
+attr unit B
+par BusLAN.hostC.cli stopOperationExtraTime -1s
+attr unit s
+par BusLAN.hostC.cli stopOperationTimeout 2s
+attr unit s
+scalar BusLAN.hostC.cli packetReceived:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetReceived
+attr title "packets received, count"
+scalar BusLAN.hostC.cli packetReceived:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetReceived
+attr title "packets received, sum(packetBytes)"
+statistic BusLAN.hostC.cli endToEndDelay:histogram
+field count 0
+field mean -nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar BusLAN.hostC.cli packetSent:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetSent
+attr title "packets sent, count"
+scalar BusLAN.hostC.cli packetSent:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetSent
+attr title "packets sent, sum(packetBytes)"
+par BusLAN.hostC.srv typename "\"inet.applications.ethernet.EtherAppServer\""
+par BusLAN.hostC.srv localSAP 241
+par BusLAN.hostC.srv stopOperationExtraTime -1s
+attr unit s
+par BusLAN.hostC.srv stopOperationTimeout 2s
+attr unit s
+scalar BusLAN.hostC.srv packetReceived:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetReceived
+attr title "packets received, count"
+scalar BusLAN.hostC.srv packetReceived:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetReceived
+attr title "packets received, sum(packetBytes)"
+statistic BusLAN.hostC.srv endToEndDelay:histogram
+field count 0
+field mean -nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar BusLAN.hostC.srv packetSent:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetSent
+attr title "packets sent, count"
+scalar BusLAN.hostC.srv packetSent:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetSent
+attr title "packets sent, sum(packetBytes)"
+par BusLAN.hostC.dp typename "\"inet.common.MessageDispatcher\""
+par BusLAN.hostC.dp displayStringTextFormat "\"processed %p pk (%l)\""
+par BusLAN.hostC.dp forwardServiceRegistration true
+par BusLAN.hostC.dp forwardProtocolRegistration true
+par BusLAN.hostC.llc typename "\"inet.linklayer.ieee8022.Ieee8022Llc\""
+par BusLAN.hostC.llc registerProtocol true
+par BusLAN.hostC.encap typename "\"inet.linklayer.ethernet.basic.EthernetEncapsulation\""
+par BusLAN.hostC.encap registerProtocol true
+par BusLAN.hostC.encap interfaceTableModule "\"BusLAN.hostC.interfaceTable\""
+par BusLAN.hostC.encap fcsMode "\"declared\""
+attr enum declared,computed
+par BusLAN.hostC.encap stopOperationExtraTime -1s
+attr unit s
+par BusLAN.hostC.encap stopOperationTimeout 2s
+attr unit s
+scalar BusLAN.hostC.encap pauseSent:count 0
+attr recordingmode count
+attr title "pause sent, count"
+scalar BusLAN.hostC.encap pauseSent:sum 0
+attr recordingmode sum
+attr title "pause sent, sum"
+scalar BusLAN.hostC.encap decapPk:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source decapPk
+attr title "packets decapsulated, count"
+scalar BusLAN.hostC.encap decapPk:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, sum(packetBytes)"
+scalar BusLAN.hostC.encap encapPk:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source encapPk
+attr title "packets encapsulated, count"
+scalar BusLAN.hostC.encap encapPk:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, sum(packetBytes)"
+par BusLAN.hostC.li typename "\"inet.common.MessageDispatcher\""
+par BusLAN.hostC.li displayStringTextFormat "\"processed %p pk (%l)\""
+par BusLAN.hostC.li forwardServiceRegistration true
+par BusLAN.hostC.li forwardProtocolRegistration true
+par BusLAN.hostC.eth.mac.phys$o.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostC.eth.phys$i.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostC.eth.upperLayerIn.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostC.eth.mac.upperLayerOut.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostC.eth.queue typename "\"inet.linklayer.ethernet.common.EthernetQueue\""
+par BusLAN.hostC.eth.queue displayStringTextFormat "\"contains %p pk (%l) pushed %u\\npulled %o removed %r dropped %d\""
+par BusLAN.hostC.eth.queue packetCapacity 1000
+par BusLAN.hostC.eth.queue dataCapacity -1b
+attr unit b
+par BusLAN.hostC.eth.queue dropperClass "\"inet::queueing::PacketAtCollectionEndDropper\""
+par BusLAN.hostC.eth.queue comparatorClass "\"inet::EthernetFrameTypeComparator\""
+par BusLAN.hostC.eth.queue bufferModule "\"\""
+scalar BusLAN.hostC.eth.queue queueLength:last 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode last
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, last"
+attr unit pk
+scalar BusLAN.hostC.eth.queue queueLength:max 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode max
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, max"
+attr unit pk
+scalar BusLAN.hostC.eth.queue queueLength:timeavg 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, timeavg"
+attr unit pk
+scalar BusLAN.hostC.eth.queue queueBitLength:last 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode last
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, last"
+attr unit b
+scalar BusLAN.hostC.eth.queue queueBitLength:max 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode max
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, max"
+attr unit b
+scalar BusLAN.hostC.eth.queue queueBitLength:timeavg 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, timeavg"
+attr unit b
+statistic BusLAN.hostC.eth.queue queueingTime:histogram
+field count 0
+field mean -nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar BusLAN.hostC.eth.queue outgoingPackets:count 0
+attr recordingmode count
+attr source packetPulled
+attr title "outgoing packets, count"
+attr unit pk
+scalar BusLAN.hostC.eth.queue outgoingPacketLengths:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths, sum"
+attr unit b
+statistic BusLAN.hostC.eth.queue outgoingPacketLengths:histogram
+field count 0
+field mean -nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+bin	-inf	0
+bin	0	0
+bin	1	0
+statistic BusLAN.hostC.eth.queue flowQueueingTime:histogram
+field count 0
+field mean -nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar BusLAN.hostC.eth.queue incomingPackets:count 0
+attr recordingmode count
+attr source packetPushStarted
+attr title "incoming packets, count"
+attr unit pk
+scalar BusLAN.hostC.eth.queue incomingPacketLengths:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths, sum"
+attr unit b
+statistic BusLAN.hostC.eth.queue incomingPacketLengths:histogram
+field count 0
+field mean -nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar BusLAN.hostC.eth.queue droppedPacketsQueueOverflow:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "dropped packets: queue overflow, count"
+attr unit pk
+scalar BusLAN.hostC.eth.queue droppedPacketLengthsQueueOverflow:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow, sum"
+attr unit b
+par BusLAN.hostC.eth.mac typename "\"inet.linklayer.ethernet.basic.EthernetCsmaMac\""
+par BusLAN.hostC.eth.mac interfaceTableModule "\"BusLAN.hostC.interfaceTable\""
+par BusLAN.hostC.eth.mac displayStringTextFormat "\"rate: %b\\nsent: %s, rcvd: %r\\nqueue: %q, drop: %d\""
+par BusLAN.hostC.eth.mac sendRawBytes false
+par BusLAN.hostC.eth.mac promiscuous false
+par BusLAN.hostC.eth.mac duplexMode false
+par BusLAN.hostC.eth.mac frameBursting true
+par BusLAN.hostC.eth.mac mtu 1500B
+attr unit B
+par BusLAN.hostC.eth.mac fcsMode "\"declared\""
+attr enum declared,computed
+par BusLAN.hostC.eth.mac stopOperationExtraTime -1s
+attr unit s
+par BusLAN.hostC.eth.mac stopOperationTimeout 2s
+attr unit s
+scalar BusLAN.hostC.eth.mac "simulated time" 0.899291688572
+scalar BusLAN.hostC.eth.mac full-duplex 0
+scalar BusLAN.hostC.eth.mac "frames/sec sent" 0
+scalar BusLAN.hostC.eth.mac "frames/sec rcvd" 0
+scalar BusLAN.hostC.eth.mac "bits/sec sent" 0
+scalar BusLAN.hostC.eth.mac "bits/sec rcvd" 0
+scalar BusLAN.hostC.eth.mac "rx channel idle (%)" 99.918691564785
+scalar BusLAN.hostC.eth.mac "rx channel utilization (%)" 0.081308435215395
+scalar BusLAN.hostC.eth.mac "rx channel collision (%)" 0
+scalar BusLAN.hostC.eth.mac collisions 0
+scalar BusLAN.hostC.eth.mac backoffs 0
+scalar BusLAN.hostC.eth.mac backoffSlotsGenerated:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "backoff, count"
+scalar BusLAN.hostC.eth.mac collision:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "collision, count"
+scalar BusLAN.hostC.eth.mac rxPausePkUnits:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "pause units received, count"
+scalar BusLAN.hostC.eth.mac rxPausePkUnits:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr title "pause units received, sum"
+scalar BusLAN.hostC.eth.mac txPausePkUnits:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "pause units sent, count"
+scalar BusLAN.hostC.eth.mac txPausePkUnits:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr title "pause units sent, sum"
+scalar BusLAN.hostC.eth.mac rxPkOk:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source rxPkOk
+attr title "packets received OK, count"
+scalar BusLAN.hostC.eth.mac rxPkOk:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, sum(packetBytes)"
+scalar BusLAN.hostC.eth.mac txPk:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetSentToLower
+attr title "packets transmitted, count"
+scalar BusLAN.hostC.eth.mac txPk:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, sum(packetBytes)"
+scalar BusLAN.hostC.eth.mac packetReceivedFromUpper:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, count"
+scalar BusLAN.hostC.eth.mac packetReceivedFromUpper:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, sum(packetBytes)"
+scalar BusLAN.hostC.eth.mac passedUpPk:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetSentToUpper
+attr title "packets passed to higher layer, count"
+scalar BusLAN.hostC.eth.mac passedUpPk:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, sum(packetBytes)"
+scalar BusLAN.hostC.eth.mac packetDropIncorrectlyReceived:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, count"
+scalar BusLAN.hostC.eth.mac packetDropIncorrectlyReceived:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, sum(packetBytes)"
+scalar BusLAN.hostC.eth.mac packetDropInterfaceDown:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, count"
+scalar BusLAN.hostC.eth.mac packetDropInterfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, sum(packetBytes)"
+scalar BusLAN.hostC.eth.mac packetDropNotAddressedToUs:count 1
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, count"
+scalar BusLAN.hostC.eth.mac packetDropNotAddressedToUs:sum(packetBytes) 906
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, sum(packetBytes)"
+par BusLAN.hostC.eth typename "\"inet.linklayer.ethernet.EthernetInterface\""
+par BusLAN.hostC.eth displayStringTextFormat "\"%a (%i)\\n%m\""
+par BusLAN.hostC.eth recordPcap false
+par BusLAN.hostC.eth numPcapRecorders 0
+par BusLAN.hostC.eth interfaceTableModule "\"BusLAN.hostC.interfaceTable\""
+par BusLAN.hostC.eth protocol "\"ethernetmac\""
+par BusLAN.hostC.eth address "\"0A-AA-00-00-00-03\""
+attr mutable ""
+par BusLAN.hostC.eth duplexMode false
+par BusLAN.hostC.eth csmacdSupport true
+par BusLAN.hostC.eth bitrate 0bps
+attr unit bps
+par BusLAN.hostC.eth fcsMode "\"declared\""
+attr enum declared,computed
+scalar BusLAN.hostC.eth packetDropInterfaceDown:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, count"
+scalar BusLAN.hostC.eth packetDropInterfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, sum(packetBytes)"
+scalar BusLAN.hostC.eth packetDropNoCarrier:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, count"
+scalar BusLAN.hostC.eth packetDropNoCarrier:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, sum(packetBytes)"
+par BusLAN.hostC typename "\"inet.node.ethernet.EthernetHost\""
+par BusLAN.hostC hasStatus false
+par BusLAN.hostC csmacdSupport true
+par BusLAN.hostC fcsMode "\"declared\""
+attr enum declared,computed
+par BusLAN.hostD.eth.phys$o.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostD.ethg$i.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostD.interfaceTable typename "\"inet.networklayer.common.InterfaceTable\""
+par BusLAN.hostD.interfaceTable displayAddresses false
+par BusLAN.hostD.cli typename "\"inet.applications.ethernet.EtherAppClient\""
+par BusLAN.hostD.cli interfaceTableModule "\"BusLAN.hostD.interfaceTable\""
+par BusLAN.hostD.cli destAddress "\"hostA\""
+par BusLAN.hostD.cli interface "\"eth\""
+par BusLAN.hostD.cli startTime 1.8596s
+attr unit s
+par BusLAN.hostD.cli stopTime -1s
+attr unit s
+par BusLAN.hostD.cli localSAP 240
+par BusLAN.hostD.cli remoteSAP 241
+par BusLAN.hostD.cli sendInterval exponential(1s)
+attr unit s
+par BusLAN.hostD.cli reqLength "intuniform(50, 1400)*1B"
+attr unit B
+par BusLAN.hostD.cli respLength "intWithUnit(truncnormal(3000B, 3000B))"
+attr unit B
+par BusLAN.hostD.cli stopOperationExtraTime -1s
+attr unit s
+par BusLAN.hostD.cli stopOperationTimeout 2s
+attr unit s
+scalar BusLAN.hostD.cli packetReceived:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetReceived
+attr title "packets received, count"
+scalar BusLAN.hostD.cli packetReceived:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetReceived
+attr title "packets received, sum(packetBytes)"
+statistic BusLAN.hostD.cli endToEndDelay:histogram
+field count 0
+field mean -nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar BusLAN.hostD.cli packetSent:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetSent
+attr title "packets sent, count"
+scalar BusLAN.hostD.cli packetSent:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetSent
+attr title "packets sent, sum(packetBytes)"
+par BusLAN.hostD.srv typename "\"inet.applications.ethernet.EtherAppServer\""
+par BusLAN.hostD.srv localSAP 241
+par BusLAN.hostD.srv stopOperationExtraTime -1s
+attr unit s
+par BusLAN.hostD.srv stopOperationTimeout 2s
+attr unit s
+scalar BusLAN.hostD.srv packetReceived:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetReceived
+attr title "packets received, count"
+scalar BusLAN.hostD.srv packetReceived:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetReceived
+attr title "packets received, sum(packetBytes)"
+statistic BusLAN.hostD.srv endToEndDelay:histogram
+field count 0
+field mean -nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar BusLAN.hostD.srv packetSent:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetSent
+attr title "packets sent, count"
+scalar BusLAN.hostD.srv packetSent:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetSent
+attr title "packets sent, sum(packetBytes)"
+par BusLAN.hostD.dp typename "\"inet.common.MessageDispatcher\""
+par BusLAN.hostD.dp displayStringTextFormat "\"processed %p pk (%l)\""
+par BusLAN.hostD.dp forwardServiceRegistration true
+par BusLAN.hostD.dp forwardProtocolRegistration true
+par BusLAN.hostD.llc typename "\"inet.linklayer.ieee8022.Ieee8022Llc\""
+par BusLAN.hostD.llc registerProtocol true
+par BusLAN.hostD.encap typename "\"inet.linklayer.ethernet.basic.EthernetEncapsulation\""
+par BusLAN.hostD.encap registerProtocol true
+par BusLAN.hostD.encap interfaceTableModule "\"BusLAN.hostD.interfaceTable\""
+par BusLAN.hostD.encap fcsMode "\"declared\""
+attr enum declared,computed
+par BusLAN.hostD.encap stopOperationExtraTime -1s
+attr unit s
+par BusLAN.hostD.encap stopOperationTimeout 2s
+attr unit s
+scalar BusLAN.hostD.encap pauseSent:count 0
+attr recordingmode count
+attr title "pause sent, count"
+scalar BusLAN.hostD.encap pauseSent:sum 0
+attr recordingmode sum
+attr title "pause sent, sum"
+scalar BusLAN.hostD.encap decapPk:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source decapPk
+attr title "packets decapsulated, count"
+scalar BusLAN.hostD.encap decapPk:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, sum(packetBytes)"
+scalar BusLAN.hostD.encap encapPk:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source encapPk
+attr title "packets encapsulated, count"
+scalar BusLAN.hostD.encap encapPk:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, sum(packetBytes)"
+par BusLAN.hostD.li typename "\"inet.common.MessageDispatcher\""
+par BusLAN.hostD.li displayStringTextFormat "\"processed %p pk (%l)\""
+par BusLAN.hostD.li forwardServiceRegistration true
+par BusLAN.hostD.li forwardProtocolRegistration true
+par BusLAN.hostD.eth.mac.phys$o.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostD.eth.phys$i.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostD.eth.upperLayerIn.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostD.eth.mac.upperLayerOut.channel typename "\"ned.IdealChannel\""
+par BusLAN.hostD.eth.queue typename "\"inet.linklayer.ethernet.common.EthernetQueue\""
+par BusLAN.hostD.eth.queue displayStringTextFormat "\"contains %p pk (%l) pushed %u\\npulled %o removed %r dropped %d\""
+par BusLAN.hostD.eth.queue packetCapacity 1000
+par BusLAN.hostD.eth.queue dataCapacity -1b
+attr unit b
+par BusLAN.hostD.eth.queue dropperClass "\"inet::queueing::PacketAtCollectionEndDropper\""
+par BusLAN.hostD.eth.queue comparatorClass "\"inet::EthernetFrameTypeComparator\""
+par BusLAN.hostD.eth.queue bufferModule "\"\""
+scalar BusLAN.hostD.eth.queue queueLength:last 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode last
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, last"
+attr unit pk
+scalar BusLAN.hostD.eth.queue queueLength:max 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode max
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, max"
+attr unit pk
+scalar BusLAN.hostD.eth.queue queueLength:timeavg 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length, timeavg"
+attr unit pk
+scalar BusLAN.hostD.eth.queue queueBitLength:last 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode last
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, last"
+attr unit b
+scalar BusLAN.hostD.eth.queue queueBitLength:max 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode max
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, max"
+attr unit b
+scalar BusLAN.hostD.eth.queue queueBitLength:timeavg 0
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length, timeavg"
+attr unit b
+statistic BusLAN.hostD.eth.queue queueingTime:histogram
+field count 0
+field mean -nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar BusLAN.hostD.eth.queue outgoingPackets:count 0
+attr recordingmode count
+attr source packetPulled
+attr title "outgoing packets, count"
+attr unit pk
+scalar BusLAN.hostD.eth.queue outgoingPacketLengths:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths, sum"
+attr unit b
+statistic BusLAN.hostD.eth.queue outgoingPacketLengths:histogram
+field count 0
+field mean -nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+bin	-inf	0
+bin	0	0
+bin	1	0
+statistic BusLAN.hostD.eth.queue flowQueueingTime:histogram
+field count 0
+field mean -nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar BusLAN.hostD.eth.queue incomingPackets:count 0
+attr recordingmode count
+attr source packetPushStarted
+attr title "incoming packets, count"
+attr unit pk
+scalar BusLAN.hostD.eth.queue incomingPacketLengths:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths, sum"
+attr unit b
+statistic BusLAN.hostD.eth.queue incomingPacketLengths:histogram
+field count 0
+field mean -nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr recordingmode histogram
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar BusLAN.hostD.eth.queue droppedPacketsQueueOverflow:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "dropped packets: queue overflow, count"
+attr unit pk
+scalar BusLAN.hostD.eth.queue droppedPacketLengthsQueueOverflow:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow, sum"
+attr unit b
+par BusLAN.hostD.eth.mac typename "\"inet.linklayer.ethernet.basic.EthernetCsmaMac\""
+par BusLAN.hostD.eth.mac interfaceTableModule "\"BusLAN.hostD.interfaceTable\""
+par BusLAN.hostD.eth.mac displayStringTextFormat "\"rate: %b\\nsent: %s, rcvd: %r\\nqueue: %q, drop: %d\""
+par BusLAN.hostD.eth.mac sendRawBytes false
+par BusLAN.hostD.eth.mac promiscuous false
+par BusLAN.hostD.eth.mac duplexMode false
+par BusLAN.hostD.eth.mac frameBursting true
+par BusLAN.hostD.eth.mac mtu 1500B
+attr unit B
+par BusLAN.hostD.eth.mac fcsMode "\"declared\""
+attr enum declared,computed
+par BusLAN.hostD.eth.mac stopOperationExtraTime -1s
+attr unit s
+par BusLAN.hostD.eth.mac stopOperationTimeout 2s
+attr unit s
+scalar BusLAN.hostD.eth.mac "simulated time" 0.899291688572
+scalar BusLAN.hostD.eth.mac full-duplex 0
+scalar BusLAN.hostD.eth.mac "frames/sec sent" 0
+scalar BusLAN.hostD.eth.mac "frames/sec rcvd" 0
+scalar BusLAN.hostD.eth.mac "bits/sec sent" 0
+scalar BusLAN.hostD.eth.mac "bits/sec rcvd" 0
+scalar BusLAN.hostD.eth.mac "rx channel idle (%)" 100
+scalar BusLAN.hostD.eth.mac "rx channel utilization (%)" 0
+scalar BusLAN.hostD.eth.mac "rx channel collision (%)" 0
+scalar BusLAN.hostD.eth.mac collisions 0
+scalar BusLAN.hostD.eth.mac backoffs 0
+scalar BusLAN.hostD.eth.mac backoffSlotsGenerated:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "backoff, count"
+scalar BusLAN.hostD.eth.mac collision:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "collision, count"
+scalar BusLAN.hostD.eth.mac rxPausePkUnits:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "pause units received, count"
+scalar BusLAN.hostD.eth.mac rxPausePkUnits:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr title "pause units received, sum"
+scalar BusLAN.hostD.eth.mac txPausePkUnits:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "pause units sent, count"
+scalar BusLAN.hostD.eth.mac txPausePkUnits:sum 0
+attr interpolationmode none
+attr recordingmode sum
+attr title "pause units sent, sum"
+scalar BusLAN.hostD.eth.mac rxPkOk:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source rxPkOk
+attr title "packets received OK, count"
+scalar BusLAN.hostD.eth.mac rxPkOk:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, sum(packetBytes)"
+scalar BusLAN.hostD.eth.mac txPk:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetSentToLower
+attr title "packets transmitted, count"
+scalar BusLAN.hostD.eth.mac txPk:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, sum(packetBytes)"
+scalar BusLAN.hostD.eth.mac packetReceivedFromUpper:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, count"
+scalar BusLAN.hostD.eth.mac packetReceivedFromUpper:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, sum(packetBytes)"
+scalar BusLAN.hostD.eth.mac passedUpPk:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetSentToUpper
+attr title "packets passed to higher layer, count"
+scalar BusLAN.hostD.eth.mac passedUpPk:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, sum(packetBytes)"
+scalar BusLAN.hostD.eth.mac packetDropIncorrectlyReceived:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, count"
+scalar BusLAN.hostD.eth.mac packetDropIncorrectlyReceived:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, sum(packetBytes)"
+scalar BusLAN.hostD.eth.mac packetDropInterfaceDown:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, count"
+scalar BusLAN.hostD.eth.mac packetDropInterfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, sum(packetBytes)"
+scalar BusLAN.hostD.eth.mac packetDropNotAddressedToUs:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, count"
+scalar BusLAN.hostD.eth.mac packetDropNotAddressedToUs:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, sum(packetBytes)"
+par BusLAN.hostD.eth typename "\"inet.linklayer.ethernet.EthernetInterface\""
+par BusLAN.hostD.eth displayStringTextFormat "\"%a (%i)\\n%m\""
+par BusLAN.hostD.eth recordPcap false
+par BusLAN.hostD.eth numPcapRecorders 0
+par BusLAN.hostD.eth interfaceTableModule "\"BusLAN.hostD.interfaceTable\""
+par BusLAN.hostD.eth protocol "\"ethernetmac\""
+par BusLAN.hostD.eth address "\"0A-AA-00-00-00-04\""
+attr mutable ""
+par BusLAN.hostD.eth duplexMode false
+par BusLAN.hostD.eth csmacdSupport true
+par BusLAN.hostD.eth bitrate 0bps
+attr unit bps
+par BusLAN.hostD.eth fcsMode "\"declared\""
+attr enum declared,computed
+scalar BusLAN.hostD.eth packetDropInterfaceDown:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, count"
+scalar BusLAN.hostD.eth packetDropInterfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, sum(packetBytes)"
+scalar BusLAN.hostD.eth packetDropNoCarrier:count 0
+attr interpolationmode none
+attr recordingmode count
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, count"
+scalar BusLAN.hostD.eth packetDropNoCarrier:sum(packetBytes) 0
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, sum(packetBytes)"
+par BusLAN.hostD typename "\"inet.node.ethernet.EthernetHost\""
+par BusLAN.hostD hasStatus false
+par BusLAN.hostD csmacdSupport true
+par BusLAN.hostD fcsMode "\"declared\""
+attr enum declared,computed
+par BusLAN.tap1 typename "\"inet.physicallayer.wired.common.WireJunction\""
+scalar BusLAN.tap1 packetReceived:count 1
+attr interpolationmode none
+attr recordingmode count
+attr source packetReceived
+attr title "packets, count"
+scalar BusLAN.tap1 packetReceived:sum(packetBytes) 914
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetReceived
+attr title "packets, sum(packetBytes)"
+par BusLAN.tap2 typename "\"inet.physicallayer.wired.common.WireJunction\""
+scalar BusLAN.tap2 packetReceived:count 1
+attr interpolationmode none
+attr recordingmode count
+attr source packetReceived
+attr title "packets, count"
+scalar BusLAN.tap2 packetReceived:sum(packetBytes) 914
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetReceived
+attr title "packets, sum(packetBytes)"
+par BusLAN.tap3 typename "\"inet.physicallayer.wired.common.WireJunction\""
+scalar BusLAN.tap3 packetReceived:count 1
+attr interpolationmode none
+attr recordingmode count
+attr source packetReceived
+attr title "packets, count"
+scalar BusLAN.tap3 packetReceived:sum(packetBytes) 914
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetReceived
+attr title "packets, sum(packetBytes)"
+par BusLAN.tap4 typename "\"inet.physicallayer.wired.common.WireJunction\""
+scalar BusLAN.tap4 packetReceived:count 1
+attr interpolationmode none
+attr recordingmode count
+attr source packetReceived
+attr title "packets, count"
+scalar BusLAN.tap4 packetReceived:sum(packetBytes) 914
+attr interpolationmode none
+attr recordingmode sum(packetBytes)
+attr source packetReceived
+attr title "packets, sum(packetBytes)"
+par BusLAN typename "\"inet.examples.ethernet.lans.BusLAN\""
+

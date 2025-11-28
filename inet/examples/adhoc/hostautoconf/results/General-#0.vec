@@ -1,0 +1,2267 @@
+version 3
+run General-0-20251122-00:33:09-295930
+attr configname General
+attr datetime 20251122-00:33:09
+attr datetimef 20251122-003309
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network Scenario
+attr processid 295930
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../../../images
+config network Scenario
+config sim-time-limit 60min
+config *.hosts 3
+config **.constraintAreaMinX 0m
+config **.constraintAreaMinY 0m
+config **.constraintAreaMinZ 0m
+config **.constraintAreaMaxX 600m
+config **.constraintAreaMaxY 400m
+config **.constraintAreaMaxZ 0m
+config **.host*.ipv4.configurator.typename HostAutoConfigurator
+config **.host*.ipv4.configurator.interfaces "\"wlan0\""
+config **.host*.mobility.typename MassMobility
+config **.host*.mobility.initFromDisplayString false
+config **.host*.mobility.changeInterval "truncnormal(2s, 0.5s)"
+config **.host*.mobility.angleDelta "normal(0deg, 30deg)"
+config **.host*.mobility.speed "truncnormal(20mps, 8mps)"
+config **.host*.mobility.updateInterval 100ms
+config **.host*.numApps 1
+config **.app[0].typename UdpBasicApp
+config **.app[0].destAddresses "\"host[0]\""
+config **.app[0].localPort 9001
+config **.app[0].destPort 9001
+config **.app[0].messageLength 100B
+config **.app[0].startTime "uniform(10s, 30s)"
+config **.app[0].sendInterval "uniform(10s, 30s)"
+config **.wlan[*].bitrate 2Mbps
+config **.wlan[*].mac.dcf.channelAccess.cwMin 7
+config **.wlan[*].radio.transmitter.power 2mW
+config **.wlan[*].radio.receiver.sensitivity -85dBm
+config **.wlan[*].radio.receiver.snirThreshold 4dB
+config **.udpapp.*.vector-recording true
+config **.vector-recording true
+
+vector 0 Scenario.host[0].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 1 Scenario.host[0].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 2 Scenario.host[0].lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 3 Scenario.host[0].lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 4 Scenario.host[0].wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 5 Scenario.host[0].wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 6 Scenario.host[0].wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 7 Scenario.host[0].wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 8 Scenario.host[0].wlan[0].mac.dcf.channelAccess.pendingQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 9 Scenario.host[0].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 10 Scenario.host[0].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 11 Scenario.host[0].wlan[0].mac.dcf.channelAccess.pendingQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 12 Scenario.host[0].wlan[0].mac.dcf.channelAccess.pendingQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 13 Scenario.host[0].wlan[0].mac.dcf.channelAccess.pendingQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 14 Scenario.host[0].wlan[0].mac.dcf.channelAccess.pendingQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 15 Scenario.host[0].wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetDequeued)
+attr title "queueing times"
+vector 16 Scenario.host[0].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 17 Scenario.host[0].wlan[0].mac.dcf.channelAccess.contention backoffPeriodGenerated:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "backoff periods"
+vector 18 Scenario.host[0].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 19 Scenario.host[0].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 20 Scenario.host[0].wlan[0].mac.dcf.recipientMacDataService packetDropDuplicateDetected:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsDuplicateDetected(packetDropped)
+attr title "packet drops: duplicate detected, packetBytes"
+vector 21 Scenario.host[0].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 22 Scenario.host[0].wlan[0].mac.dcf packetSentToPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent, packetBytes"
+vector 23 Scenario.host[0].wlan[0].mac.dcf packetSentToPeerUnicast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Unicast(packetSentToPeer)
+attr title "packets sent: unicast, packetBytes"
+vector 24 Scenario.host[0].wlan[0].mac.dcf packetSentToPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetSentToPeer)
+attr title "packets sent: multicast, packetBytes"
+vector 25 Scenario.host[0].wlan[0].mac.dcf packetSentToPeerBroadcast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Broadcast(packetSentToPeer)
+attr title "packets sent: broadcast , packetBytes"
+vector 26 Scenario.host[0].wlan[0].mac.dcf packetSentToPeerWithRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Retry(packetSentToPeer)
+attr title "packets sent: with retry, packetBytes"
+vector 27 Scenario.host[0].wlan[0].mac.dcf packetSentToPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetSentToPeer)
+attr title "packets sent: without retry, packetBytes"
+vector 28 Scenario.host[0].wlan[0].mac.dcf packetReceivedFromPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received, packetBytes"
+vector 29 Scenario.host[0].wlan[0].mac.dcf packetReceivedFromPeerUnicast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Unicast(packetReceivedFromPeer)
+attr title "packets received: unicast, packetBytes"
+vector 30 Scenario.host[0].wlan[0].mac.dcf packetReceivedFromPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetReceivedFromPeer)
+attr title "packets received: multicast, packetBytes"
+vector 31 Scenario.host[0].wlan[0].mac.dcf packetReceivedFromPeerBroadcast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Broadcast(packetReceivedFromPeer)
+attr title "packets received: broadcast, packetBytes"
+vector 32 Scenario.host[0].wlan[0].mac.dcf packetReceivedFromPeerWithRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Retry(packetReceivedFromPeer)
+attr title "packets received: with retry, packetBytes"
+vector 33 Scenario.host[0].wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetReceivedFromPeer)
+attr title "packets received: without retry, packetBytes"
+vector 34 Scenario.host[0].wlan[0].mac.dcf packetDrop:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropped
+attr title "packet drops, packetBytes"
+vector 35 Scenario.host[0].wlan[0].mac.dcf packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drops: not addressed to us, packetBytes"
+vector 36 Scenario.host[0].wlan[0].mac.dcf packetDropQueueOverflow:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, packetBytes"
+vector 37 Scenario.host[0].wlan[0].mac.dcf packetDropRetryLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drops: retry limit reached, packetBytes"
+vector 38 Scenario.host[0].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 39 Scenario.host[0].wlan[0].mac.dcf datarateSelected:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "datarates selected"
+vector 40 Scenario.host[0].wlan[0].mac.rx nav:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source navChanged
+attr title "network allocation vector"
+vector 41 Scenario.host[0].wlan[0].mac packetSentToUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to upper layer, packetBytes"
+vector 42 Scenario.host[0].wlan[0].mac packetSentToLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to lower layer, packetBytes"
+vector 43 Scenario.host[0].wlan[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from upper layer, packetBytes"
+vector 44 Scenario.host[0].wlan[0].mac packetReceivedFromLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from lower layer, packetBytes"
+vector 45 Scenario.host[0].wlan[0].mac packetDrop:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropped
+attr title "packet drops, packetBytes"
+vector 46 Scenario.host[0].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drops: incorrectly received, packetBytes"
+vector 47 Scenario.host[0].wlan[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drops: not addressed to us, packetBytes"
+vector 48 Scenario.host[0].wlan[0].mac packetDropQueueOverflow:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, packetBytes"
+vector 49 Scenario.host[0].wlan[0].mac packetDropRetryLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drops: retry limit reached, packetBytes"
+vector 50 Scenario.host[0].wlan[0].mac packetDropDuplicateDetected:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsDuplicateDetected(packetDropped)
+attr title "packet drops: duplicate detected, packetBytes"
+vector 51 Scenario.host[0].wlan[0].mac packetDropOther:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsOther(packetDropped)
+attr title "packet drops: other, packetBytes"
+vector 52 Scenario.host[0].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 53 Scenario.host[0].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 54 Scenario.host[0].wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 55 Scenario.host[0].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 56 Scenario.host[0].wlan[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 57 Scenario.host[0].wlan[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 58 Scenario.host[0].ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 59 Scenario.host[0].ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 60 Scenario.host[0].ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 61 Scenario.host[0].ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 62 Scenario.host[0].ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 63 Scenario.host[0].ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 64 Scenario.host[0].ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, packetBytes"
+vector 65 Scenario.host[0].ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpReplySent
+attr title "ARP replies sent, packetBytes"
+vector 66 Scenario.host[0].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 67 Scenario.host[0].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 68 Scenario.host[0].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 69 Scenario.host[0].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 70 Scenario.host[0].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 71 Scenario.host[0].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 72 Scenario.host[0].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 73 Scenario.host[0].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 74 Scenario.host[0].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 75 Scenario.host[0].app[0] rcvdPkSeqNo:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source appPkSeqNo(packetReceived)
+attr title "received packet sequence number"
+vector 76 Scenario.host[1].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 77 Scenario.host[1].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 78 Scenario.host[1].lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 79 Scenario.host[1].lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 80 Scenario.host[1].wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 81 Scenario.host[1].wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 82 Scenario.host[1].wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 83 Scenario.host[1].wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 84 Scenario.host[1].wlan[0].mac.dcf.channelAccess.pendingQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 85 Scenario.host[1].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 86 Scenario.host[1].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 87 Scenario.host[1].wlan[0].mac.dcf.channelAccess.pendingQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 88 Scenario.host[1].wlan[0].mac.dcf.channelAccess.pendingQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 89 Scenario.host[1].wlan[0].mac.dcf.channelAccess.pendingQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 90 Scenario.host[1].wlan[0].mac.dcf.channelAccess.pendingQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 91 Scenario.host[1].wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetDequeued)
+attr title "queueing times"
+vector 92 Scenario.host[1].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 93 Scenario.host[1].wlan[0].mac.dcf.channelAccess.contention backoffPeriodGenerated:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "backoff periods"
+vector 94 Scenario.host[1].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 95 Scenario.host[1].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 96 Scenario.host[1].wlan[0].mac.dcf.recipientMacDataService packetDropDuplicateDetected:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsDuplicateDetected(packetDropped)
+attr title "packet drops: duplicate detected, packetBytes"
+vector 97 Scenario.host[1].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 98 Scenario.host[1].wlan[0].mac.dcf packetSentToPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent, packetBytes"
+vector 99 Scenario.host[1].wlan[0].mac.dcf packetSentToPeerUnicast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Unicast(packetSentToPeer)
+attr title "packets sent: unicast, packetBytes"
+vector 100 Scenario.host[1].wlan[0].mac.dcf packetSentToPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetSentToPeer)
+attr title "packets sent: multicast, packetBytes"
+vector 101 Scenario.host[1].wlan[0].mac.dcf packetSentToPeerBroadcast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Broadcast(packetSentToPeer)
+attr title "packets sent: broadcast , packetBytes"
+vector 102 Scenario.host[1].wlan[0].mac.dcf packetSentToPeerWithRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Retry(packetSentToPeer)
+attr title "packets sent: with retry, packetBytes"
+vector 103 Scenario.host[1].wlan[0].mac.dcf packetSentToPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetSentToPeer)
+attr title "packets sent: without retry, packetBytes"
+vector 104 Scenario.host[1].wlan[0].mac.dcf packetReceivedFromPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received, packetBytes"
+vector 105 Scenario.host[1].wlan[0].mac.dcf packetReceivedFromPeerUnicast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Unicast(packetReceivedFromPeer)
+attr title "packets received: unicast, packetBytes"
+vector 106 Scenario.host[1].wlan[0].mac.dcf packetReceivedFromPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetReceivedFromPeer)
+attr title "packets received: multicast, packetBytes"
+vector 107 Scenario.host[1].wlan[0].mac.dcf packetReceivedFromPeerBroadcast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Broadcast(packetReceivedFromPeer)
+attr title "packets received: broadcast, packetBytes"
+vector 108 Scenario.host[1].wlan[0].mac.dcf packetReceivedFromPeerWithRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Retry(packetReceivedFromPeer)
+attr title "packets received: with retry, packetBytes"
+vector 109 Scenario.host[1].wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetReceivedFromPeer)
+attr title "packets received: without retry, packetBytes"
+vector 110 Scenario.host[1].wlan[0].mac.dcf packetDrop:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropped
+attr title "packet drops, packetBytes"
+vector 111 Scenario.host[1].wlan[0].mac.dcf packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drops: not addressed to us, packetBytes"
+vector 112 Scenario.host[1].wlan[0].mac.dcf packetDropQueueOverflow:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, packetBytes"
+vector 113 Scenario.host[1].wlan[0].mac.dcf packetDropRetryLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drops: retry limit reached, packetBytes"
+vector 114 Scenario.host[1].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 115 Scenario.host[1].wlan[0].mac.dcf datarateSelected:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "datarates selected"
+vector 116 Scenario.host[1].wlan[0].mac.rx nav:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source navChanged
+attr title "network allocation vector"
+vector 117 Scenario.host[1].wlan[0].mac packetSentToUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to upper layer, packetBytes"
+vector 118 Scenario.host[1].wlan[0].mac packetSentToLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to lower layer, packetBytes"
+vector 119 Scenario.host[1].wlan[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from upper layer, packetBytes"
+vector 120 Scenario.host[1].wlan[0].mac packetReceivedFromLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from lower layer, packetBytes"
+vector 121 Scenario.host[1].wlan[0].mac packetDrop:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropped
+attr title "packet drops, packetBytes"
+vector 122 Scenario.host[1].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drops: incorrectly received, packetBytes"
+vector 123 Scenario.host[1].wlan[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drops: not addressed to us, packetBytes"
+vector 124 Scenario.host[1].wlan[0].mac packetDropQueueOverflow:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, packetBytes"
+vector 125 Scenario.host[1].wlan[0].mac packetDropRetryLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drops: retry limit reached, packetBytes"
+vector 126 Scenario.host[1].wlan[0].mac packetDropDuplicateDetected:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsDuplicateDetected(packetDropped)
+attr title "packet drops: duplicate detected, packetBytes"
+vector 127 Scenario.host[1].wlan[0].mac packetDropOther:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsOther(packetDropped)
+attr title "packet drops: other, packetBytes"
+vector 128 Scenario.host[1].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 129 Scenario.host[1].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 130 Scenario.host[1].wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 131 Scenario.host[1].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 132 Scenario.host[1].wlan[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 133 Scenario.host[1].wlan[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 134 Scenario.host[1].ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 135 Scenario.host[1].ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 136 Scenario.host[1].ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 137 Scenario.host[1].ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 138 Scenario.host[1].ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 139 Scenario.host[1].ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 140 Scenario.host[1].ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, packetBytes"
+vector 141 Scenario.host[1].ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpReplySent
+attr title "ARP replies sent, packetBytes"
+vector 142 Scenario.host[1].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 143 Scenario.host[1].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 144 Scenario.host[1].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 145 Scenario.host[1].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 146 Scenario.host[1].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 147 Scenario.host[1].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 148 Scenario.host[1].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 149 Scenario.host[1].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 150 Scenario.host[1].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 151 Scenario.host[1].app[0] rcvdPkSeqNo:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source appPkSeqNo(packetReceived)
+attr title "received packet sequence number"
+vector 152 Scenario.host[2].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 153 Scenario.host[2].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 154 Scenario.host[2].lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 155 Scenario.host[2].lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 156 Scenario.host[2].wlan[0].mac.dcf.channelAccess.pendingQueue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 157 Scenario.host[2].wlan[0].mac.dcf.channelAccess.pendingQueue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 158 Scenario.host[2].wlan[0].mac.dcf.channelAccess.pendingQueue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 159 Scenario.host[2].wlan[0].mac.dcf.channelAccess.pendingQueue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 160 Scenario.host[2].wlan[0].mac.dcf.channelAccess.pendingQueue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 161 Scenario.host[2].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 162 Scenario.host[2].wlan[0].mac.dcf.channelAccess.pendingQueue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 163 Scenario.host[2].wlan[0].mac.dcf.channelAccess.pendingQueue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 164 Scenario.host[2].wlan[0].mac.dcf.channelAccess.pendingQueue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 165 Scenario.host[2].wlan[0].mac.dcf.channelAccess.pendingQueue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 166 Scenario.host[2].wlan[0].mac.dcf.channelAccess.pendingQueue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 167 Scenario.host[2].wlan[0].mac.dcf.channelAccess.inProgressFrames queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetDequeued)
+attr title "queueing times"
+vector 168 Scenario.host[2].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 169 Scenario.host[2].wlan[0].mac.dcf.channelAccess.contention backoffPeriodGenerated:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "backoff periods"
+vector 170 Scenario.host[2].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 171 Scenario.host[2].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 172 Scenario.host[2].wlan[0].mac.dcf.recipientMacDataService packetDropDuplicateDetected:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsDuplicateDetected(packetDropped)
+attr title "packet drops: duplicate detected, packetBytes"
+vector 173 Scenario.host[2].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 174 Scenario.host[2].wlan[0].mac.dcf packetSentToPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent, packetBytes"
+vector 175 Scenario.host[2].wlan[0].mac.dcf packetSentToPeerUnicast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Unicast(packetSentToPeer)
+attr title "packets sent: unicast, packetBytes"
+vector 176 Scenario.host[2].wlan[0].mac.dcf packetSentToPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetSentToPeer)
+attr title "packets sent: multicast, packetBytes"
+vector 177 Scenario.host[2].wlan[0].mac.dcf packetSentToPeerBroadcast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Broadcast(packetSentToPeer)
+attr title "packets sent: broadcast , packetBytes"
+vector 178 Scenario.host[2].wlan[0].mac.dcf packetSentToPeerWithRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Retry(packetSentToPeer)
+attr title "packets sent: with retry, packetBytes"
+vector 179 Scenario.host[2].wlan[0].mac.dcf packetSentToPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetSentToPeer)
+attr title "packets sent: without retry, packetBytes"
+vector 180 Scenario.host[2].wlan[0].mac.dcf packetReceivedFromPeer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received, packetBytes"
+vector 181 Scenario.host[2].wlan[0].mac.dcf packetReceivedFromPeerUnicast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Unicast(packetReceivedFromPeer)
+attr title "packets received: unicast, packetBytes"
+vector 182 Scenario.host[2].wlan[0].mac.dcf packetReceivedFromPeerMulticast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Multicast(packetReceivedFromPeer)
+attr title "packets received: multicast, packetBytes"
+vector 183 Scenario.host[2].wlan[0].mac.dcf packetReceivedFromPeerBroadcast:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Broadcast(packetReceivedFromPeer)
+attr title "packets received: broadcast, packetBytes"
+vector 184 Scenario.host[2].wlan[0].mac.dcf packetReceivedFromPeerWithRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211Retry(packetReceivedFromPeer)
+attr title "packets received: with retry, packetBytes"
+vector 185 Scenario.host[2].wlan[0].mac.dcf packetReceivedFromPeerWithoutRetry:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source ieee80211NotRetry(packetReceivedFromPeer)
+attr title "packets received: without retry, packetBytes"
+vector 186 Scenario.host[2].wlan[0].mac.dcf packetDrop:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropped
+attr title "packet drops, packetBytes"
+vector 187 Scenario.host[2].wlan[0].mac.dcf packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drops: not addressed to us, packetBytes"
+vector 188 Scenario.host[2].wlan[0].mac.dcf packetDropQueueOverflow:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, packetBytes"
+vector 189 Scenario.host[2].wlan[0].mac.dcf packetDropRetryLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drops: retry limit reached, packetBytes"
+vector 190 Scenario.host[2].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 191 Scenario.host[2].wlan[0].mac.dcf datarateSelected:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "datarates selected"
+vector 192 Scenario.host[2].wlan[0].mac.rx nav:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source navChanged
+attr title "network allocation vector"
+vector 193 Scenario.host[2].wlan[0].mac packetSentToUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to upper layer, packetBytes"
+vector 194 Scenario.host[2].wlan[0].mac packetSentToLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets sent to lower layer, packetBytes"
+vector 195 Scenario.host[2].wlan[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from upper layer, packetBytes"
+vector 196 Scenario.host[2].wlan[0].mac packetReceivedFromLower:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr title "packets received from lower layer, packetBytes"
+vector 197 Scenario.host[2].wlan[0].mac packetDrop:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropped
+attr title "packet drops, packetBytes"
+vector 198 Scenario.host[2].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drops: incorrectly received, packetBytes"
+vector 199 Scenario.host[2].wlan[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drops: not addressed to us, packetBytes"
+vector 200 Scenario.host[2].wlan[0].mac packetDropQueueOverflow:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drops: queue overflow, packetBytes"
+vector 201 Scenario.host[2].wlan[0].mac packetDropRetryLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drops: retry limit reached, packetBytes"
+vector 202 Scenario.host[2].wlan[0].mac packetDropDuplicateDetected:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsDuplicateDetected(packetDropped)
+attr title "packet drops: duplicate detected, packetBytes"
+vector 203 Scenario.host[2].wlan[0].mac packetDropOther:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsOther(packetDropped)
+attr title "packet drops: other, packetBytes"
+vector 204 Scenario.host[2].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 205 Scenario.host[2].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 206 Scenario.host[2].wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 207 Scenario.host[2].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 208 Scenario.host[2].wlan[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 209 Scenario.host[2].wlan[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 210 Scenario.host[2].ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 211 Scenario.host[2].ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 212 Scenario.host[2].ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 213 Scenario.host[2].ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 214 Scenario.host[2].ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 215 Scenario.host[2].ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 216 Scenario.host[2].ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, packetBytes"
+vector 217 Scenario.host[2].ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpReplySent
+attr title "ARP replies sent, packetBytes"
+vector 218 Scenario.host[2].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 219 Scenario.host[2].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 220 Scenario.host[2].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 221 Scenario.host[2].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 222 Scenario.host[2].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 223 Scenario.host[2].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 224 Scenario.host[2].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 225 Scenario.host[2].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 226 Scenario.host[2].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 227 Scenario.host[2].app[0] rcvdPkSeqNo:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source appPkSeqNo(packetReceived)
+attr title "received packet sequence number"
+4	0	0	0
+4	0	0	0
+4	0	0	0
+4	0	0	0
+4	0	0	0
+5	0	0	0
+5	0	0	0
+5	0	0	0
+5	0	0	0
+5	0	0	0
+16	0	0	0
+16	0	0	0
+18	0	0	0
+18	0	0	0
+19	0	0	0
+19	0	0	0
+21	0	0	7
+38	0	0	0
+38	0	0	0
+52	0	0	0
+52	0	0	0
+52	0	0	2
+53	0	0	1
+55	0	0	0
+68	0	0	0
+69	0	0	0
+70	0	0	0
+80	0	0	0
+80	0	0	0
+80	0	0	0
+80	0	0	0
+80	0	0	0
+81	0	0	0
+81	0	0	0
+81	0	0	0
+81	0	0	0
+81	0	0	0
+92	0	0	0
+92	0	0	0
+94	0	0	0
+94	0	0	0
+95	0	0	0
+95	0	0	0
+97	0	0	7
+114	0	0	0
+114	0	0	0
+128	0	0	0
+128	0	0	0
+128	0	0	2
+129	0	0	1
+131	0	0	0
+144	0	0	0
+145	0	0	0
+146	0	0	0
+156	0	0	0
+156	0	0	0
+156	0	0	0
+156	0	0	0
+156	0	0	0
+157	0	0	0
+157	0	0	0
+157	0	0	0
+157	0	0	0
+157	0	0	0
+168	0	0	0
+168	0	0	0
+170	0	0	0
+170	0	0	0
+171	0	0	0
+171	0	0	0
+173	0	0	7
+190	0	0	0
+190	0	0	0
+204	0	0	0
+204	0	0	0
+204	0	0	2
+205	0	0	1
+207	0	0	0
+220	0	0	0
+221	0	0	0
+222	0	0	0
+8	326	0.1	0
+8	326	0.2	0
+8	326	0.3	0
+8	326	0.4	0
+8	326	0.5	0
+8	326	0.6	0
+8	326	0.7	0
+8	326	0.8	0
+8	326	0.9	0
+8	326	1	0
+8	326	1.1	0
+8	326	1.2	0
+8	326	1.3	0
+8	326	1.4	0
+8	326	1.5	0
+8	326	1.6	0
+8	326	1.7	0
+8	326	1.8	0
+8	326	1.9	0
+8	326	2	0
+8	326	2.1	0
+8	326	2.2	0
+8	326	2.3	0
+8	326	2.4	0
+8	326	2.5	0
+8	326	2.6	0
+8	326	2.7	0
+8	326	2.8	0
+8	326	2.9	0
+8	326	3	0
+8	326	3.1	0
+8	326	3.2	0
+8	326	3.3	0
+8	326	3.4	0
+8	326	3.5	0
+8	326	3.6	0
+8	326	3.7	0
+8	326	3.8	0
+8	326	3.9	0
+8	326	4	0
+8	326	4.1	0
+8	326	4.2	0
+8	326	4.3	0
+8	326	4.4	0
+8	326	4.5	0
+8	326	4.6	0
+8	326	4.7	0
+8	326	4.8	0
+8	326	4.9	0
+8	326	5	0
+8	326	5.1	0
+8	326	5.2	0
+8	326	5.3	0
+8	326	5.4	0
+8	326	5.5	0
+8	326	5.6	0
+8	326	5.7	0
+8	326	5.8	0
+8	326	5.9	0
+8	326	6	0
+8	326	6.1	0
+8	326	6.2	0
+8	326	6.3	0
+8	326	6.4	0
+8	326	6.5	0
+8	326	6.6	0
+8	326	6.7	0
+8	326	6.8	0
+8	326	6.9	0
+8	326	7	0
+8	326	7.1	0
+8	326	7.2	0
+8	326	7.3	0
+8	326	7.4	0
+8	326	7.5	0
+8	326	7.6	0
+8	326	7.7	0
+8	326	7.8	0
+8	326	7.9	0
+8	326	8	0
+8	326	8.1	0
+8	326	8.2	0
+8	326	8.3	0
+8	326	8.4	0
+8	326	8.5	0
+8	326	8.6	0
+8	326	8.7	0
+8	326	8.8	0
+8	326	8.9	0
+8	326	9	0
+8	326	9.1	0
+8	326	9.2	0
+8	326	9.3	0
+8	326	9.4	0
+8	326	9.5	0
+8	326	9.6	0
+8	326	9.7	0
+8	326	9.8	0
+8	326	9.9	0
+8	326	10	0
+8	326	10.1	0
+8	326	10.2	0
+8	326	10.3	0
+8	326	10.4	0
+8	326	10.5	0
+8	326	10.6	0
+8	326	10.7	0
+8	326	10.702939234651	0
+10	326	0.1	0
+10	326	0.2	0
+10	326	0.3	0
+10	326	0.4	0
+10	326	0.5	0
+10	326	0.6	0
+10	326	0.7	0
+10	326	0.8	0
+10	326	0.9	0
+10	326	1	0
+10	326	1.1	0
+10	326	1.2	0
+10	326	1.3	0
+10	326	1.4	0
+10	326	1.5	0
+10	326	1.6	0
+10	326	1.7	0
+10	326	1.8	0
+10	326	1.9	0
+10	326	2	0
+10	326	2.1	0
+10	326	2.2	0
+10	326	2.3	0
+10	326	2.4	0
+10	326	2.5	0
+10	326	2.6	0
+10	326	2.7	0
+10	326	2.8	0
+10	326	2.9	0
+10	326	3	0
+10	326	3.1	0
+10	326	3.2	0
+10	326	3.3	0
+10	326	3.4	0
+10	326	3.5	0
+10	326	3.6	0
+10	326	3.7	0
+10	326	3.8	0
+10	326	3.9	0
+10	326	4	0
+10	326	4.1	0
+10	326	4.2	0
+10	326	4.3	0
+10	326	4.4	0
+10	326	4.5	0
+10	326	4.6	0
+10	326	4.7	0
+10	326	4.8	0
+10	326	4.9	0
+10	326	5	0
+10	326	5.1	0
+10	326	5.2	0
+10	326	5.3	0
+10	326	5.4	0
+10	326	5.5	0
+10	326	5.6	0
+10	326	5.7	0
+10	326	5.8	0
+10	326	5.9	0
+10	326	6	0
+10	326	6.1	0
+10	326	6.2	0
+10	326	6.3	0
+10	326	6.4	0
+10	326	6.5	0
+10	326	6.6	0
+10	326	6.7	0
+10	326	6.8	0
+10	326	6.9	0
+10	326	7	0
+10	326	7.1	0
+10	326	7.2	0
+10	326	7.3	0
+10	326	7.4	0
+10	326	7.5	0
+10	326	7.6	0
+10	326	7.7	0
+10	326	7.8	0
+10	326	7.9	0
+10	326	8	0
+10	326	8.1	0
+10	326	8.2	0
+10	326	8.3	0
+10	326	8.4	0
+10	326	8.5	0
+10	326	8.6	0
+10	326	8.7	0
+10	326	8.8	0
+10	326	8.9	0
+10	326	9	0
+10	326	9.1	0
+10	326	9.2	0
+10	326	9.3	0
+10	326	9.4	0
+10	326	9.5	0
+10	326	9.6	0
+10	326	9.7	0
+10	326	9.8	0
+10	326	9.9	0
+10	326	10	0
+10	326	10.1	0
+10	326	10.2	0
+10	326	10.3	0
+10	326	10.4	0
+10	326	10.5	0
+10	326	10.6	0
+10	326	10.7	0
+10	326	10.702939234651	0
+72	326	0.1	0
+72	326	0.2	0
+72	326	0.3	0
+72	326	0.4	0
+72	326	0.5	0
+72	326	0.6	0
+72	326	0.7	0
+72	326	0.8	0
+72	326	0.9	0
+72	326	1	0
+72	326	1.1	0
+72	326	1.2	0
+72	326	1.3	0
+72	326	1.4	0
+72	326	1.5	0
+72	326	1.6	0
+72	326	1.7	0
+72	326	1.8	0
+72	326	1.9	0
+72	326	2	0
+72	326	2.1	0
+72	326	2.2	0
+72	326	2.3	0
+72	326	2.4	0
+72	326	2.5	0
+72	326	2.6	0
+72	326	2.7	0
+72	326	2.8	0
+72	326	2.9	0
+72	326	3	0
+72	326	3.1	0
+72	326	3.2	0
+72	326	3.3	0
+72	326	3.4	0
+72	326	3.5	0
+72	326	3.6	0
+72	326	3.7	0
+72	326	3.8	0
+72	326	3.9	0
+72	326	4	0
+72	326	4.1	0
+72	326	4.2	0
+72	326	4.3	0
+72	326	4.4	0
+72	326	4.5	0
+72	326	4.6	0
+72	326	4.7	0
+72	326	4.8	0
+72	326	4.9	0
+72	326	5	0
+72	326	5.1	0
+72	326	5.2	0
+72	326	5.3	0
+72	326	5.4	0
+72	326	5.5	0
+72	326	5.6	0
+72	326	5.7	0
+72	326	5.8	0
+72	326	5.9	0
+72	326	6	0
+72	326	6.1	0
+72	326	6.2	0
+72	326	6.3	0
+72	326	6.4	0
+72	326	6.5	0
+72	326	6.6	0
+72	326	6.7	0
+72	326	6.8	0
+72	326	6.9	0
+72	326	7	0
+72	326	7.1	0
+72	326	7.2	0
+72	326	7.3	0
+72	326	7.4	0
+72	326	7.5	0
+72	326	7.6	0
+72	326	7.7	0
+72	326	7.8	0
+72	326	7.9	0
+72	326	8	0
+72	326	8.1	0
+72	326	8.2	0
+72	326	8.3	0
+72	326	8.4	0
+72	326	8.5	0
+72	326	8.6	0
+72	326	8.7	0
+72	326	8.8	0
+72	326	8.9	0
+72	326	9	0
+72	326	9.1	0
+72	326	9.2	0
+72	326	9.3	0
+72	326	9.4	0
+72	326	9.5	0
+72	326	9.6	0
+72	326	9.7	0
+72	326	9.8	0
+72	326	9.9	0
+72	326	10	0
+72	326	10.1	0
+72	326	10.2	0
+72	326	10.3	0
+72	326	10.4	0
+72	326	10.5	0
+72	326	10.6	0
+72	326	10.7	0
+72	326	10.702939234651	0
+84	326	0.1	0
+84	326	0.2	0
+84	326	0.3	0
+84	326	0.4	0
+84	326	0.5	0
+84	326	0.6	0
+84	326	0.7	0
+84	326	0.8	0
+84	326	0.9	0
+84	326	1	0
+84	326	1.1	0
+84	326	1.2	0
+84	326	1.3	0
+84	326	1.4	0
+84	326	1.5	0
+84	326	1.6	0
+84	326	1.7	0
+84	326	1.8	0
+84	326	1.9	0
+84	326	2	0
+84	326	2.1	0
+84	326	2.2	0
+84	326	2.3	0
+84	326	2.4	0
+84	326	2.5	0
+84	326	2.6	0
+84	326	2.7	0
+84	326	2.8	0
+84	326	2.9	0
+84	326	3	0
+84	326	3.1	0
+84	326	3.2	0
+84	326	3.3	0
+84	326	3.4	0
+84	326	3.5	0
+84	326	3.6	0
+84	326	3.7	0
+84	326	3.8	0
+84	326	3.9	0
+84	326	4	0
+84	326	4.1	0
+84	326	4.2	0
+84	326	4.3	0
+84	326	4.4	0
+84	326	4.5	0
+84	326	4.6	0
+84	326	4.7	0
+84	326	4.8	0
+84	326	4.9	0
+84	326	5	0
+84	326	5.1	0
+84	326	5.2	0
+84	326	5.3	0
+84	326	5.4	0
+84	326	5.5	0
+84	326	5.6	0
+84	326	5.7	0
+84	326	5.8	0
+84	326	5.9	0
+84	326	6	0
+84	326	6.1	0
+84	326	6.2	0
+84	326	6.3	0
+84	326	6.4	0
+84	326	6.5	0
+84	326	6.6	0
+84	326	6.7	0
+84	326	6.8	0
+84	326	6.9	0
+84	326	7	0
+84	326	7.1	0
+84	326	7.2	0
+84	326	7.3	0
+84	326	7.4	0
+84	326	7.5	0
+84	326	7.6	0
+84	326	7.7	0
+84	326	7.8	0
+84	326	7.9	0
+84	326	8	0
+84	326	8.1	0
+84	326	8.2	0
+84	326	8.3	0
+84	326	8.4	0
+84	326	8.5	0
+84	326	8.6	0
+84	326	8.7	0
+84	326	8.8	0
+84	326	8.9	0
+84	326	9	0
+84	326	9.1	0
+84	326	9.2	0
+84	326	9.3	0
+84	326	9.4	0
+84	326	9.5	0
+84	326	9.6	0
+84	326	9.7	0
+84	326	9.8	0
+84	326	9.9	0
+84	326	10	0
+84	326	10.1	0
+84	326	10.2	0
+84	326	10.3	0
+84	326	10.4	0
+84	326	10.5	0
+84	326	10.6	0
+84	326	10.7	0
+84	326	10.702939234651	0
+86	326	0.1	0
+86	326	0.2	0
+86	326	0.3	0
+86	326	0.4	0
+86	326	0.5	0
+86	326	0.6	0
+86	326	0.7	0
+86	326	0.8	0
+86	326	0.9	0
+86	326	1	0
+86	326	1.1	0
+86	326	1.2	0
+86	326	1.3	0
+86	326	1.4	0
+86	326	1.5	0
+86	326	1.6	0
+86	326	1.7	0
+86	326	1.8	0
+86	326	1.9	0
+86	326	2	0
+86	326	2.1	0
+86	326	2.2	0
+86	326	2.3	0
+86	326	2.4	0
+86	326	2.5	0
+86	326	2.6	0
+86	326	2.7	0
+86	326	2.8	0
+86	326	2.9	0
+86	326	3	0
+86	326	3.1	0
+86	326	3.2	0
+86	326	3.3	0
+86	326	3.4	0
+86	326	3.5	0
+86	326	3.6	0
+86	326	3.7	0
+86	326	3.8	0
+86	326	3.9	0
+86	326	4	0
+86	326	4.1	0
+86	326	4.2	0
+86	326	4.3	0
+86	326	4.4	0
+86	326	4.5	0
+86	326	4.6	0
+86	326	4.7	0
+86	326	4.8	0
+86	326	4.9	0
+86	326	5	0
+86	326	5.1	0
+86	326	5.2	0
+86	326	5.3	0
+86	326	5.4	0
+86	326	5.5	0
+86	326	5.6	0
+86	326	5.7	0
+86	326	5.8	0
+86	326	5.9	0
+86	326	6	0
+86	326	6.1	0
+86	326	6.2	0
+86	326	6.3	0
+86	326	6.4	0
+86	326	6.5	0
+86	326	6.6	0
+86	326	6.7	0
+86	326	6.8	0
+86	326	6.9	0
+86	326	7	0
+86	326	7.1	0
+86	326	7.2	0
+86	326	7.3	0
+86	326	7.4	0
+86	326	7.5	0
+86	326	7.6	0
+86	326	7.7	0
+86	326	7.8	0
+86	326	7.9	0
+86	326	8	0
+86	326	8.1	0
+86	326	8.2	0
+86	326	8.3	0
+86	326	8.4	0
+86	326	8.5	0
+86	326	8.6	0
+86	326	8.7	0
+86	326	8.8	0
+86	326	8.9	0
+86	326	9	0
+86	326	9.1	0
+86	326	9.2	0
+86	326	9.3	0
+86	326	9.4	0
+86	326	9.5	0
+86	326	9.6	0
+86	326	9.7	0
+86	326	9.8	0
+86	326	9.9	0
+86	326	10	0
+86	326	10.1	0
+86	326	10.2	0
+86	326	10.3	0
+86	326	10.4	0
+86	326	10.5	0
+86	326	10.6	0
+86	326	10.7	0
+86	326	10.702939234651	0
+148	326	0.1	0
+148	326	0.2	0
+148	326	0.3	0
+148	326	0.4	0
+148	326	0.5	0
+148	326	0.6	0
+148	326	0.7	0
+148	326	0.8	0
+148	326	0.9	0
+148	326	1	0
+148	326	1.1	0
+148	326	1.2	0
+148	326	1.3	0
+148	326	1.4	0
+148	326	1.5	0
+148	326	1.6	0
+148	326	1.7	0
+148	326	1.8	0
+148	326	1.9	0
+148	326	2	0
+148	326	2.1	0
+148	326	2.2	0
+148	326	2.3	0
+148	326	2.4	0
+148	326	2.5	0
+148	326	2.6	0
+148	326	2.7	0
+148	326	2.8	0
+148	326	2.9	0
+148	326	3	0
+148	326	3.1	0
+148	326	3.2	0
+148	326	3.3	0
+148	326	3.4	0
+148	326	3.5	0
+148	326	3.6	0
+148	326	3.7	0
+148	326	3.8	0
+148	326	3.9	0
+148	326	4	0
+148	326	4.1	0
+148	326	4.2	0
+148	326	4.3	0
+148	326	4.4	0
+148	326	4.5	0
+148	326	4.6	0
+148	326	4.7	0
+148	326	4.8	0
+148	326	4.9	0
+148	326	5	0
+148	326	5.1	0
+148	326	5.2	0
+148	326	5.3	0
+148	326	5.4	0
+148	326	5.5	0
+148	326	5.6	0
+148	326	5.7	0
+148	326	5.8	0
+148	326	5.9	0
+148	326	6	0
+148	326	6.1	0
+148	326	6.2	0
+148	326	6.3	0
+148	326	6.4	0
+148	326	6.5	0
+148	326	6.6	0
+148	326	6.7	0
+148	326	6.8	0
+148	326	6.9	0
+148	326	7	0
+148	326	7.1	0
+148	326	7.2	0
+148	326	7.3	0
+148	326	7.4	0
+148	326	7.5	0
+148	326	7.6	0
+148	326	7.7	0
+148	326	7.8	0
+148	326	7.9	0
+148	326	8	0
+148	326	8.1	0
+148	326	8.2	0
+148	326	8.3	0
+148	326	8.4	0
+148	326	8.5	0
+148	326	8.6	0
+148	326	8.7	0
+148	326	8.8	0
+148	326	8.9	0
+148	326	9	0
+148	326	9.1	0
+148	326	9.2	0
+148	326	9.3	0
+148	326	9.4	0
+148	326	9.5	0
+148	326	9.6	0
+148	326	9.7	0
+148	326	9.8	0
+148	326	9.9	0
+148	326	10	0
+148	326	10.1	0
+148	326	10.2	0
+148	326	10.3	0
+148	326	10.4	0
+148	326	10.5	0
+148	326	10.6	0
+148	326	10.7	0
+148	326	10.702939234651	0
+160	326	0.1	0
+160	326	0.2	0
+160	326	0.3	0
+160	326	0.4	0
+160	326	0.5	0
+160	326	0.6	0
+160	326	0.7	0
+160	326	0.8	0
+160	326	0.9	0
+160	326	1	0
+160	326	1.1	0
+160	326	1.2	0
+160	326	1.3	0
+160	326	1.4	0
+160	326	1.5	0
+160	326	1.6	0
+160	326	1.7	0
+160	326	1.8	0
+160	326	1.9	0
+160	326	2	0
+160	326	2.1	0
+160	326	2.2	0
+160	326	2.3	0
+160	326	2.4	0
+160	326	2.5	0
+160	326	2.6	0
+160	326	2.7	0
+160	326	2.8	0
+160	326	2.9	0
+160	326	3	0
+160	326	3.1	0
+160	326	3.2	0
+160	326	3.3	0
+160	326	3.4	0
+160	326	3.5	0
+160	326	3.6	0
+160	326	3.7	0
+160	326	3.8	0
+160	326	3.9	0
+160	326	4	0
+160	326	4.1	0
+160	326	4.2	0
+160	326	4.3	0
+160	326	4.4	0
+160	326	4.5	0
+160	326	4.6	0
+160	326	4.7	0
+160	326	4.8	0
+160	326	4.9	0
+160	326	5	0
+160	326	5.1	0
+160	326	5.2	0
+160	326	5.3	0
+160	326	5.4	0
+160	326	5.5	0
+160	326	5.6	0
+160	326	5.7	0
+160	326	5.8	0
+160	326	5.9	0
+160	326	6	0
+160	326	6.1	0
+160	326	6.2	0
+160	326	6.3	0
+160	326	6.4	0
+160	326	6.5	0
+160	326	6.6	0
+160	326	6.7	0
+160	326	6.8	0
+160	326	6.9	0
+160	326	7	0
+160	326	7.1	0
+160	326	7.2	0
+160	326	7.3	0
+160	326	7.4	0
+160	326	7.5	0
+160	326	7.6	0
+160	326	7.7	0
+160	326	7.8	0
+160	326	7.9	0
+160	326	8	0
+160	326	8.1	0
+160	326	8.2	0
+160	326	8.3	0
+160	326	8.4	0
+160	326	8.5	0
+160	326	8.6	0
+160	326	8.7	0
+160	326	8.8	0
+160	326	8.9	0
+160	326	9	0
+160	326	9.1	0
+160	326	9.2	0
+160	326	9.3	0
+160	326	9.4	0
+160	326	9.5	0
+160	326	9.6	0
+160	326	9.7	0
+160	326	9.8	0
+160	326	9.9	0
+160	326	10	0
+160	326	10.1	0
+160	326	10.2	0
+160	326	10.3	0
+160	326	10.4	0
+160	326	10.5	0
+160	326	10.6	0
+160	326	10.7	0
+160	326	10.702939234651	0
+162	326	0.1	0
+162	326	0.2	0
+162	326	0.3	0
+162	326	0.4	0
+162	326	0.5	0
+162	326	0.6	0
+162	326	0.7	0
+162	326	0.8	0
+162	326	0.9	0
+162	326	1	0
+162	326	1.1	0
+162	326	1.2	0
+162	326	1.3	0
+162	326	1.4	0
+162	326	1.5	0
+162	326	1.6	0
+162	326	1.7	0
+162	326	1.8	0
+162	326	1.9	0
+162	326	2	0
+162	326	2.1	0
+162	326	2.2	0
+162	326	2.3	0
+162	326	2.4	0
+162	326	2.5	0
+162	326	2.6	0
+162	326	2.7	0
+162	326	2.8	0
+162	326	2.9	0
+162	326	3	0
+162	326	3.1	0
+162	326	3.2	0
+162	326	3.3	0
+162	326	3.4	0
+162	326	3.5	0
+162	326	3.6	0
+162	326	3.7	0
+162	326	3.8	0
+162	326	3.9	0
+162	326	4	0
+162	326	4.1	0
+162	326	4.2	0
+162	326	4.3	0
+162	326	4.4	0
+162	326	4.5	0
+162	326	4.6	0
+162	326	4.7	0
+162	326	4.8	0
+162	326	4.9	0
+162	326	5	0
+162	326	5.1	0
+162	326	5.2	0
+162	326	5.3	0
+162	326	5.4	0
+162	326	5.5	0
+162	326	5.6	0
+162	326	5.7	0
+162	326	5.8	0
+162	326	5.9	0
+162	326	6	0
+162	326	6.1	0
+162	326	6.2	0
+162	326	6.3	0
+162	326	6.4	0
+162	326	6.5	0
+162	326	6.6	0
+162	326	6.7	0
+162	326	6.8	0
+162	326	6.9	0
+162	326	7	0
+162	326	7.1	0
+162	326	7.2	0
+162	326	7.3	0
+162	326	7.4	0
+162	326	7.5	0
+162	326	7.6	0
+162	326	7.7	0
+162	326	7.8	0
+162	326	7.9	0
+162	326	8	0
+162	326	8.1	0
+162	326	8.2	0
+162	326	8.3	0
+162	326	8.4	0
+162	326	8.5	0
+162	326	8.6	0
+162	326	8.7	0
+162	326	8.8	0
+162	326	8.9	0
+162	326	9	0
+162	326	9.1	0
+162	326	9.2	0
+162	326	9.3	0
+162	326	9.4	0
+162	326	9.5	0
+162	326	9.6	0
+162	326	9.7	0
+162	326	9.8	0
+162	326	9.9	0
+162	326	10	0
+162	326	10.1	0
+162	326	10.2	0
+162	326	10.3	0
+162	326	10.4	0
+162	326	10.5	0
+162	326	10.6	0
+162	326	10.7	0
+162	326	10.702939234651	0
+224	326	0.1	0
+224	326	0.2	0
+224	326	0.3	0
+224	326	0.4	0
+224	326	0.5	0
+224	326	0.6	0
+224	326	0.7	0
+224	326	0.8	0
+224	326	0.9	0
+224	326	1	0
+224	326	1.1	0
+224	326	1.2	0
+224	326	1.3	0
+224	326	1.4	0
+224	326	1.5	0
+224	326	1.6	0
+224	326	1.7	0
+224	326	1.8	0
+224	326	1.9	0
+224	326	2	0
+224	326	2.1	0
+224	326	2.2	0
+224	326	2.3	0
+224	326	2.4	0
+224	326	2.5	0
+224	326	2.6	0
+224	326	2.7	0
+224	326	2.8	0
+224	326	2.9	0
+224	326	3	0
+224	326	3.1	0
+224	326	3.2	0
+224	326	3.3	0
+224	326	3.4	0
+224	326	3.5	0
+224	326	3.6	0
+224	326	3.7	0
+224	326	3.8	0
+224	326	3.9	0
+224	326	4	0
+224	326	4.1	0
+224	326	4.2	0
+224	326	4.3	0
+224	326	4.4	0
+224	326	4.5	0
+224	326	4.6	0
+224	326	4.7	0
+224	326	4.8	0
+224	326	4.9	0
+224	326	5	0
+224	326	5.1	0
+224	326	5.2	0
+224	326	5.3	0
+224	326	5.4	0
+224	326	5.5	0
+224	326	5.6	0
+224	326	5.7	0
+224	326	5.8	0
+224	326	5.9	0
+224	326	6	0
+224	326	6.1	0
+224	326	6.2	0
+224	326	6.3	0
+224	326	6.4	0
+224	326	6.5	0
+224	326	6.6	0
+224	326	6.7	0
+224	326	6.8	0
+224	326	6.9	0
+224	326	7	0
+224	326	7.1	0
+224	326	7.2	0
+224	326	7.3	0
+224	326	7.4	0
+224	326	7.5	0
+224	326	7.6	0
+224	326	7.7	0
+224	326	7.8	0
+224	326	7.9	0
+224	326	8	0
+224	326	8.1	0
+224	326	8.2	0
+224	326	8.3	0
+224	326	8.4	0
+224	326	8.5	0
+224	326	8.6	0
+224	326	8.7	0
+224	326	8.8	0
+224	326	8.9	0
+224	326	9	0
+224	326	9.1	0
+224	326	9.2	0
+224	326	9.3	0
+224	326	9.4	0
+224	326	9.5	0
+224	326	9.6	0
+224	326	9.7	0
+224	326	9.8	0
+224	326	9.9	0
+224	326	10	0
+224	326	10.1	0
+224	326	10.2	0
+224	326	10.3	0
+224	326	10.4	0
+224	326	10.5	0
+224	326	10.6	0
+224	326	10.7	0
+224	326	10.702939234651	0
+
