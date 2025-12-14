@@ -6,12 +6,9 @@ This repository contains two separate OMNeT++ projects:
 ---
 ## 📂 Project Structure:
 omnetpp_project/
-│
-├── meshnetwork/ # Custom Mesh Network project
-│
-├── simu5g/ # Simu5G framework
+meshnetwork/ # Custom Mesh Network project
+simu5g/ # Simu5G framework
 │ └── simulations/nr/myNetwork/ # 5G NR project scenario
-│
-├── inet/ # INET Framework (ignored in Git)
-├── HelloWorld/ custom helloworld network for testing
+inet/ # INET Framework (ignored in Git)
+HelloWorld/ custom helloworld network for testing
 
